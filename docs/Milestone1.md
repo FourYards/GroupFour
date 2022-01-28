@@ -70,19 +70,19 @@ This system will provide a great platform for yard work customers and providers 
 
 - As a new user, I can create an account and select my account type.
 
-![Sign Up Use Case]()
+![Sign Up Use Case](signup-usecase.png)
 
 - As a customer, provider, or owner I can log in to the website to see information relating to me and my account.
 
-![Login Use Case]()
+![Login Use Case](login-usecase.png)
 
 - As a customer, I can post a job so that service providers can see what is available. This includes estimated time to complete, and a time frame of the job.
 
-![Post Listing Use Case]()
+![Post Listing Use Case](postListings.PNG)
 
 - As a provider, I can view job listings that are available to me. These listings can be filtered in a few different ways.
 
-![Brose Listings Use Case]()
+![Browse Listings Use Case](browseListings.PNG)
 
 - As a service provider, I can make an offer of a certain rate or amount for a job I see listed
 
@@ -94,11 +94,11 @@ This system will provide a great platform for yard work customers and providers 
 
 - As a provider, I can place a review on customers I perform work for after finishing a job. As a customer, I can place a review on providers that perform my requested work.
 
-![Review Users Use Case]()
+![Review Users Use Case](ReviewUser-usecase.png)
 
 - As a customer/provider, I can edit my profile information.
 
-![Edit Profile Use Case]()
+![Edit Profile Use Case](EditProfile-usecase.png)
 
 ## Functional Requirements
 
