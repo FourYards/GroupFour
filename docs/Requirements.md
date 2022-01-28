@@ -45,9 +45,9 @@ This system will provide a great platform for yard work customers and providers 
 
 ## Functional Requirements
 
-![functional reqs](fr1.PNG)
-![functional reqs](fr2.PNG)
-![functional reqs](fr3.PNG)
+![functional reqs](FR1.PNG)
+![functional reqs](FR2.PNG)
+![functional reqs](FR3.PNG)
 
 ## Non-functional Requirements
 
