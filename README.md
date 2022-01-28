@@ -7,6 +7,12 @@
 - Customers and providers will be able to review each other after each project in order to keep both the customer and provider satisfied
 - A small fee will be added to each sale, fees are decided based on frequency of listings and reviews.
 
+# Workspace Layout
+The FourYards web app will be stored in this repository.
+The documentation and resources for this project will be kept in the `docs` folder. This includes use case diagrams, the project plan, database diagrams, and more as the
+project progresses.
+The project will kept in the folder `app`.
+
 # Version Control Policies and Procedures
 
 - Use GitHub Pull Requests
