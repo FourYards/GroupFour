@@ -29,11 +29,11 @@ This system will provide a great platform for yard work customers and providers 
 
 - As a service provider, I can make an offer of a certain rate or amount for a job I see listed
 
-![Bid Use Case]()
+![Bid Use Case](bidding.png)
 
-- As a customer or provider, I can add funds to my account balance for use in transactions.
+- As a customer, I can add funds to my account balance for use in transactions.
 
-![Add Funds Use Case]()
+![Add Funds Use Case](addFunds.png)
 
 - As a provider, I can place a review on customers I perform work for after finishing a job. As a customer, I can place a review on providers that perform my requested work.
 
