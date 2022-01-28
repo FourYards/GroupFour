@@ -21,11 +21,11 @@ This system will provide a great platform for yard work customers and providers 
 
 - As a customer, I can post a job so that service providers can see what is available. This includes estimated time to complete, and a time frame of the job.
 
-![Post Listing Use Case](postListings.PNG)
+![Post Listing Use Case](postListings.png)
 
 - As a provider, I can view job listings that are available to me. These listings can be filtered in a few different ways.
 
-![Browse Listings Use Case](browseListings.PNG)
+![Browse Listings Use Case](browseListings.png)
 
 - As a service provider, I can make an offer of a certain rate or amount for a job I see listed
 
