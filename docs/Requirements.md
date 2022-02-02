@@ -13,45 +13,45 @@ This system will provide a great platform for yard work customers and providers 
 
 - As a new user, I can create an account and select my account type.
 
-![Sign Up Use Case](signup-usecase.png)
+![Sign Up Use Case](img/signup-usecase.png)
 
 - As a customer, provider, or owner I can log in to the website to see information relating to me and my account.
 
-![Login Use Case](login-usecase.png)
+![Login Use Case](img/login-usecase.png)
 
 - As a customer, I can post a job so that service providers can see what is available. This includes estimated time to complete, and a time frame of the job.
 
-![Post Listing Use Case](postListings.png)
+![Post Listing Use Case](img/postListings.png)
 
 - As a provider, I can view job listings that are available to me. These listings can be filtered in a few different ways.
 
-![Browse Listings Use Case](browseListings.png)
+![Browse Listings Use Case](img/browseListings.png)
 
 - As a service provider, I can make an offer of a certain rate or amount for a job I see listed
 
-![Bid Use Case](bidding.png)
+![Bid Use Case](img/bidding.png)
 
 - As a customer, I can add funds to my account balance for use in transactions.
 
-![Add Funds Use Case](addFunds.png)
+![Add Funds Use Case](img/addFunds.png)
 
 - As a provider, I can place a review on customers I perform work for after finishing a job. As a customer, I can place a review on providers that perform my requested work.
 
-![Review Users Use Case](ReviewUser-usecase.png)
+![Review Users Use Case](img/ReviewUser-usecase.png)
 
 - As a customer/provider, I can edit my profile information.
 
-![Edit Profile Use Case](EditProfile-usecase.png)
+![Edit Profile Use Case](img/EditProfile-usecase.png)
 
 ## Functional Requirements
 
-![functional reqs](FR1.PNG)
-![functional reqs](FR2.PNG)
-![functional reqs](FR3.PNG)
+![functional reqs](img/FR1.PNG)
+![functional reqs](img/FR2.PNG)
+![functional reqs](img/FR3.PNG)
 
 ## Non-functional Requirements
 
-![non-functional reqs](nfr1.PNG)
+![non-functional reqs](img/nfr1.PNG)
 
 ## Future Features
 
