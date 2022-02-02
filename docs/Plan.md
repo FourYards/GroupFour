@@ -17,13 +17,30 @@
 
 ## Development Process Description
 
-- GitHub Git Flow
-- At least 2 reviews on each PR, will do sprint-level reviews of master
-- Master branch and Feature Branches
-- Each new feature create a branch
-- Create many small commits
-- Create pull request
-- Merge to master
+The development will be broken up into five phases. Each phase will be a little
+like a Sprint in an Agile method and a little like an iteration in a Spiral
+process.  Specifically, each phase will be like a Sprint, in that work to be
+done will be organized into small tasks, placed into a “backlog”, and
+prioritized. Then, using on time-box scheduling, the team will decide which
+tasks the phase (Sprint) will address.  The team will use a Scrum Board to keep
+track of tasks in the backlog, those that will be part of the current Sprint,
+those in progress, and those that are done.
+
+Each phase will also be a little like an iteration in a Spiral process, in that
+each phase will include some risk analysis and that any development activity
+(requirements capture, analysis, design, implementation, etc.) can be done
+during any phase.  Early phases will focus on understanding (requirements
+capture and analysis) and subsequent phases will focus on design and
+implementation.  Each phase will include a retrospective.
+
+1. Phase 1 - Requirements Capture
+2. Phase 2 - Analysis, Architectural, UI, and DB Design
+3. Phase 3 - Implementation, and Unit Testing
+4. Phase 4 - More Implementation and Testing
+
+We will use Unified Modeling Language (UML) to document user goals, structural
+concepts, component interactions, and behaviors.
+
 ## Policies, Procedures, Comms Tools
 
 - Discord - Main channel for communication. Used for group communication, collaborative activities, and sharing small files.
