@@ -38,8 +38,7 @@
 - **think about this on thursday**
 - Password Storage - Severity: High - Mitigation: Hash passwords with a strong hashing algorithm (ex. Bcrypt or argon2)
 - Database Structure - Ineffective data storage can lead to muddled results
-- Login/Authentication -
-  -
+- Login/Authentication 
 
 **Use Case Diagrams**
 
