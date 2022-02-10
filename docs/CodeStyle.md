@@ -16,7 +16,7 @@ Any style guide questions not relating to whitespacing, line breaks, or other pu
         // Function body
     }
     ```
-    - For callbacks, prefer using the arrow function syntax unless you:
+    - For callbacks, prefer using the arrow function syntax unless you are:
         - A. Writing an event handler for an HTML element such as a button's click event
         - B. Callbacks used to group unit tests into logical groupings.
         - C. Have another technical reason to not use arrow functios (shouldn't need to worry about this one much in this project though)
