@@ -19,7 +19,8 @@ The project will kept in the folder `app`.
 - Get two reviews on each Pull Request
 - Commit often
 - Keep branches self-contained
-- Code Reviews: Learn each others&#39; coding styles
+- Code Reviews: Learn each others&#39; coding styles (as in techniques/approaches)
+- Follow the repo's [code style guide](docs/CodeStyle.md) for naming conventions and use prettier for formatting.
 
 ## Tool stack description and setup procedure
 
