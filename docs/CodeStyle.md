@@ -1,6 +1,6 @@
 # Project Code Style Guide
 
-Regarding formatting of the code (whitespace and overall presentation), we will be using a formatting tool called [prettier.](https://prettier.io/) It has integrations with some of the most popular editors and IDEs (ex. Vim, Emacs, VSCode, Anything JetBrains, and more) in addition to having a CLI interface. Details on integrations and CLI usage can be found [here.](https://prettier.io/docs/en/editors.html).
+Regarding formatting of the code (whitespace and overall presentation), we will be using a formatting tool called [prettier](https://prettier.io/). It has integrations with some of the most popular editors and IDEs (ex. Vim, Emacs, VSCode, Anything JetBrains, and more) in addition to having a CLI interface. Details on integrations and CLI usage can be found [here](https://prettier.io/docs/en/editors.html).
 
 We can settle the whole tabs-vs-spaces flame war later since prettier makes this configurable. One of the most common configurations is two spaces for the tab size and is what a lot of tooling tends to generate in JS.
 
