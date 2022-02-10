@@ -6,7 +6,7 @@ We can settle the whole tabs-vs-spaces flame war later since prettier makes this
 
 ## Naming and Feature Usage Conventions
 
-Any style guide questions not relating to whitespacing, line breaks, or other purely formatting concerns should follow the [MDN Code Examples Guidelines](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript), with the following adjustments:
+Any style guide questions not relating to whitespacing, line breaks, or other purely formatting concerns should follow the [MDN Code Examples Guidelines](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript). Naming conventions should follow these guidelines as well. However, for our use case, we will have the following adjustments regarding formatting and function delaractions compared to the MDN Code Examples Guidelines:
 
 1. Any formatting applied by prettier takes prescedence over what is specified by the MDN examples guidelines. (mostly whitespace as prettier will not mess with naming conventions)
 2. There are several ways to write callbacks/inline functions/lambdas in JavaScript, each with some small differences. The following approaches should be used:
