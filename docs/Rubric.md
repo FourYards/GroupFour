@@ -2,12 +2,12 @@
 
 ## Product Backlog
 
-* [https://github.com/FourYards/yard-work-marketplace/issues](Issue feed)
-* [https://github.com/FourYards/yard-work-marketplace/milestone/1](Page for milestone 2)
+* [Issue feed](https://github.com/FourYards/yard-work-marketplace/issues)
+* [Page for milestone 2](https://github.com/FourYards/yard-work-marketplace/milestone/1)
 
 ## README.md
 
-* [https://github.com/FourYards/yard-work-marketplace/blob/main/README.md](README.md)
+* [README.md](https://github.com/FourYards/yard-work-marketplace/blob/main/README.md)
 
 ### Revisions
 
@@ -15,7 +15,7 @@
 
 ## Project plan
 
-* [https://github.com/FourYards/yard-work-marketplace/blob/main/docs/Plan.md](Plan.md)
+* [Plan.md](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/Plan.md)
 
 ### Revisions
 
@@ -23,7 +23,7 @@
 
 ## Use Case Diagrams
 
-* [https://github.com/FourYards/yard-work-marketplace/blob/main/docs/Requirements.md#users-and-their-goals](Use Case Diagrams in Requirements.md)
+* [Use Case Diagrams in Requirements.md](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/Requirements.md#users-and-their-goals)
 
 ### Revisions
 
@@ -35,13 +35,13 @@
 
 ## Activity Diagrams
 
-* [https://github.com/FourYards/yard-work-marketplace/blob/main/docs/ActivityDiagrams.md](ActivityDiagrams.md)
+* [ActivityDiagrams.md](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/ActivityDiagrams.md)
 
 ## High-Fidelity Prototype
 
-* [#class-diagrams](See class diagrams section)
+* [See class diagrams section](#class-diagrams)
 
 ## History on Scrum Board
 
-* [#product-backlog](See product backlog section)
+* [See product backlog section](#product-backlog)
 * We have been assigning issues to relevant people; when issues are modified GitHub tracks it.
