@@ -59,13 +59,33 @@ This system will provide a great platform for yard work customers and providers 
 
 ![Add Funds Use Case](img/addFunds.png)
 
-- As a provider, I can place a review on customers I perform work for after finishing a job. As a customer, I can place a review on providers that perform my requested work.
+- As a provider, I can place a review on customers I perform work for after finishing a job. As a customer, I can place a review on providers that perform my requested work.  
+  ![Review Users Use Case](img/ReviewUser-usecase.png)
+  - Participating actor(s): Customer, Provider
+  - Entry conditions:
+      - Customer has finished assigned work from particular Provider.
+  - Exit conditions:
+      - Provider and Customer have reviewed each other.
+  - Event flow:
+      1. Provider marks work complete
+      1. Customer inspects work, either accepts or denies work completion
+      1. Upon acceptance, funds are transferred to Provider
+      1. Provider and Customer review each other
 
-![Review Users Use Case](img/ReviewUser-usecase.png)
-
-- As a customer/provider, I can edit my profile information.
-
-![Edit Profile Use Case](img/EditProfile-usecase.png)
+- As a customer/provider, I can edit my profile information.  
+  ![Edit Profile Use Case](img/EditProfile-usecase.png)
+  - Participating actor(s): Customer, Provider (collectively Users)
+  - Entry conditions:
+      - User requests to change profile
+  - Exit conditions:
+      - User applies changes; OR
+      - User navigates away
+  - Event flow:
+    1. User has option to change:
+        - Email
+        - Password
+        - Phone Number
+        - Preferred display role
 
 ## Functional Requirements
 
