@@ -39,6 +39,10 @@
 
 ## High-Fidelity Prototype
 
+* [Wireframe diagrams directory](https://github.com/FourYards/yard-work-marketplace/tree/main/docs/LowFidelity)
+
+## Low-Fidelity Prototype
+
 * [See class diagrams section](#class-diagrams)
 
 ## History on Scrum Board
