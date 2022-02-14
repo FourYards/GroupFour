@@ -14,10 +14,34 @@ This system will provide a great platform for yard work customers and providers 
 - As a new user, I can create an account and select my account type.
 
 ![Sign Up Use Case](img/signup-usecase.png)
+  - Participating actor(s): Customer, Provider
+  - Entry Conditions:
+    - User asks to create account
+    - User redirected when not logged in
+  - Exit Conditions:
+    - User navigates away
+    - User finishes creating account
+  - Event Flow:
+    1. User enters account creation page
+    2. User enters valid account information
+    3. Account info is added to database
+    4. User is returned to site
 
 - As a customer, provider, or owner I can log in to the website to see information relating to me and my account.
 
 ![Login Use Case](img/login-usecase.png)
+  - Participating actor(s): Customer, Provider, Owner
+  - Entry Conditions:
+    - User asks to login
+    - User redirected when not logged in
+  - Exit Conditions:
+    - User navigates away
+    - User logs in
+  - Event Flow:
+    1. User enters login page
+    2. User enters email and password
+    3. Database verifies user
+    4. User returned to sight with authentication
 
 - As a customer, I can post a job so that service providers can see what is available. This includes estimated time to complete, and a time frame of the job.
 
