@@ -32,7 +32,7 @@
 
 ## Class Diagrams
 
-* [UML Class Diagram](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/img/UML-Class-Diagram.md)
+* [UML Class Diagram](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/img/uml-class-diagram.svg)
 
 ## Activity Diagrams
 
