@@ -27,11 +27,12 @@
 
 ### Revisions
 
+* Switch out some UML diagrams for more detailed ones.
 * Added entry/exit conditions
 
 ## Class Diagrams
 
-* No link yet
+* [UML Class Diagram](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/img/UML-Class-Diagram.md)
 
 ## Activity Diagrams
 
