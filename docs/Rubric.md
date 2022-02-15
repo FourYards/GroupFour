@@ -30,6 +30,9 @@
 * Switch out some UML diagrams for more detailed ones.
 * Added entry/exit conditions
 
+### Requirements.md Revisions
+* Translated functional and non-functional requirements to markdown
+
 ## Class Diagrams
 
 * [UML Class Diagram](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/img/uml-class-diagram.svg)
