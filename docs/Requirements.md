@@ -13,7 +13,7 @@ This system will provide a great platform for yard work customers and providers 
 
 - As a new user, I can create an account and select my account type.
 
-![Sign Up Use Case](img/signup-usecase.png)
+  ![Sign Up Use Case](img/signup-usecase.png)
   - Participating actor(s): Customer, Provider
   - Entry Conditions:
     - User asks to create account
@@ -29,7 +29,7 @@ This system will provide a great platform for yard work customers and providers 
 
 - As a customer, provider, or owner I can log in to the website to see information relating to me and my account.
 
-![Login Use Case](img/login-usecase.png)
+  ![Login Use Case](img/login-usecase.png)
   - Participating actor(s): Customer, Provider, Owner
   - Entry Conditions:
     - User asks to login
@@ -45,21 +45,48 @@ This system will provide a great platform for yard work customers and providers 
 
 - As a customer, I can post a job so that service providers can see what is available. This includes estimated time to complete, and a time frame of the job.
 
-![Post Listing Use Case](img/postListings.png)
+  ![Post Listing Use Case](img/postListings.png)
 
 - As a provider, I can view job listings that are available to me. These listings can be filtered in a few different ways.
 
-![Browse Listings Use Case](img/browseListings.png)
+  ![Browse Listings Use Case](img/browseListings.png)
 
 - As a service provider, I can make an offer of a certain rate or amount for a job I see listed
 
-![Bid Use Case](img/bidding.png)
+  ![Bid Use Case](img/bidding.png)
+  - Participating actors(s): Customer, Provider
+  - Entry Conditions
+    - Customer receives a bid notification
+    - Provider logs in and places bid
+  - Exit Conditions
+    - Customer accepts a bid
+    - Provider confirms scheduling of work
+  - Event Flow
+    1. Provider logs in
+    2. Provider places bid
+    3. Customer logs in
+    4. Customer reviews bid
+    5. Customer accepts an offer
+    6. Provider logs in
+    7. Provider confirms scheduling of work
 
 - As a customer, I can add funds to my account balance for use in transactions.
 
-![Add Funds Use Case](img/addFunds.png)
+  ![Add Funds Use Case](img/addFunds.png)
+  - Participating actor(s): Customer
+  - Entry Conditions
+    - Customer accesses account details
+  - Exit Conditions
+    - Customer confirms amount to add to account
+  - Event Flow
+    1. Customer logs in to account
+    2. Customer accesses account details
+    3. Customer clicks on "manage site funds" link
+    4. Customer enters amount to add to account
+    5. Customer confirms amount to add to account
 
 - As a provider, I can place a review on customers I perform work for after finishing a job. As a customer, I can place a review on providers that perform my requested work.  
+
   ![Review Users Use Case](img/ReviewUser-usecase.png)
   - Participating actor(s): Customer, Provider
   - Entry conditions:
