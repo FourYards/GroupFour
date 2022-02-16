@@ -13,35 +13,106 @@ This system will provide a great platform for yard work customers and providers 
 
 - As a new user, I can create an account and select my account type.
 
-![Sign Up Use Case](img/signup-usecase.png)
+  ![Sign Up Use Case](img/signup-usecase.png)
+  - Participating actor(s): Customer, Provider
+  - Entry Conditions:
+    - User asks to create account
+    - User redirected when not logged in
+  - Exit Conditions:
+    - User navigates away
+    - User finishes creating account
+  - Event Flow:
+    1. User enters account creation page
+    2. User enters valid account information
+    3. Account info is added to database
+    4. User is returned to site
 
 - As a customer, provider, or owner I can log in to the website to see information relating to me and my account.
 
-![Login Use Case](img/login-usecase.png)
+  ![Login Use Case](img/login-usecase.png)
+  - Participating actor(s): Customer, Provider, Owner
+  - Entry Conditions:
+    - User asks to login
+    - User redirected when not logged in
+  - Exit Conditions:
+    - User navigates away
+    - User logs in
+  - Event Flow:
+    1. User enters login page
+    2. User enters email and password
+    3. Database verifies user
+    4. User returned to sight with authentication
 
 - As a customer, I can post a job so that service providers can see what is available. This includes estimated time to complete, and a time frame of the job.
 
-![Post Listing Use Case](img/postListings.png)
+  ![Post Listing Use Case](img/postListing-useCase.png)
 
 - As a provider, I can view job listings that are available to me. These listings can be filtered in a few different ways.
 
-![Browse Listings Use Case](img/browseListings.png)
+  ![Browse Listings Use Case](img/browseListings-useCase.png)
 
 - As a service provider, I can make an offer of a certain rate or amount for a job I see listed
 
-![Bid Use Case](img/bidding.png)
+  ![Bid Use Case](img/bidding.png)
+  - Participating actors(s): Customer, Provider
+  - Entry Conditions
+    - Customer receives a bid notification
+    - Provider logs in and places bid
+  - Exit Conditions
+    - Customer accepts a bid
+    - Provider confirms scheduling of work
+  - Event Flow
+    1. Provider logs in
+    2. Provider places bid
+    3. Customer logs in
+    4. Customer reviews bid
+    5. Customer accepts an offer
+    6. Provider logs in
+    7. Provider confirms scheduling of work
 
 - As a customer, I can add funds to my account balance for use in transactions.
 
-![Add Funds Use Case](img/addFunds.png)
+  ![Add Funds Use Case](img/addFunds.png)
+  - Participating actor(s): Customer
+  - Entry Conditions
+    - Customer accesses account details
+  - Exit Conditions
+    - Customer confirms amount to add to account
+  - Event Flow
+    1. Customer logs in to account
+    2. Customer accesses account details
+    3. Customer clicks on "manage site funds" link
+    4. Customer enters amount to add to account
+    5. Customer confirms amount to add to account
 
-- As a provider, I can place a review on customers I perform work for after finishing a job. As a customer, I can place a review on providers that perform my requested work.
+- As a provider, I can place a review on customers I perform work for after finishing a job. As a customer, I can place a review on providers that perform my requested work.  
 
-![Review Users Use Case](img/ReviewUser-usecase.png)
+  ![Review Users Use Case](img/ReviewUser-usecase.png)
+  - Participating actor(s): Customer, Provider
+  - Entry conditions:
+      - Customer has finished assigned work from particular Provider.
+  - Exit conditions:
+      - Provider and Customer have reviewed each other.
+  - Event flow:
+      1. Provider marks work complete
+      1. Customer inspects work, either accepts or denies work completion
+      1. Upon acceptance, funds are transferred to Provider
+      1. Provider and Customer review each other
 
-- As a customer/provider, I can edit my profile information.
-
-![Edit Profile Use Case](img/EditProfile-usecase.png)
+- As a customer/provider, I can edit my profile information.  
+  ![Edit Profile Use Case](img/EditProfile-usecase.png)
+  - Participating actor(s): Customer, Provider (collectively Users)
+  - Entry conditions:
+      - User requests to change profile
+  - Exit conditions:
+      - User applies changes; OR
+      - User navigates away
+  - Event flow:
+    1. User has option to change:
+        - Email
+        - Password
+        - Phone Number
+        - Preferred display role
 
 ## Functional Requirements
 * 1. User authentication

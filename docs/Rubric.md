@@ -29,6 +29,7 @@
 
 * Switch out some UML diagrams for more detailed ones.
 * Added entry/exit conditions
+    * Note that some of the entry/exit conditions are listed in the document below the diagram image, while others may be listed directly in the image itself.
 
 ### Requirements.md Revisions
 * Translated functional and non-functional requirements to markdown
