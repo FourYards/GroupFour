@@ -88,14 +88,88 @@ This system will provide a great platform for yard work customers and providers 
         - Preferred display role
 
 ## Functional Requirements
+* 1. User authentication
+  * 1.1. The system must authenticate all users.
+    * 1.1.1. The system must allow users to create an account specifying the following:
+      * 1.1.1.1. Username
+      * 1.1.1.2. Password
+      * 1.1.1.3. Email address
+      * 1.1.1.4. Phone number
+    * 1.1.2. The system must allow returning users to log in using their account.
+  * 1.2. Users can have a combination of roles:
+    * 1.2.1. Customer: Post listings of work they need done
+    * 1.2.2. Provider: Bid on and fulfill projects requested by customers
+    * 1.2.3. Owner: Administrates the system
+    
+* 2. User profile features
+  * 2.1. The system must allow authenticated users to change important aspects of their profile, including:
+    * 2.1.1. Password
+    * 2.1.2. Email address
+    * 2.1.3. Phone number
+  * 2.2. The system must allow authenticated users to add or remove Customer and Provider roles from their own profile.
+  * 2.3. The system must not allow any user to make modifications to other users' profiles, unless that user is an Owner.
+  * 2.4. The system must allow authenticated users to manage funds by:
+    * 2.4.1. viewing their own balance.
+    * 2.4.2. adding funds to their account.
+      * 2.4.2.1. For the purpose of this assignment, no identifying financial information will be required.
+    * 2.4.3. withdrawing money from their account.
 
-![functional reqs](img/FR1.PNG)
-![functional reqs](img/FR2.PNG)
-![functional reqs](img/FR3.PNG)
+* 3. Customer features
+  * 3.1. The system must allow customers to post listings.
+    * 3.1.1. The customer must be able to describe details about the work, including:
+      * 3.1.1.1. Location of work
+      * 3.1.1.2. Type of work (lawn mowing, snow shoveling, leaf raking, housework…)
+      * 3.1.1.3. Description of work
+      * 3.1.1.4. Estimated time work will take
+      * 3.1.1.5. Hours available for the customer to have work done at their house
+  * 3.2. The system must allow customers to view possible providers and the bid offers they have received from each provider.
+    * 3.2.1. The system must allow customers to choose from this list which provider they want to pay for services
+      * 3.2.1.1. The system must allow customers to see reviews of providers when reviewing bid offers.
+  * 3.3. The system must allow customers to approve the completion of providers' work.
+    * 3.3.1. The system must transfer funds to providers directly.
+    * 3.3.2. The system must allow customers to review providers upon completion of work.
+    
+* 4. Provider features
+  * 4.1. The system must allow providers to view listings needing completion.
+    * 4.1.1. The system must allow providers to filter listing by:
+      * 4.1.1.1. Estimated duration
+      * 4.1.1.2. Hours of availability
+      * 4.1.1.3. City
+      * 4.1.1.4. Zip Code
+      * 4.1.1.5. Additional filters as deemed appropriate if time permits.
+    * 4.1.2. Providers must be able to view individual listings from this view (see 4.2)
+  * 4.2. Providers must be able to view individual listings
+    * 4.2.1. Providers must be able to see important details about listings (see 3.1.1).
+    * 4.2.2. Providers must be able to see reviews of customers.
+    * 4.2.3. Providers must be able to bid on these listings.
+  * 4.3. The system must allow providers to bid on customers' listings.
+    * 4.3.1. After a bid is accepted, providers can see that an offer has been accepted when viewing all bids they have placed.
+    * 4.3.2. The system must give contact information of the customer to the provider upon the customer accepting the work.
+  * 4.4. The system must allow providers to signal when a job is completed.
+    * 4.4.1. Providers must be able to review customers after completing a job for that customer.
+
+* 5. Owner features
+  * 5.1. The system must provide administration features to the owner.
+    * 5.1.1. Ability to remove ban users of the app for misuse
+  * 5.2. The system must give a cut of each payment to the owner.
+    * 5.2.1. The percentage of payment will be based on quality of provider
 
 ## Non-functional Requirements
 
-![non-functional reqs](img/nfr1.PNG)
+* 1. The system must utilize a database for persistent data storage
+  * 1.1. The following data must be stored persistently and securely
+    * 1.1.1. Username
+    * 1.1.2. Passwords
+    * 1.1.3. Postings
+    * 1.1.4. Addresses
+    * 1.1.5. Contact Information
+    * 1.1.6. Account Balances
+  * 1.2. The database will utilize relational data constraints and proper normalization
+* 2. The system will be maintainable within a git repository
+  * 2.1. Access will be limited to contributors in the development process
+  * 2.2. A feature branch and master branch workflow will be used (GitHub flow)
+* 3. The system will be deployable on any environment capable of running node.js
+* 4. Responsive design and mobile-compatibility will be taken into account
 
 ## Future Features
 
