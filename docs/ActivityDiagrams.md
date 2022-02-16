@@ -3,8 +3,11 @@
 ## Exchange reviews
 
 ![Reviews](img/activityReview.png)
+
 ## Browse Listings
 
 ![Browse Listing](img/PostBrowseListingActivityDiagram.svg)
-![Browse Listing](img/BidActivityDiagram.svg)
+
+## Bid Process
+![Bids](img/BidActivityDiagram.svg)
 
