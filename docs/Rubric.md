@@ -33,6 +33,9 @@
 ### Requirements.md Revisions
 * Translated functional and non-functional requirements to markdown
 
+### Code Styling Revisions
+* [Code Style](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/CodeStyle.md)
+
 ## Class Diagrams
 
 * [UML Class Diagram](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/img/uml-class-diagram.svg)
