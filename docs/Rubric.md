@@ -46,7 +46,7 @@
 
 ## High-Fidelity Prototype
 
-* [Wireframe diagrams directory](https://github.com/FourYards/yard-work-marketplace/tree/main/docs/LowFidelity)
+* [Wireframe diagrams directory](https://github.com/FourYards/yard-work-marketplace/tree/main/docs/HighFidelity)
 
 ## Low-Fidelity Prototype
 
