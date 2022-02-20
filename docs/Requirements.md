@@ -133,7 +133,7 @@ This system will provide a great platform for yard work customers and providers 
     * 2.1.1. Password
     * 2.1.2. Email address
     * 2.1.3. Phone number
-  * 2.2. The system must allow authenticated users to add or remove Customer and Provider roles from their own profile.
+  * 2.2. The system must allow authenticated users to set preferred view
   * 2.3. The system must not allow any user to make modifications to other users' profiles, unless that user is an Owner.
   * 2.4. The system must allow authenticated users to manage funds by:
     * 2.4.1. viewing their own balance.
@@ -177,7 +177,7 @@ This system will provide a great platform for yard work customers and providers 
 
 * 5. Owner features
   * 5.1. The system must provide administration features to the owner.
-    * 5.1.1. Ability to remove ban users of the app for misuse
+    * 5.1.1. Ability to remove postings on the app
   * 5.2. The system must give a cut of each payment to the owner.
     * 5.2.1. The percentage of payment will be based on quality of provider
 
@@ -202,6 +202,7 @@ This system will provide a great platform for yard work customers and providers 
 
 - Provider ability to hide customers
 - Customer ability to hide providers
+- Ability to ban users
 - Integrated Chat System (If time permits)
 - Push Notifications/message inbox
 - Order History and status
