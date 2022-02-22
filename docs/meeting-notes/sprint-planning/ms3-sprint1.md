@@ -17,7 +17,7 @@
     - Meet on tuesday as a team to discuss the following:
         - Vue setup
         - Testing setup
-    - After DB schemas are defined, finalize what data formats we will use accross the app
+    - After DB schemas are defined, finalize what data formats we will use across the app
     - For Kyler: Meet with Keaton for a few minutes on Tuesday to talk route file structure
 
 ## In-Meeting Work Performed
