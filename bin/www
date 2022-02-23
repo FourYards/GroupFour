@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('yard-work-marketplace:server');
+var chalk = require('chalk');
 var http = require('http');
 
 /**
@@ -84,7 +84,7 @@ function onError(error) {
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+    ? 'pipe ' + chalk.green(addr)
+    : 'port ' + chalk.green(addr.port);
+  console.log('Listening on ' + bind);
 }
