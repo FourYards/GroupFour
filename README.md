@@ -37,6 +37,7 @@ The project will kept in the folder `app`.
 3. Execute the following commands in the repository directory (folder should contain a file called package.json):
 	1. `npm install`
 	2. `npm run migrate`
+	3. `npm run seed`
 1. To start the server, run the following command:
 	1. `npm start`
 1. The server will be available at the port and address indicated by the program&#39;s console output.
