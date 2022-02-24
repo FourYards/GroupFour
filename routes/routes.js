@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const listingsRouter = require('./routes/listings');
-const dashboardRouter = require('./routes/dashboard');
-const loginRouter = require('./routes/login');
+const indexRouter = require('./index');
+const usersRouter = require('./users');
+const listingsRouter = require('./listings');
+const dashboardRouter = require('./dashboard');
+const loginRouter = require('./login');
 
 router.use('/', indexRouter);
 router.use('/about', usersRouter);
