@@ -3,13 +3,13 @@ var router = express.Router();
 
 const indexRouter = require('./index');
 const usersRouter = require('./users');
-const listingsRouter = require('./listings');
+const browseRouter = require('./browse');
 const dashboardRouter = require('./dashboard');
 const loginRouter = require('./login');
 
 router.use('/', indexRouter);
 router.use('/about', usersRouter);
-router.use('/listings', listingsRouter);
+router.use('/browse', browseRouter);
 router.use('/dashboard', dashboardRouter);
 router.use('/login', loginRouter);
 
