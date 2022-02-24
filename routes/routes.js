@@ -8,6 +8,7 @@ const dashboardRouter = require('./dashboard');
 const loginRouter = require('./login');
 const userRouter = require('./user/routes');
 const listingRouter = require('./listing/routes');
+const reviewRouter = require('./review/routes')
 
 router.use('/', indexRouter);
 router.use('/about', usersRouter);
@@ -16,5 +17,6 @@ router.use('/dashboard', dashboardRouter);
 router.use('/login', loginRouter);
 router.use('/user', userRouter);
 router.use('/listing', listingRouter);
+router.use('/review', reviewRouter);
 
 module.exports = router
