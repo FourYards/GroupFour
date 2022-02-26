@@ -2,9 +2,6 @@
 
 const { Model } = require('sequelize');
 
-const { Role } = require('./role');
-const { DisplayType = require('./displaytype');
-
 module.exports = (sequelize, DataTypes) => {
   class UserAccount extends Model {
     /**
@@ -14,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasOne(models['Role'])
+      this.hasOne(models['DisplayType'])
     }
   }
   UserAccount.init({
@@ -35,9 +34,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'UserAccount',
   });
-
-  UserAccount.hasOne(Role);
-  UserAccount.hasOne(DisplayType);
 
   return UserAccount;
 };
