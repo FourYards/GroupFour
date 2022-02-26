@@ -1,15 +1,12 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
-const getRouter = require('./get/routes');
-const putRouter = require('./put/routes');
-const postRouter = require('./post/routes');
-const deleteRouter = require('./delete/routes');
+const bidRouter = require('./bid');
+const balanceRouter = require('./balance');
+const listingRouter = require('./listing');
 
-router.use('/get', getRouter);
-router.use('/put', putRouter);
-router.use('/post', postRouter);
-router.use('/delete', deleteRouter);
+router.use('/bid', bidRouter);
+router.use('/balance', balanceRouter);
+router.use('/listing', listingRouter);
 
-
-module.exports = router
+module.exports = router;
