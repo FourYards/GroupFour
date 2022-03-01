@@ -9,7 +9,7 @@
     "seed": "sequelize-cli db:seed:all",
     "debug": "nodemon --inspect ./bin/www",
     "debug:nowatch": "node --inspect ./bin/www",
-    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
+    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\" && npx --yes npm-merge-driver@latest install",
     "lint": "eslint . --ext .js,.cjs,.mjs --fix --ignore-path .gitignore",
     "formatcheck": "prettier --check .",
     "format": "prettier --write ."
