@@ -1,0 +1,6 @@
+// It is recommended to copy these settings to .vscode/settings.js if you plan to use VSCode
+// You may need to create the file if it does not exist yet
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
+}
