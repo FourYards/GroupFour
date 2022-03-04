@@ -21,4 +21,4 @@ router.use('/listing', listingRouter);
 router.use('/review', reviewRouter);
 router.use('/api', apiRouter);
 
-module.exports = router
+module.exports = router;

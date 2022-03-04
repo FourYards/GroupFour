@@ -7,4 +7,4 @@ const settingsRouter = require('./settings');
 router.use('/profile', profileRouter);
 router.use('/settings', settingsRouter);
 
-module.exports = router
+module.exports = router;

@@ -1,0 +1,10 @@
+# Normalize all text files to use lf eol by default
+* text=auto eol=lf
+
+# Always auto-convert line endings to OS native for specific file types
+*.ps1 text=auto -eol
+
+# Force specific eol for specific files/file types
+*.sh text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf

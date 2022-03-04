@@ -1,3 +1,6 @@
+# VSCode User-level Settings
+.vscode/settings.json
+
 # REPL History
 .project_repl_history
 

@@ -13,12 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Role.init({
-    name: DataTypes.STRING,
-    code: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Role',
-  });
+  Role.init(
+    {
+      name: DataTypes.STRING,
+      code: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: 'Role',
+    }
+  );
   return Role;
 };

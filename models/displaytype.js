@@ -13,11 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  DisplayType.init({
-    name: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'DisplayType',
-  });
+  DisplayType.init(
+    {
+      name: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: 'DisplayType',
+    }
+  );
   return DisplayType;
 };

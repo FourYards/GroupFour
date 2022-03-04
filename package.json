@@ -4,9 +4,16 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "repl": "node ./scripts/repl.js",
+    "dev": "nodemon",
     "migrate": "sequelize-cli db:migrate",
-    "seed": "sequelize-cli db:seed:all"
+    "seed": "sequelize-cli db:seed:all",
+    "repl": "node ./scripts/repl.js",
+    "debug": "nodemon --inspect ./bin/www",
+    "debug:nowatch": "node --inspect ./bin/www",
+    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\" && npx --yes npm-merge-driver@latest install",
+    "lint": "eslint . --ext .js,.cjs,.mjs --fix --ignore-path .gitignore",
+    "formatcheck": "prettier --check .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "chalk": "^4.1.2",
@@ -19,7 +26,19 @@
     "sqlite3": "npm:@vscode/sqlite3@^5.0.7"
   },
   "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.4.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
+    "nodemon": "^2.0.15",
     "prettier": "2.5.1",
     "sequelize-cli": "^6.4.1"
+  },
+  "nodemonConfig": {
+    "ext": "js,hbs,json"
+  },
+  "lint-staged": {
+    "*.{js,cjs,mjs}": "eslint --cache --fix",
+    "*.{js,cjs,mjs,hbs,css,json,md,prettierrc}": "prettier --write"
   }
 }

@@ -11,29 +11,32 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models['Role'])
-      this.hasOne(models['DisplayType'])
+      this.hasOne(models['Role']);
+      this.hasOne(models['DisplayType']);
     }
   }
-  UserAccount.init({
-    emailAddress: DataTypes.STRING,
-    realName: DataTypes.STRING,
-    passwordHash: DataTypes.STRING,
-    phoneNumber: DataTypes.STRING,
-    role: {
-      type: DataTypes.INTEGER,
-      references: "Roles",
-      referencesKey: "id",
+  UserAccount.init(
+    {
+      emailAddress: DataTypes.STRING,
+      realName: DataTypes.STRING,
+      passwordHash: DataTypes.STRING,
+      phoneNumber: DataTypes.STRING,
+      role: {
+        type: DataTypes.INTEGER,
+        references: 'Roles',
+        referencesKey: 'id',
+      },
+      displayType: {
+        type: DataTypes.INTEGER,
+        references: 'DisplayTypes',
+        referencesKey: 'id',
+      },
     },
-    displayType: {
-      type: DataTypes.INTEGER,
-      references: "DisplayTypes",
-      referencesKey: "id",
+    {
+      sequelize,
+      modelName: 'UserAccount',
     }
-  }, {
-    sequelize,
-    modelName: 'UserAccount',
-  });
+  );
 
   return UserAccount;
 };

@@ -8,6 +8,7 @@
 - A small fee will be added to each sale, fees are decided based on frequency of listings and reviews.
 
 ## Workspace Layout
+
 The Four Yards web app will be stored in this repository.
 The documentation and resources for this project will be kept in the `docs` folder. This includes use case diagrams, the project plan, database diagrams, and more as the
 project progresses.
@@ -35,12 +36,12 @@ The project will kept in the folder `app`.
 1. Install the latest release of node.js version 16
 2. Clone the repository
 3. Execute the following commands in the repository directory (folder should contain a file called package.json):
-	1. `npm install`
-	2. `npm run migrate`
-	3. `npm run seed`
-1. To start the server, run the following command:
-	1. `npm start`
-1. The server will be available at the port and address indicated by the program&#39;s console output.
+   1. `npm install`
+   2. `npm run migrate`
+   3. `npm run seed`
+4. To start the server, run the following command:
+   1. `npm start`
+5. The server will be available at the port and address indicated by the program&#39;s console output.
 
 ## Unit testing instructions
 

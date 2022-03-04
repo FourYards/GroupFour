@@ -3,7 +3,9 @@ const router = express.Router();
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {
-  res.send('This URL will handle POST, PUT, and DELETE requests relating to user accounts.');
+  res.send(
+    'This URL will handle POST, PUT, and DELETE requests relating to user accounts.'
+  );
 });
 
 /* POST a new User. */

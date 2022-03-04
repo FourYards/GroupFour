@@ -3,7 +3,9 @@ const router = express.Router();
 
 /* GET one or many listings. */
 router.get('/', (req, res, next) => {
-  res.send('This URL will respond to GET, POST, PUT, and DELETE requests regarding listings.');
+  res.send(
+    'This URL will respond to GET, POST, PUT, and DELETE requests regarding listings.'
+  );
 });
 
 /* POST a new listing. */
@@ -20,6 +22,5 @@ router.put('/', (req, res, next) => {
 router.delete('/', (req, res, next) => {
   res.send('This endpoint will be used to delete listings.');
 });
-
 
 module.exports = router;

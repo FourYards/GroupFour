@@ -4,7 +4,6 @@ about: Template for issues that represent tasks for the project.
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 <!-- DO NOT REMOVE ANY AUTOFILLED INFORMATION FROM ISSUE FORM -->
