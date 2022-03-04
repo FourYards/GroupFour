@@ -1,5 +1,5 @@
 const repl = require('repl');
-const db = require('../models');
+const db = require('../server/db/models');
 
 console.log(
   `Welcome to yard-work-marketplace REPL (Node.js version ${process.version}).`
