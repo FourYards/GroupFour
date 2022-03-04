@@ -11,7 +11,7 @@
     "debug": "nodemon --inspect ./bin/www",
     "debug:nowatch": "node --inspect ./bin/www",
     "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\" && npx --yes npm-merge-driver@latest install",
-    "lint": "eslint . --ext .js,.cjs,.mjs --fix --ignore-path .gitignore",
+    "lint": "eslint . --ext .js,.cjs,.mjs,.vue --fix --ignore-path .gitignore",
     "formatcheck": "prettier --check .",
     "format": "prettier --write ."
   },
@@ -41,7 +41,7 @@
     "ext": "js,hbs,json"
   },
   "lint-staged": {
-    "*.{js,cjs,mjs}": "eslint --cache --fix",
+    "*.{js,cjs,mjs,vue}": "eslint --cache --fix",
     "*.{js,cjs,mjs,hbs,css,json,md,prettierrc}": "prettier --write"
   }
 }
