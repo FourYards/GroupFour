@@ -29,23 +29,37 @@ The project will kept in the folder `app`.
 - Framework - Express
 - ORM - Sequelize
 - Templating Engine - Handlebars or EJS (TBD)
-- Unit Test Framework - Mocha
+- Unit Test Framework - Jest
 
-## Build instructions
+## Running the application
+
+Since this application needs to communicate with an sqlite dependency, several additional dependencies other than node.js
+will be needed to run the application.
 
 1. Install the latest release of node.js version 16
-2. Clone the repository
-3. Execute the following commands in the repository directory (folder should contain a file called package.json):
+   - On Windows, you may want to customize the installation to enable features to build native node addons/node-gyp/python/build tools.
+2. Install one of the following python versions: 3.7, 3.8, 3.9, or 3.10
+   - On Windows, if you used the windows installer from the nodejs.org website to install node, this may have been installed automatically, or given the option to install if it wasn't installed on your system already. You may manually install python if you would prefer or try this if you are having errors during the steps below.
+3. Ensure you have a proper C++ compiler toolchain setup on your machine
+   - On Windows, if you used the installer from nodejs.org to install node, the C++ toolchain may have been installed automatically, or have given the option to install, if it was not already installed. If you prefer manual install or are having issues in later steps, Install one of the following:
+     - Latest version of Visual Studio Community (using the desktop development with C++ workload)
+     - [Visual Studio Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools)
+     - If you still receive errors about visual studio after installing one of the above two options when following later steps, run the following command and try again: `npm config set msvs_version 2017`. You can also try replacing 2017 with the year of the version of visual studio/build tools installed.
+   - Linux/UNIX requires `make` to be installed as well as a C++ compiler toolchain.
+   - macOS requires the XCode Command Line Tools to be installed. This will install the C++ toolchain.
+4. Clone the repository
+5. Execute the following commands in the repository directory (folder should contain a file called package.json):
    1. `npm install`
    2. `npm run migrate`
    3. `npm run seed`
-4. To start the server, run the following command:
-   1. `npm start`
-5. The server will be available at the port and address indicated by the program&#39;s console output.
+6. To start the server normally, run the following command:
+   - `npm start`
+     - If you're running the app for development, run `npm run dev` instead of `npm start`
+7. The server will be available at the port and address indicated by the program&#39;s console output.
 
 ## Unit testing instructions
 
-Perform the following steps after performing the first three steps of the build instructions
+Perform the following steps after performing the first five steps of the app's run instructions
 
 1. Navigate to the repository&#39;s root directory (where the package.json file is)
 2. Execute the following command: `npm test`
@@ -59,4 +73,4 @@ System-level testing is done by hand. To conduct system testing, start up an ins
 - Links to the packages we use and their docs
 - Link to express docs - [https://expressjs.com/en/4x/api.html](https://expressjs.com/en/4x/api.html) (API Reference, docs can also be found linked from this page)
 - Link to Sequelize ORM docs - [https://sequelize.org/v7/](https://sequelize.org/v7/)
-- Link to Mocha Docs - [https://mochajs.org/#table-of-contents](https://mochajs.org/#table-of-contents)
+- Link to Jest Docs - [https://jestjs.io/](https://jestjs.io/)
