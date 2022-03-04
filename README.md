@@ -33,8 +33,8 @@ The project will kept in the folder `app`.
 
 ## Running the application
 
-Since this application needs to communicate with an sqlite dependency, several additional dependencies other than node.js
-will be needed to run the application.
+Since this application needs to communicate with a sqlite dependency, several additional dependencies other than node.js
+will be needed to run and build the application dependencies.
 
 1. Install the latest release of node.js version 16
    - On Windows, you may want to customize the installation to enable features to build native node addons/node-gyp/python/build tools.
