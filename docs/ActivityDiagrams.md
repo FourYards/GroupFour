@@ -9,5 +9,5 @@
 ![Browse Listing](img/PostBrowseListingActivityDiagram.svg)
 
 ## Bid Process
-![Bids](img/BidActivityDiagram.svg)
 
+![Bids](img/BidActivityDiagram.svg)

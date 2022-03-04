@@ -10,20 +10,20 @@
 ## Meeting Minutes
 
 - During PR Review
-    - Only approve after documentation is updated.
-        - If you don't have access to the original copy, you can either copy the initial image or contact the person who created the file in the first place.
-    - Make sure your timing info is setup
+  - Only approve after documentation is updated.
+    - If you don't have access to the original copy, you can either copy the initial image or contact the person who created the file in the first place.
+  - Make sure your timing info is setup
 - Follow-up Tasks
-    - Meet on tuesday as a team to discuss the following:
-        - Vue setup
-        - Testing setup
-    - After DB schemas are defined, finalize what data formats we will use across the app
-    - For Kyler: Meet with Keaton for a few minutes on Tuesday to talk route file structure
+  - Meet on tuesday as a team to discuss the following:
+    - Vue setup
+    - Testing setup
+  - After DB schemas are defined, finalize what data formats we will use across the app
+  - For Kyler: Meet with Keaton for a few minutes on Tuesday to talk route file structure
 
 ## In-Meeting Work Performed
 
 - Creation of Issues for each individual task.
-    - Attach estimates on your own time
+  - Attach estimates on your own time
 
 ## Sprint Goals
 
