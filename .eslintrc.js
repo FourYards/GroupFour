@@ -8,5 +8,8 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
-  rules: {},
+  rules: {
+    'no-unused-vars': ['error', { argsIgnorePattern: '(next)|(models)' }],
+  },
+  ignorePatterns: ['/migrations/**/*', '/seeders/**/*'],
 };
