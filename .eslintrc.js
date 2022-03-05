@@ -8,6 +8,9 @@ module.exports = {
   extends: ['eslint:recommended', 'prettier'],
   parserOptions: {
     ecmaVersion: 'latest',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   rules: {
     'no-unused-vars': [
@@ -15,4 +18,12 @@ module.exports = {
       { argsIgnorePattern: '(next)|(models)|(Sequelize)' },
     ],
   },
+  overrides: [
+    {
+      files: ['*.mjs', 'vite.config.js'],
+      parserOptions: {
+        sourceType: 'module',
+      },
+    },
+  ],
 };

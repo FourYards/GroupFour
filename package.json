@@ -24,7 +24,8 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "sequelize": "^6.15.0",
-    "sqlite3": "npm:@vscode/sqlite3@^5.0.7"
+    "sqlite3": "npm:@vscode/sqlite3@^5.0.7",
+    "vue": "^3.2.31"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
