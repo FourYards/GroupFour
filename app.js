@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const hbs = require('hbs');
+const hbsHelpers = require('./server/views/helpers');
 
 const indexRouter = require('./server/routes/routes');
 
@@ -11,6 +13,11 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'server', 'views'));
 app.set('view engine', 'hbs');
+hbs.localsAsTemplateData(app);
+hbsHelpers(hbs);
+
+// App-level local variables (available at req.app.locals and in templates)
+app.locals.nodeEnv = process.env.NODE_ENV ?? 'development';
 
 app.use(logger('dev'));
 app.use(express.json());
