@@ -6,6 +6,9 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = 'development';
 const config = require(__dirname + '/../../config/database.json')[env];
+/**
+ * @type {{ [modelName: string]: Sequelize.Model<any, any>, sequelize: Sequelize.Sequelize, Sequelize: Sequelize.Sequelize }}
+ */
 const db = {};
 
 let sequelize;
