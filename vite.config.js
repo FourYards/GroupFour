@@ -1,8 +1,44 @@
 import { fileURLToPath, URL } from 'url';
+import { readdirSync, statSync } from 'fs';
+import { join, relative, resolve, sep, posix } from 'path';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+
+const getAllFiles = function (dirPath, arrayOfFiles) {
+  const files = readdirSync(dirPath);
+
+  arrayOfFiles = arrayOfFiles || [];
+
+  files.forEach(function (file) {
+    if (statSync(resolve(dirPath, file)).isDirectory()) {
+      arrayOfFiles = getAllFiles(dirPath + '/' + file, arrayOfFiles);
+    } else {
+      arrayOfFiles.push(join(dirPath, file));
+    }
+  });
+
+  return arrayOfFiles;
+};
+
+const inputFiles = {};
+const pagesFilePath = fileURLToPath(new URL('./client/pages', import.meta.url));
+
+getAllFiles(pagesFilePath)
+  .map((file) => relative(pagesFilePath, file))
+  .filter((file) => file.endsWith('.js'))
+  .forEach((file) => {
+    const normalizedFilePath = file.split(sep).join(posix.sep);
+    const fileParts = normalizedFilePath.split('.');
+    const pageScriptName = fileParts.splice(0, fileParts.length - 1).join('.');
+
+    if (pageScriptName === 'index') {
+      inputFiles.main = './client/pages/index.js';
+    } else {
+      inputFiles[pageScriptName] = './client/pages/' + pageScriptName + '.js';
+    }
+  });
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,11 +51,11 @@ export default defineConfig({
   build: {
     manifest: true,
     rollupOptions: {
-      input: './client/main.js',
+      input: inputFiles,
     },
   },
   optimizeDeps: {
-    entries: ['main.js'],
+    entries: ['pages/*.js'],
   },
   resolve: {
     alias: {
