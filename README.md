@@ -54,10 +54,10 @@ will be needed to run and build the application dependencies.
    3. `npm run seed`
 6. To start the server normally, run the following command:
    - `npm start`
-     - If you're running the app for development, run `npm run dev` instead of `npm start`
+     - If you are running the app for development, run `npm run dev` instead of `npm start` to enable auto-reload of the server when changes are detected.
 7. The server will be available at the port and address indicated by the program&#39;s console output.
 
-## Unit testing instructions
+## Testing Instructions
 
 Perform the following steps after performing the first five steps of the app's run instructions
 
@@ -68,9 +68,39 @@ Perform the following steps after performing the first five steps of the app's r
 
 System-level testing is done by hand. To conduct system testing, start up an instance of the server by running `npm start` from the repository root if the server is not already running. If you haven&#39;t followed the build directions, perform the steps described in the build section before continuing. After the server is running, navigate to the address indicated in the server&#39;s console output. System testing is performed by walking through each user task/use case and ensuring proper completion of each task from beginning to end, testing all different use case scenarios.
 
-## Other development notes, as needed
+## Development Notes
 
-- Links to the packages we use and their docs
+This project includes recommended settings and extensions for vscode, in addition to a series of npm scripts to perform the same tasks as the provided extensions. If you are not using vscode, you may want to install an extension/plugin for your favorite editor that supports automatic/enhanced script running or provides one of the following features: Vue syntax highlighting and/or autocomplete, code formatting support using prettier, and linting support using eslint.
+
+### VsCode Recommended Extensions
+
+Upon opening the project for the first time, you will receive a notification about recommended extensions. Click the notification to view and install these extensions. You may also open the extensions pane and look in the recommended section.
+
+### VsCode Recommended Settings
+
+There is a file called `settings-recommended.json` in the `.vscode` directory. If you have a `.vscode/settings.json` file already, copy the contents of this file to it. If not, copy `.vscode/settings-recommended.json` to `.vscode/settings` for an optimal dev experience.
+
+### Development Scripts
+
+The following npm scripts are part of this repository. Several of these are executed when comitting to git, so if you receive an error when commiting, examine the command output from git or manually run any scritps executed by git to view the errors.
+
+All of the below scripts can be run with the following command:
+
+```
+npm run <script name>
+```
+
+- `test:client` - Execute only unit tests for the client side code.
+- `test:client:watch` - Execute unit tests only for client, but continue running and automatically re-run when test is edited.
+- `debug` - Same as `npm run dev`, but launches node.js with the debugger enabled. If you are using the recommended VsCode settings, VsCode's debugger should auto-attach.
+- `debug:nowatch` - Same as `debug`, but it will not automatically reload the server when changes are detected.
+- `repl` - Opens a node.js repl while also adding a few additional commands for use with this project in addition to exposing components of the application into the repl, such as DB models. Execute `.help` in the repl created by this script for more info.
+- `lint` - **Executed by Git** - Checks the code for various errors or code quality violations. Fixes any issues that can be fixed automatically
+- `formatcheck` - Checks if any files need to be formatted to match the prettier configuration of this project.
+- `format` - **Executed by Git** - Reformats files in the repository to match the prettier configuration.
+
+## References
+
 - Link to express docs - [https://expressjs.com/en/4x/api.html](https://expressjs.com/en/4x/api.html) (API Reference, docs can also be found linked from this page)
 - Link to Sequelize ORM docs - [https://sequelize.org/v7/](https://sequelize.org/v7/)
 - Link to Jest Docs - [https://jestjs.io/](https://jestjs.io/)
