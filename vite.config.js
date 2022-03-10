@@ -12,8 +12,11 @@ export default defineConfig({
     middlewareMode: true,
   },
   plugins: [vue(), vueJsx()],
-  rollupOptions: {
-    input: './client/src/main.js',
+  build: {
+    manifest: true,
+    rollupOptions: {
+      input: './client/src/main.js',
+    },
   },
   resolve: {
     alias: {
