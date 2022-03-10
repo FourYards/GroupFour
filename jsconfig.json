@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2021"
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/**",
+    ".vscode",
+    ".husky",
+    ".github",
+    "client",
+    "docs"
+  ]
+}
