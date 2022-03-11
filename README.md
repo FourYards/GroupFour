@@ -12,7 +12,9 @@
 The Four Yards web app will be stored in this repository.
 The documentation and resources for this project will be kept in the `docs` folder. This includes use case diagrams, the project plan, database diagrams, and more as the
 project progresses.
-The project will kept in the folder `app`.
+The project itself is made up of all other files in the repository.
+
+Individual folders may contain a readme explaining their use. In general, the bulk of the application code resides in either `client` or `server`, holding code that is relevant to the frontend and backend respectively. Additional top-level folders exist as needed. Top-level files are almost exclusively configuration files, excluding app.js, which defines the middleware and routing stack entrypoints for the application. The `bin` folder contains the executable entrypoint for the server. This is executed by npm scripts.
 
 ## Version Control Policies and Procedures
 
@@ -26,9 +28,9 @@ The project will kept in the folder `app`.
 ## Tool stack description and setup procedure
 
 - Code formatter - Prettier - To ensure consistent code formatting
-- Framework - Express
+- Framework - Express + Vue
 - ORM - Sequelize
-- Templating Engine - Handlebars or EJS (TBD)
+- Templating Engine - Handlebars
 - Unit Test Framework - Jest
 
 ## Running the application
@@ -55,7 +57,8 @@ will be needed to run and build the application dependencies.
 6. To start the server normally, run the following command:
    - `npm start`
      - If you are running the app for development, run `npm run dev` instead of `npm start` to enable auto-reload of the server when changes are detected.
-7. The server will be available at the port and address indicated by the program&#39;s console output.
+7. The server will be available at the port indicated by the program&#39;s console output.
+8. Launch your preferred browser and navigate to the address of the machine running the application, providing the port specified in the console output of the server. This is typically `localhost:3000`.
 
 ## Testing Instructions
 
@@ -63,10 +66,11 @@ Perform the following steps after performing the first five steps of the app's r
 
 1. Navigate to the repository&#39;s root directory (where the package.json file is)
 2. Execute the following command: `npm test`
+3. Test results will be printed to the console.
 
 ## System testing instructions
 
-System-level testing is done by hand. To conduct system testing, start up an instance of the server by running `npm start` from the repository root if the server is not already running. If you haven&#39;t followed the build directions, perform the steps described in the build section before continuing. After the server is running, navigate to the address indicated in the server&#39;s console output. System testing is performed by walking through each user task/use case and ensuring proper completion of each task from beginning to end, testing all different use case scenarios.
+System-level testing is done by hand. To conduct system testing, start up an instance of the server by running `npm start` from the repository root if the server is not already running. If you haven&#39;t followed the initial setup/running steps, perform those steps before continuing. After the server is running, navigate to localhost:port as indicated in the server&#39;s console output. System testing is performed by walking through each user task/use case and ensuring proper completion of each task from beginning to end, testing all different use case scenarios.
 
 ## Development Notes
 
