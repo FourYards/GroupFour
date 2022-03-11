@@ -17,9 +17,6 @@ app.initPromise = (async () => {
   hbs.localsAsTemplateData(app);
   hbsHelpers(hbs);
 
-  // App-level local variables (available at req.app.locals and in templates)
-  app.locals.nodeEnv = process.env.NODE_ENV ?? 'development';
-
   app.use(logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
@@ -29,7 +26,7 @@ app.initPromise = (async () => {
   app.use('/', indexRouter);
 
   // Dev server init
-  if (app.locals.nodeEnv !== 'production') {
+  if (app.get('env') !== 'production') {
     try {
       const viteDevServer = await createServer();
       app.use(viteDevServer.middlewares);

@@ -1,4 +1,4 @@
-const handlebarsHelpers = require('handlebars-helpers');
+const pageScriptHelpers = require('./pageScript');
 
 function registerHelperModule(hbs, helperModule) {
   Object.keys(helperModule).forEach((helperName) => {
@@ -7,5 +7,5 @@ function registerHelperModule(hbs, helperModule) {
 }
 
 module.exports = function registerHelpers(hbs) {
-  registerHelperModule(hbs, handlebarsHelpers('comparison'));
+  registerHelperModule(hbs, pageScriptHelpers);
 };
