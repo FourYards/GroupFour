@@ -1,6 +1,6 @@
 const Handlebars = require('hbs').handlebars;
 
-exports.pageScripts = function (...args) {
+exports.clientScripts = function (...args) {
   // If no arguments supplied to helper, do nothing.
   if (args.length <= 1) return null;
 
@@ -14,10 +14,14 @@ exports.pageScripts = function (...args) {
   // If extending support to production, produce different output if options.data.settings.port != 'production'
   // See https://vitejs.dev/guide/backend-integration.html for details
 
-  let scriptBlock = `<script type="module" src="http://localhost:${options.data.settings.port}/@vite/client"></script>\n`;
+  let scriptBlock = `<script type="module" src="http://localhost:${Handlebars.escapeExpression(
+    options.data.settings.port
+  )}/@vite/client"></script>\n`;
   pageScriptNames.forEach((pageScriptName) => {
     const scriptName = Handlebars.escapeExpression(pageScriptName);
-    scriptBlock += `<script type="module" src="http://localhost:${options.data.settings.port}/pages/${scriptName}.js"></script>\n`;
+    scriptBlock += `<script type="module" src="http://localhost:${Handlebars.escapeExpression(
+      options.data.settings.port
+    )}/page/${scriptName}.js"></script>\n`;
   });
 
   scriptBlock = scriptBlock.trim();

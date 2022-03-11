@@ -23,7 +23,7 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
 };
 
 const inputFiles = {};
-const pagesFilePath = fileURLToPath(new URL('./client/pages', import.meta.url));
+const pagesFilePath = fileURLToPath(new URL('./client/page', import.meta.url));
 
 getAllFiles(pagesFilePath)
   .map((file) => relative(pagesFilePath, file))
