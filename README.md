@@ -92,6 +92,7 @@ npm run <script name>
 
 - `test:client` - Execute only unit tests for the client side code.
 - `test:client:watch` - Execute unit tests only for client, but continue running and automatically re-run when test is edited.
+- `test:server` - Execute unit tests only for the server.
 - `debug` - Same as `npm run dev`, but launches node.js with the debugger enabled. If you are using the recommended VsCode settings, VsCode's debugger should auto-attach.
 - `debug:nowatch` - Same as `debug`, but it will not automatically reload the server when changes are detected.
 - `repl` - Opens a node.js repl while also adding a few additional commands for use with this project in addition to exposing components of the application into the repl, such as DB models. Execute `.help` in the repl created by this script for more info.
