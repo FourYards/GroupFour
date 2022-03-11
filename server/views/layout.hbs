@@ -6,5 +6,8 @@
   </head>
   <body>
     {{{body}}}
+    {{#isnt settings.env "production"}}
+      <script type="module" src="http://localhost:{{settings.port}}/@vite/client"></script>
+    {{/isnt}}
   </body>
 </html>

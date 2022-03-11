@@ -5,6 +5,7 @@ import { join, relative, resolve, sep, posix } from 'path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import FullReload from 'vite-plugin-full-reload';
 
 const getAllFiles = function (dirPath, arrayOfFiles) {
   const files = readdirSync(dirPath);
@@ -47,7 +48,11 @@ export default defineConfig({
   server: {
     middlewareMode: true,
   },
-  plugins: [vue(), vueJsx()],
+  plugins: [
+    vue(),
+    vueJsx(),
+    FullReload(['server/views/**/*'], { root: fileURLToPath(import.meta.url) }),
+  ],
   build: {
     manifest: true,
     rollupOptions: {

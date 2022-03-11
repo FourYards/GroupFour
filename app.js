@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
 const hbsHelpers = require('./server/views/helpers');
-const { createServer } = require('vite');
 
 const indexRouter = require('./server/routes/routes');
 
@@ -28,6 +27,7 @@ app.initPromise = (async () => {
   // Dev server init
   if (app.get('env') !== 'production') {
     try {
+      const { createServer } = require('vite');
       const viteDevServer = await createServer();
       app.use(viteDevServer.middlewares);
     } catch (err) {

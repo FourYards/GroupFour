@@ -22,6 +22,7 @@
     "chalk": "^4.1.2",
     "cookie-parser": "~1.4.4",
     "express": "~4.16.1",
+    "handlebars-helpers": "^0.9.8",
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
@@ -45,6 +46,7 @@
     "prettier": "2.5.1",
     "sequelize-cli": "^6.4.1",
     "vite": "^2.8.6",
+    "vite-plugin-full-reload": "^1.0.0",
     "vitest": "^0.6.0"
   },
   "nodemonConfig": {

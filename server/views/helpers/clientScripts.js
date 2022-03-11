@@ -11,12 +11,10 @@ exports.clientScripts = function (...args) {
     ? args[0]
     : args.splice(0, args.length - 1);
 
-  // If extending support to production, produce different output if options.data.settings.port != 'production'
+  // If extending support to production, produce different output if options.data.settings.env != 'production'
   // See https://vitejs.dev/guide/backend-integration.html for details
 
-  let scriptBlock = `<script type="module" src="http://localhost:${Handlebars.escapeExpression(
-    options.data.settings.port
-  )}/@vite/client"></script>\n`;
+  let scriptBlock = '';
   pageScriptNames.forEach((pageScriptName) => {
     const scriptName = Handlebars.escapeExpression(pageScriptName);
     scriptBlock += `<script type="module" src="http://localhost:${Handlebars.escapeExpression(
