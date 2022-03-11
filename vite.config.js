@@ -35,9 +35,9 @@ getAllFiles(pagesFilePath)
     const pageScriptName = fileParts.splice(0, fileParts.length - 1).join('.');
 
     if (pageScriptName === 'index') {
-      inputFiles.main = './client/pages/index.js';
+      inputFiles.main = './client/page/index.js';
     } else {
-      inputFiles[pageScriptName] = './client/pages/' + pageScriptName + '.js';
+      inputFiles[pageScriptName] = './client/page/' + pageScriptName + '.js';
     }
   });
 
@@ -60,7 +60,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    entries: ['pages/*.js'],
+    entries: ['page/*.js'],
   },
   resolve: {
     alias: {
