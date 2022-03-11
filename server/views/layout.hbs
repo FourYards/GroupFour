@@ -3,11 +3,11 @@
   <head>
     <title>{{title}}</title>
     <link rel="stylesheet" href="/styles/global-style.css" />
-  </head>
-  <body>
-    {{{body}}}
     {{#isnt settings.env "production"}}
       <script type="module" src="http://localhost:{{settings.port}}/@vite/client"></script>
     {{/isnt}}
+  </head>
+  <body>
+    {{{body}}}
   </body>
 </html>
