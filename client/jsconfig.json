@@ -8,5 +8,9 @@
       "@": ["."]
     }
   },
-  "exclude": ["node_modules", "**/node_modules/**", "dist", "public"]
+  "exclude": ["node_modules", "**/node_modules/**", "dist", "public"],
+  "typeAcquisition": {
+    "include": ["vitest"],
+    "exclude": ["jest"]
+  }
 }

@@ -25,5 +25,11 @@ module.exports = {
         sourceType: 'module',
       },
     },
+    {
+      files: ['server/test/**/*'],
+      env: {
+        jest: true,
+      },
+    },
   ],
 };
