@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   DisplayType.init({
-    name: DataTypes.STRING
+    id: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'DisplayType',

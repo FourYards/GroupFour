@@ -28,7 +28,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       state: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
           model: "USStates",
           key: "id",
