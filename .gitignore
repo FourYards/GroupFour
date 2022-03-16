@@ -1,5 +1,24 @@
+.DS_Store
+dist
+dist-ssr
+coverage
+*.local
+
+/cypress/videos/
+/cypress/screenshots/
+
 # VSCode User-level Settings
-.vscode/settings.json
+.vscode/*
+!.vscode/settings-recommended.json
+!.vscode/extensions.json
+
+# Other Editor files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # REPL History
 .project_repl_history
