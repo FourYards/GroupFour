@@ -5,5 +5,8 @@
   "editor.formatOnSave": true,
   "files.associations": {
     "settings-recommended.json": "jsonc"
-  }
+  },
+  "debug.javascript.autoAttachFilter": "onlyWithFlag",
+  "editor.tabSize": 2,
+  "files.eol": "\n"
 }

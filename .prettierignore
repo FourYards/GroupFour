@@ -1,3 +1,6 @@
 .github/ISSUE_TEMPLATE
 docs/requirements.md
-views/layout.hbs
+
+server/views/layout.hbs
+
+jest.config.js

@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     node: true,
     commonjs: true,
@@ -7,9 +8,28 @@ module.exports = {
   extends: ['eslint:recommended', 'prettier'],
   parserOptions: {
     ecmaVersion: 'latest',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   rules: {
-    'no-unused-vars': ['error', { argsIgnorePattern: '(next)|(models)' }],
+    'no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '(next)|(models)|(Sequelize)' },
+    ],
   },
-  ignorePatterns: ['/migrations/**/*', '/seeders/**/*'],
+  overrides: [
+    {
+      files: ['*.mjs', 'vite.config.js'],
+      parserOptions: {
+        sourceType: 'module',
+      },
+    },
+    {
+      files: ['server/test/**/*'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 };
