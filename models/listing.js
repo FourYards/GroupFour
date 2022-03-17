@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models['UserAccount'])
       this.hasOne(models['Location'])
       this.hasOne(models['TypeOfWork'])
-      this.hasOne(models['Reviews'])
-      this.hasOne(models['WorkStatuses'])
+      this.hasOne(models['Review'])
+      this.hasOne(models['WorkStatus'])
     }
   }
   Listing.init({

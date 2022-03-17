@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models['USState'])
     }
   }
-  UserAccount.init({
+  Location.init({
     owner: {
       type: DataTypes.INTEGER,
       references: "UserAccounts",

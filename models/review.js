@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models['Listing'])
     }
   }
-  Listing.init({
+  Review.init({
     author: {
       type: DataTypes.INTEGER,
       references: "UserAccounts",
