@@ -1,4 +1,5 @@
 # Plan
+
 ## Summary of Project
 
 - This website platform where talented service providers, trade specialists, entrepreneurs, and those seeking help with any project gather, on one easy to use interface to find and receive work.
@@ -19,19 +20,19 @@
 
 The development will be broken up into five phases. Each phase will be a little
 like a Sprint in an Agile method and a little like an iteration in a Spiral
-process.  Specifically, each phase will be like a Sprint, in that work to be
+process. Specifically, each phase will be like a Sprint, in that work to be
 done will be organized into small tasks, placed into a “backlog”, and
 prioritized. Then, using on time-box scheduling, the team will decide which
-tasks the phase (Sprint) will address.  The team will use a Scrum Board to keep
+tasks the phase (Sprint) will address. The team will use a Scrum Board to keep
 track of tasks in the backlog, those that will be part of the current Sprint,
 those in progress, and those that are done.
 
 Each phase will also be a little like an iteration in a Spiral process, in that
 each phase will include some risk analysis and that any development activity
 (requirements capture, analysis, design, implementation, etc.) can be done
-during any phase.  Early phases will focus on understanding (requirements
+during any phase. Early phases will focus on understanding (requirements
 capture and analysis) and subsequent phases will focus on design and
-implementation.  Each phase will include a retrospective.
+implementation. Each phase will include a retrospective.
 
 1. Phase 1 - Requirements Capture
 2. Phase 2 - Analysis, Architectural, UI, and DB Design
@@ -49,6 +50,7 @@ concepts, component interactions, and behaviors.
 - Trello - Use for collaboration on project as well as tracking time estimates
 
 ## Risk Analysis
+
 - **Database Structure**
   - Likelihood - Low
   - Severity - High

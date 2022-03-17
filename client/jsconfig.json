@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "Node",
+    "module": "ES2020",
+    "target": "ES2021",
+    "baseUrl": ".",
+    "paths": {
+      "@": ["."]
+    }
+  },
+  "exclude": ["node_modules", "**/node_modules/**", "dist", "public"],
+  "typeAcquisition": {
+    "include": ["vitest"],
+    "exclude": ["jest"]
+  }
+}
