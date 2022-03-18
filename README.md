@@ -45,7 +45,7 @@ will be needed to run and build the application dependencies.
 3. Ensure you have a proper C++ compiler toolchain setup on your machine
    - On Windows, if you used the installer from nodejs.org to install node, the C++ toolchain may have been installed automatically, or have given the option to install, if it was not already installed. If you prefer manual install or are having issues in later steps, Install one of the following:
      - Latest version of Visual Studio Community (using the desktop development with C++ workload)
-     - [Visual Studio Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools)
+     - [Visual Studio Build Tools (Direct download link)](https://download.visualstudio.microsoft.com/download/pr/4dfffe3f-2a7e-4dea-922b-62d4beca5e36/e10c2bfb0e7b0358c24bd0df951f3d81897f309a0642a199b93f248db303263c/vs_BuildTools.exe)
      - If you still receive errors about visual studio after installing one of the above two options when following later steps, run the following command and try again: `npm config set msvs_version 2017`. You can also try replacing 2017 with the year of the version of visual studio/build tools installed.
    - Linux/UNIX requires `make` to be installed as well as a C++ compiler toolchain.
    - macOS requires the XCode Command Line Tools to be installed. This will install the C++ toolchain.
