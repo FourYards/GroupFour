@@ -113,5 +113,7 @@ npm run <script name>
 ## References
 
 - Link to express docs - [https://expressjs.com/en/4x/api.html](https://expressjs.com/en/4x/api.html) (API Reference, docs can also be found linked from this page)
+- Link to Vue docs - [https://v2.vuejs.org/](https://v2.vuejs.org/)
 - Link to Sequelize ORM docs - [https://sequelize.org/v7/](https://sequelize.org/v7/)
 - Link to Jest Docs - [https://jestjs.io/](https://jestjs.io/)
+- Link to Vitest Docs - [https://vitest.dev/](https://vitest.dev/)
