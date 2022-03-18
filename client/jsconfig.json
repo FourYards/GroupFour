@@ -6,11 +6,15 @@
     "baseUrl": ".",
     "paths": {
       "@": ["."]
-    }
+    },
+    "types": ["unplugin-vue2-script-setup/types"]
   },
   "exclude": ["node_modules", "**/node_modules/**", "dist", "public"],
   "typeAcquisition": {
     "include": ["vitest"],
     "exclude": ["jest"]
+  },
+  "vueCompilerOptions": {
+    "experimentalCompatMode": 2
   }
 }

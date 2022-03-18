@@ -20,7 +20,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.mjs', 'vite.config.js'],
+      files: ['*.mjs', 'vite.config.js', 'vitest.setup.js'],
       parserOptions: {
         sourceType: 'module',
       },
