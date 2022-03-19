@@ -1,10 +1,10 @@
 const express = require('express');
-const routes = require('./routes/routes');
+const apiRouter = require('../routes/api/routes');
 
 function createServer() {
   const app = express();
   app.use(express.json());
-  app.use('/', routes);
+  app.use('/', apiRouter);
   return app;
 }
 
