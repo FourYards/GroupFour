@@ -1,9 +1,7 @@
 import Vue from 'vue';
-import VueLandingPage from './Vue.vue';
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import '../vuePlugins.js';
 
-Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
+import VueLandingPage from './Vue.vue';
 
 new Vue({
   el: '#vue-root-component',

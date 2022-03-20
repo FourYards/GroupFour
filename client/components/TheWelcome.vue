@@ -1,5 +1,4 @@
 <script setup>
-import { Fragment } from 'vue-fragment';
 import WelcomeItem from './WelcomeItem.vue';
 import DocumentationIcon from './icons/IconDocumentation.vue';
 import ToolingIcon from './icons/IconTooling.vue';
@@ -9,7 +8,7 @@ import SupportIcon from './icons/IconSupport.vue';
 </script>
 
 <template>
-  <Fragment>
+  <fragment>
     <WelcomeItem>
       <template #icon>
         <DocumentationIcon />
@@ -96,5 +95,5 @@ import SupportIcon from './icons/IconSupport.vue';
       <a target="_blank" href="https://vuejs.org/sponsor/">becoming a sponsor</a
       >.
     </WelcomeItem>
-  </Fragment>
+  </fragment>
 </template>

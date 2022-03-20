@@ -68,6 +68,8 @@ export default defineConfig({
     },
   },
   test: {
-    setupFiles: [fileURLToPath(new URL('./vitest.setup.js', import.meta.url))],
+    setupFiles: [
+      fileURLToPath(new URL('./client/vuePlugins.js', import.meta.url)),
+    ],
   },
 });
