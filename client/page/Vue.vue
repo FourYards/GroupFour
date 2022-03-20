@@ -1,11 +1,10 @@
 <script setup>
-import { Fragment } from 'vue-fragment';
 import HelloWorld from '../components/HelloWorld.vue';
 import TheWelcome from '../components/TheWelcome.vue';
 </script>
 
 <template>
-  <Fragment>
+  <fragment>
     <header>
       <img
         alt="Vue logo"
@@ -23,7 +22,7 @@ import TheWelcome from '../components/TheWelcome.vue';
     <main>
       <TheWelcome />
     </main>
-  </Fragment>
+  </fragment>
 </template>
 
 <style>
