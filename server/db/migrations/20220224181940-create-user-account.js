@@ -21,10 +21,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       role: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
           model: 'Roles',
-          key: 'id',
+          key: 'code',
         },
         onUpdate: 'cascade',
         onDelete: 'cascade',
