@@ -51,7 +51,9 @@ export default defineConfig({
   plugins: [
     Vue2(),
     ScriptSetup(),
-    FullReload(['server/views/**/*'], { root: fileURLToPath(import.meta.url) }),
+    FullReload(['server/views/**/*', 'client/public/styles/**/*.css'], {
+      root: fileURLToPath(import.meta.url),
+    }),
   ],
   build: {
     manifest: true,
