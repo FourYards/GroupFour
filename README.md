@@ -117,3 +117,4 @@ npm run <script name>
 - Link to Sequelize ORM docs - [https://sequelize.org/v7/](https://sequelize.org/v7/)
 - Link to Jest Docs - [https://jestjs.io/](https://jestjs.io/)
 - Link to Vitest Docs - [https://vitest.dev/](https://vitest.dev/)
+- Link to Vue Test Utils Docs - [https://v1.test-utils.vuejs.org/](https://v1.test-utils.vuejs.org/)
