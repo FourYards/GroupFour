@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
 const hbsHelpers = require('./server/views/helpers');
+const { sessionMiddleware } = require('./server/middleware/session');
 
 const indexRouter = require('./server/routes/routes');
 
@@ -19,9 +20,10 @@ app.initPromise = (async () => {
   app.use(logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
-  app.use(cookieParser());
-  app.use(express.static(path.join(__dirname, 'client', 'public')));
+  app.use(cookieParser(process.env.COOKIE_SECRET));
+  app.use(sessionMiddleware);
 
+  app.use(express.static(path.join(__dirname, 'client', 'public')));
   app.use('/', indexRouter);
 
   // Dev server init
