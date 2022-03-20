@@ -51,7 +51,9 @@ export default defineConfig({
   plugins: [
     Vue2(),
     ScriptSetup(),
-    FullReload(['server/views/**/*'], { root: fileURLToPath(import.meta.url) }),
+    FullReload(['server/views/**/*', 'client/public/styles/**/*.css'], {
+      root: fileURLToPath(import.meta.url),
+    }),
   ],
   build: {
     manifest: true,
@@ -68,6 +70,8 @@ export default defineConfig({
     },
   },
   test: {
-    setupFiles: [fileURLToPath(new URL('./vitest.setup.js', import.meta.url))],
+    setupFiles: [
+      fileURLToPath(new URL('./client/vuePlugins.js', import.meta.url)),
+    ],
   },
 });

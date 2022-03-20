@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import '../vuePlugins.js';
+
 import VueLandingPage from './Vue.vue';
 
 new Vue({
