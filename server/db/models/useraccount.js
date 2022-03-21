@@ -22,14 +22,14 @@ module.exports = (sequelize, DataTypes) => {
       passwordHash: DataTypes.STRING,
       phoneNumber: DataTypes.STRING,
       role: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         references: 'Roles',
-        referencesKey: 'id',
+        referencesKey: 'code',
       },
       displayType: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         references: 'DisplayTypes',
-        referencesKey: 'id',
+        referencesKey: 'code',
       },
     },
     {
