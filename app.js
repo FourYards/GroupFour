@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
 const hbsHelpers = require('./server/views/helpers');
+const csrfProtection = require('./server/middleware/csrf');
 const { sessionMiddleware } = require('./server/middleware/session');
 
 const indexRouter = require('./server/routes/routes');
@@ -22,6 +23,7 @@ app.initPromise = (async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser(process.env.COOKIE_SECRET));
   app.use(sessionMiddleware);
+  app.use(csrfProtection);
 
   app.use(express.static(path.join(__dirname, 'client', 'public')));
   app.use('/', indexRouter);
