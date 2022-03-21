@@ -21,13 +21,14 @@ module.exports = {
         type: Sequelize.STRING,
       },
       role: {
+        allowNull: false,
         type: Sequelize.STRING,
         references: {
           model: 'Roles',
           key: 'code',
         },
         onUpdate: 'cascade',
-        onDelete: 'cascade',
+        onDelete: 'restrict',
       },
       displayType: {
         type: Sequelize.INTEGER,
@@ -36,7 +37,7 @@ module.exports = {
           key: 'id',
         },
         onUpdate: 'cascade',
-        onDelete: 'cascade',
+        onDelete: 'set null',
       },
       createdAt: {
         allowNull: false,
