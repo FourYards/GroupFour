@@ -17,9 +17,8 @@ exports.clientScripts = function (...args) {
   let scriptBlock = '';
   pageScriptNames.forEach((pageScriptName) => {
     const scriptName = Handlebars.escapeExpression(pageScriptName);
-    scriptBlock += `<script type="module" src="http://localhost:${Handlebars.escapeExpression(
-      options.data.settings.port
-    )}/page/${scriptName}.js"></script>\n`;
+    const port = Handlebars.escapeExpression(options.data.settings.port);
+    scriptBlock += `<script type="module" src="http://localhost:${port}/page/${scriptName}.js"></script>\n`;
   });
 
   scriptBlock = scriptBlock.trim();
