@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING,
         references: {
           model: 'Roles',
-          key: 'code',
+          key: 'id',
         },
         onUpdate: 'cascade',
         onDelete: 'cascade',
@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.STRING,
         references: {
           model: 'DisplayTypes',
-          key: 'code',
+          key: 'id',
         },
         onUpdate: 'cascade',
         onDelete: 'cascade',

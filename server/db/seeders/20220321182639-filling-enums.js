@@ -15,22 +15,22 @@ module.exports = {
     await queryInterface.bulkInsert('Roles', [
       {
         name: 'User',
-        code: 'U',
+        id: 'U',
       },
       {
         name: 'Owner',
-        code: 'O',
+        id: 'O',
       }
     ]);
 
     await queryInterface.bulkInsert('DisplayTypes', [
       { 
         name: 'Customer',
-        code: 'C',
+        id: 'C',
       },
       { 
         name: 'Provider',
-        code: 'P',
+        id: 'P',
       },
     ]);
 

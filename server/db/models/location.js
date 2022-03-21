@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models['UserAccount'])
-      this.hasOne(models['USState'])
+      //this.hasOne(models['UserAccount'])
+      //this.hasOne(models['USState'])
     }
   }
   Location.init({

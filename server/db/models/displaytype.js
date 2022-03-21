@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   DisplayType.init(
     {
-      code: DataTypes.STRING,
       name: DataTypes.STRING,
     },
     {

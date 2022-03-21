@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models['Role']);
-      this.hasOne(models['DisplayType']);
+      //this.hasOne(models['Role']);
+      //this.hasOne(models['DisplayType']);
     }
   }
   UserAccount.init(
@@ -24,12 +24,12 @@ module.exports = (sequelize, DataTypes) => {
       role: {
         type: DataTypes.STRING,
         references: 'Roles',
-        referencesKey: 'code',
+        referencesKey: 'id',
       },
       displayType: {
         type: DataTypes.STRING,
         references: 'DisplayTypes',
-        referencesKey: 'code',
+        referencesKey: 'id',
       },
     },
     {

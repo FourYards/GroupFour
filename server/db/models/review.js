@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models['UserAccount'])
-      this.hasOne(models['Listing'])
+      //this.hasOne(models['UserAccount'])
+      //this.hasOne(models['Listing'])
     }
   }
   Review.init({
