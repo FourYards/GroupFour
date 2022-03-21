@@ -23,10 +23,8 @@ app.initPromise = (async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser(process.env.COOKIE_SECRET));
   app.use(sessionMiddleware);
-  app.use(csrfProtection);
 
   app.use(express.static(path.join(__dirname, 'client', 'public')));
-  app.use('/', indexRouter);
 
   // Dev server init
   if (app.get('env') !== 'production') {
@@ -42,6 +40,9 @@ app.initPromise = (async () => {
       process.exit(1);
     }
   }
+
+  app.use(csrfProtection);
+  app.use('/', indexRouter);
 
   // catch 404 and forward to error handler
   app.use(function (req, res, next) {
