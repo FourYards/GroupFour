@@ -9,7 +9,7 @@ describe('GET user balance', () => {
       .get('/api/balance')
       .expect(200)
       .then((response) => {
-        console.log('We recieved a user balance of, ' + response.body.balance);
+        expect(response.body.balance).toBe(100);
       });
   });
 });
