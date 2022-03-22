@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const passport = require('passport');
 const logger = require('morgan');
 const hbs = require('hbs');
 const hbsHelpers = require('./server/views/helpers');
@@ -12,6 +13,8 @@ const indexRouter = require('./server/routes/routes');
 
 const app = express();
 app.initPromise = (async () => {
+  app.set('query parser', 'extended');
+
   // view engine setup
   app.set('views', path.join(__dirname, 'server', 'views'));
   app.set('view engine', 'hbs');
@@ -22,7 +25,9 @@ app.initPromise = (async () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser(process.env.COOKIE_SECRET));
-  app.use(sessionMiddleware);
+  app.use(sessionMiddleware(app));
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   app.use(express.static(path.join(__dirname, 'client', 'public')));
 
