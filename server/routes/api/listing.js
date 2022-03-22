@@ -33,6 +33,8 @@ router.get('/', (req, res, next) => {
 
 /* POST a new listing. */
 router.post('/', (req, res, next) => {
+  // TODO ensure user is authentic
+
   if (
     req.body.creator_id &&
     req.body.place_id &&
@@ -52,7 +54,22 @@ router.post('/', (req, res, next) => {
 
 /* PUT new info on a listing. */
 router.put('/', (req, res, next) => {
-  res.send('This endpoint will be used to update the listing status.');
+  // TODO Ensure user is authentic
+
+  if (req.body.id) {
+    // TODO get listing from database
+    if (req.body.description) {
+      // TODO update the description of the listing
+    }
+    if (req.body.workStatus) {
+      // TODO update the workstatus of the listing
+    }
+    // TODO save new info in db
+
+    res.status(204).send();
+  } else {
+    res.status(400).json({ err: 'Bad Request' });
+  }
 });
 
 /* DELETE a listing. */
