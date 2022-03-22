@@ -8,14 +8,10 @@ module.exports = {
         {
           name: 'Administrator',
           code: 'ADM',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
         {
           name: 'User',
           code: 'USR',
-          createdAt: new Date(),
-          updatedAt: new Date(),
         },
       ],
       {}
