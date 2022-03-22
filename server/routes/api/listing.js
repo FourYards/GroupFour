@@ -33,7 +33,21 @@ router.get('/', (req, res, next) => {
 
 /* POST a new listing. */
 router.post('/', (req, res, next) => {
-  res.send('This endpoint will create a new listing.');
+  if (
+    req.body.creator_id &&
+    req.body.place_id &&
+    req.body.typeofwork &&
+    req.body.description &&
+    req.body.workStatus &&
+    req.body.return_address
+  ) {
+    // TODO add new listing to database
+
+    // Redirect to the user to whatever page specified
+    res.redirect(req.body.return_address);
+  } else {
+    res.status(400).json({ err: 'Bad Request' });
+  }
 });
 
 /* PUT new info on a listing. */
