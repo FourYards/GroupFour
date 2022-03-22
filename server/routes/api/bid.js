@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
 
   if (req.query.id) {
     // TODO retreive bid from db by its id
-    const data = mockData;
+    const data = mockData.data[0];
     res.json(data);
   } else if (req.query.order_id) {
     // TODO retreive bids from db by the order it is associated with
