@@ -18,19 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       emailAddress: DataTypes.STRING,
       realName: DataTypes.STRING,
-      passwordHash: DataTypes.STRING,
+      passwordHash: DataTypes.STRING(255),
       phoneNumber: DataTypes.STRING,
-      role: {
-        type: DataTypes.INTEGER,
-        references: 'Roles',
-        referencesKey: 'code',
-        allowNull: false,
-      },
-      displayType: {
-        type: DataTypes.INTEGER,
-        references: 'DisplayTypes',
-        referencesKey: 'id',
-      },
     },
     {
       sequelize,

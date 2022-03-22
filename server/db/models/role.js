@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models['UserAccount'], {
         foreignKey: {
           allowNull: false,
+          field: 'role',
         },
         onDelete: 'RESTRICT',
       });
@@ -20,12 +21,20 @@ module.exports = (sequelize, DataTypes) => {
   }
   Role.init(
     {
-      name: DataTypes.STRING,
-      code: { allowNull: false, type: DataTypes.STRING },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      code: {
+        primaryKey: true,
+        type: DataTypes.STRING(3),
+        allowNull: false,
+      },
     },
     {
       sequelize,
       modelName: 'Role',
+      timestamps: false,
     }
   );
   return Role;

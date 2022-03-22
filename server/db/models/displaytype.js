@@ -11,17 +11,24 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasMany(models['UserAccount'], {
+        foreignKey: {
+          field: 'displayType',
+        },
         onDelete: 'SET NULL',
       });
     }
   }
   DisplayType.init(
     {
-      name: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       sequelize,
       modelName: 'DisplayType',
+      timestamps: false,
     }
   );
   return DisplayType;
