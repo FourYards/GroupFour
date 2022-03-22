@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
         id: req.query.id,
         bidder_id: 1,
         amount: 100.0,
-        listing_id: 1,
+        order_id: 1,
       },
     ],
   };
