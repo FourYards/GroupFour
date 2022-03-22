@@ -33,12 +33,27 @@ router.get('/', (req, res, next) => {
 
 /* POST a new bid. */
 router.post('/', (req, res, next) => {
-  res.send('This endpoint will create a new bid on a listing.');
+  // TODO check for authentic user
+
+  if (req.body.bidder_id && req.body.amount && req.body.order_id) {
+    // TODO input a new bid into the database
+  } else {
+    // Bad request
+    res.status(400).json({ err: 'Bad Request' });
+  }
 });
 
 /* DELETE a bid. */
 router.delete('/', (req, res, next) => {
-  res.send('This endpoint will delete a bid on a listing.');
+  // TODO check for authentic user
+
+  if (req.body.id) {
+    // TODO delete the bid from the database
+
+    res.json({ message: 'Bid deleted' });
+  } else {
+    res.status(400).json({ err: 'Bad Request' });
+  }
 });
 
 module.exports = router;
