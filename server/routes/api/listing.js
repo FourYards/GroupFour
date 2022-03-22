@@ -27,7 +27,9 @@ router.get('/', (req, res, next) => {
 
     res.json(data);
   } else {
-    res.status(400).json({ err: 'Bad Request' });
+    const data = mockData;
+    // TODO get a list of recent listings
+    res.json(data);
   }
 });
 
