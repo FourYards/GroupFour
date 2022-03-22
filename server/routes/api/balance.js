@@ -16,12 +16,22 @@ router.get('/', (req, res, next) => {
 
 /* PUT funds into or out of user's account */
 router.put('/', (req, res, next) => {
-  // TODO get the right user balance in the database and update it
-  let err = null;
-  if (err) {
-    res.status(200).json({ err: err });
+  // TODO validate user is authentic
+  // TODO get user account
+  if (req.body.balance) {
+    if (isNaN(req.body.balance) || req.body.balance < 0) {
+      res
+        .status(400)
+        .json({ err: 'Bad Request', message: 'Improper balance value' });
+    } else {
+      // TODO update user balance
+      res.status(204).send();
+    }
+  } else {
+    res
+      .status(400)
+      .json({ err: 'Bad Request', message: 'Request needs a balance value' });
   }
-  res.status(204).send();
 });
 
 module.exports = router;
