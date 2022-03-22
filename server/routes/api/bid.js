@@ -1,5 +1,4 @@
 const express = require('express');
-const createError = require('http-errors');
 const router = express.Router();
 
 /* GET one or many bids. */
@@ -28,7 +27,7 @@ router.get('/', (req, res, next) => {
     const data = mockData;
     res.json(data);
   }
-  next(createError(404));
+  res.status(400).json({ err: 'Bad Request' });
 });
 
 /* POST a new bid. */
