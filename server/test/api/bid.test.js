@@ -6,10 +6,15 @@ const app = createServer();
 describe('GET a bid with id 1', () => {
   it('Responds with a json object containing the bid info', async () => {
     await supertest(app)
-      .get('/api/bid')
-      .send({ id: 1 })
+      .get(`/api/bid?id=1`)
       .set('Accept', 'application/json')
-      .expect(200);
+      .expect(200)
+      .then((response) => {
+        console.log(response.body);
+        expect(response.body.data[0].bidder_id).toBe(1);
+        expect(response.body.data[0].order_id).toBe(1);
+        expect(response.body.data[0].amount).toBe(100.0);
+      });
   });
 });
 
