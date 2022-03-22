@@ -74,7 +74,14 @@ router.put('/', (req, res, next) => {
 
 /* DELETE a listing. */
 router.delete('/', (req, res, next) => {
-  res.send('This endpoint will be used to delete listings.');
+  // TODO ensure user is authentic
+  if (req.body.id) {
+    //TODO remove the listing from the db
+
+    res.status(204).send();
+  } else {
+    res.status(400).json({ err: 'Bad Request' });
+  }
 });
 
 module.exports = router;
