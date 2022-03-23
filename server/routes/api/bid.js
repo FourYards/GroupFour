@@ -31,11 +31,32 @@ router.get('/', async (req, res, next) => {
 });
 
 /* POST a new bid. */
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   // TODO check for authentic user
 
-  if (req.body.bidder_id && req.body.amount && req.body.order_id) {
-    // TODO input a new bid into the database
+  if (req.body.bidder && req.body.amount && req.body.order && req.body.target) {
+    // Validate bidder is a real account
+    if (!db.UserAccount.findByPk(req.body.bidder)) {
+      res.status(400).json({ err: 'Bad Request' });
+    }
+
+    // Validate order is a real listing
+    if (!db.Listing.findByPk(req.body.bidder)) {
+      res.status(400).json({ err: 'Bad Request' });
+    }
+
+    // Validate amount is a non-negative number
+    if (!req.body.amount > 0) {
+      res.status(400).json({ err: 'Bad Request' });
+    }
+
+    // input a new bid into the database
+    await Bid.create({
+      bidder: req.body.bidder,
+      amount: req.body.amount,
+      order: req.body.order,
+    });
+    res.redirect(req.body.target);
   } else {
     // Bad request
     res.status(400).json({ err: 'Bad Request' });
