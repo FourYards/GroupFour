@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models['UserAccount'])
-      this.hasOne(models['Location'])
-      this.hasOne(models['TypeOfWork'])
-      this.hasOne(models['Review'])
-      this.hasOne(models['WorkStatus'])
+      //this.hasOne(models['UserAccount'])
+      //this.hasOne(models['Location'])
+      //this.hasOne(models['TypeOfWork'])
+      //this.hasOne(models['Review'])
+      //this.hasOne(models['WorkStatus'])
     }
   }
   Listing.init({
