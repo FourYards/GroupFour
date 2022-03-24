@@ -6,7 +6,7 @@ const Listing = db.Listing;
 /* GET one or many listings. */
 router.get('/', async (req, res, next) => {
   if (req.query.id) {
-    // TODO get the listing by its id in the database
+    // Get the listing by its id in the database
     const data = await Listing.findByPk(req.query.id);
     if (data) {
       res.json(data);
@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
       res.status(400).json({ err: 'Bad Request' });
     }
   } else if (req.query.creator) {
-    // TODO get all listings created by a certain user
+    // Get all listings created by a certain user
     const data = await Listing.findAll({
       where: {
         creator: req.query.creator,
@@ -27,7 +27,7 @@ router.get('/', async (req, res, next) => {
     }
     res.json(data);
   } else {
-    // TODO get a list of recent listings
+    // Get a list of recent listings
     const data = await Listing.findAll({
       limit: 30,
       order: [['createdAt', 'DESC']],
