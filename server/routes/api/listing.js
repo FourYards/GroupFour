@@ -1,34 +1,42 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../../db/models');
+const Listing = db.Listing;
 
 /* GET one or many listings. */
-router.get('/', (req, res, next) => {
-  const mockData = {
-    data: [
-      {
-        id: 1,
-        creator_id: 5,
-        place_id: 3,
-        typeofwork: 3,
-        description: 'This listing is doing some listing',
-        workStatus: 1,
-      },
-    ],
-  };
-
+router.get('/', async (req, res, next) => {
   if (req.query.id) {
     // TODO get the listing by its id in the database
-    const data = mockData;
-
-    res.json(data);
-  } else if (req.query.creator_id) {
+    const data = await Listing.findByPk(req.query.id);
+    if (data) {
+      res.json(data);
+    } else {
+      res.status(400).json({ err: 'Bad Request' });
+    }
+  } else if (req.query.creator) {
     // TODO get all listings created by a certain user
-    const data = mockData;
-
+    const data = await Listing.findAll({
+      where: {
+        creator: req.query.creator,
+      },
+    });
+    if (data) {
+      res.json(data);
+    } else {
+      res.status(400).json({ err: 'Bad Request' });
+    }
     res.json(data);
   } else {
-    const data = mockData;
     // TODO get a list of recent listings
+    const data = await Listing.findAll({
+      limit: 30,
+      order: [['createdAt', 'DESC']],
+    });
+    if (data) {
+      res.json(data);
+    } else {
+      res.status(400).json({ err: 'Bad Request' });
+    }
     res.json(data);
   }
 });
