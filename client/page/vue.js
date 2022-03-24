@@ -1,4 +1,9 @@
-import { createApp } from 'vue';
-import App from './Vue.vue';
+import Vue from 'vue';
+import '../vuePlugins.js';
 
-createApp(App).mount('#vue-root-component');
+import VueLandingPage from './Vue.vue';
+
+new Vue({
+  el: '#vue-root-component',
+  render: (h) => h(VueLandingPage),
+});

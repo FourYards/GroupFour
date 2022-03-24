@@ -10,16 +10,25 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.hasMany(models['UserAccount'], {
+        foreignKey: {
+          field: 'displayType',
+        },
+        onDelete: 'SET NULL',
+      });
     }
   }
   DisplayType.init(
     {
-      name: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       sequelize,
       modelName: 'DisplayType',
+      timestamps: false,
     }
   );
   return DisplayType;

@@ -40,13 +40,19 @@ will be needed to run and build the application dependencies.
 
 1. Install the latest release of node.js version 16
    - On Windows, you may want to customize the installation to enable features to build native node addons/node-gyp/python/build tools.
+   - On Linux, it is recommended to use a node version manager such as [nvm](https://github.com/nvm-sh/nvm) or [others](https://nodejs.org/en/download/package-manager/) to install node. if you are installing via a distro package manager, ensure that you install npm `8.3.0` or greater if npm is not included in the node package. Some distros may only ship older versions of node, in which case, you should install using a version manager.
 2. Install one of the following python versions: 3.7, 3.8, 3.9, or 3.10
    - On Windows, if you used the windows installer from the nodejs.org website to install node, this may have been installed automatically, or given the option to install if it wasn't installed on your system already. You may manually install python if you would prefer or try this if you are having errors during the steps below.
 3. Ensure you have a proper C++ compiler toolchain setup on your machine
    - On Windows, if you used the installer from nodejs.org to install node, the C++ toolchain may have been installed automatically, or have given the option to install, if it was not already installed. If you prefer manual install or are having issues in later steps, Install one of the following:
      - Latest version of Visual Studio Community (using the desktop development with C++ workload)
-     - [Visual Studio Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools)
-     - If you still receive errors about visual studio after installing one of the above two options when following later steps, run the following command and try again: `npm config set msvs_version 2017`. You can also try replacing 2017 with the year of the version of visual studio/build tools installed.
+     - [Visual Studio Build Tools (Direct download link)](https://download.visualstudio.microsoft.com/download/pr/4dfffe3f-2a7e-4dea-922b-62d4beca5e36/e10c2bfb0e7b0358c24bd0df951f3d81897f309a0642a199b93f248db303263c/vs_BuildTools.exe)
+     - If you still receive errors about visual studio after installing one of the above two options when following later steps, try the following:
+     - Check your npm version with `npm --version`. Ensure it reports `8.3.0` or greater. If not, you can update npm using one of the following options:
+       - Install node version `16.14.0` or greater. (Check currently installed node verison with `node --version`)
+       - [Manually upgrade the npm version](https://docs.npmjs.com/try-the-latest-stable-version-of-npm#upgrading-on-windows) for your current node version.
+     - If your npm version is up to date, Run `npm config set msvs_version 2017`. You can also try replacing 2017 with the year of the version of visual studio/build tools installed.
+     - Still stuck? Use the visual studio build tools direct download link above if you haven't. You may also need to run `npm config set msvs_version 2017` if you haven't already (or used a year other than 2017) and are still receiving errors.
    - Linux/UNIX requires `make` to be installed as well as a C++ compiler toolchain.
    - macOS requires the XCode Command Line Tools to be installed. This will install the C++ toolchain.
 4. Clone the repository
@@ -107,5 +113,8 @@ npm run <script name>
 ## References
 
 - Link to express docs - [https://expressjs.com/en/4x/api.html](https://expressjs.com/en/4x/api.html) (API Reference, docs can also be found linked from this page)
+- Link to Vue docs - [https://v2.vuejs.org/](https://v2.vuejs.org/)
 - Link to Sequelize ORM docs - [https://sequelize.org/v7/](https://sequelize.org/v7/)
 - Link to Jest Docs - [https://jestjs.io/](https://jestjs.io/)
+- Link to Vitest Docs - [https://vitest.dev/](https://vitest.dev/)
+- Link to Vue Test Utils Docs - [https://v1.test-utils.vuejs.org/](https://v1.test-utils.vuejs.org/)
