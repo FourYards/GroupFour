@@ -64,11 +64,17 @@ router.post('/', async (req, res, next) => {
 });
 
 /* DELETE a bid. */
-router.delete('/', (req, res, next) => {
+router.delete('/', async (req, res, next) => {
   // TODO check for authentic user
 
   if (req.body.id) {
     // TODO delete the bid from the database
+
+    await Bid.destroy({
+      where: {
+        id: req.body.id,
+      },
+    });
 
     res.json({ message: 'Bid deleted' });
   } else {
