@@ -42,21 +42,72 @@ router.get('/', async (req, res, next) => {
 });
 
 /* POST a new listing. */
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   // TODO ensure user is authentic
 
   if (
-    req.body.creator_id &&
-    req.body.place_id &&
+    req.body.creator && // this may be done by the login system
+    req.body.place &&
     req.body.typeofwork &&
+    req.body.lengthinMinutes &&
     req.body.description &&
-    req.body.workStatus &&
-    req.body.return_address
+    req.body.target
   ) {
-    // TODO add new listing to database
+    // Validate Listing can be created
+    if (
+      (await db.UserAccount.findByPk(req.body.creator)) &&
+      (await db.TypeOfWork.findOne({
+        where: {
+          description: req.body.typeofwork,
+        },
+      }))
+    ) {
+      if (
+        req.body.place.streetAddress &&
+        req.body.place.city &&
+        req.body.place.zipCode
+      ) {
+        res
+          .status(400)
+          .json({
+            err: 'Bad Request',
+            msg: 'Inadequate place information in request',
+          });
+      }
 
-    // Redirect to the user to whatever page specified
-    res.redirect(req.body.return_address);
+      // Create new location if needed
+      let location = await db.Location.findOne({
+        where: {
+          owner: req.body.creator,
+          streetAddress: req.body.place.streetAddress,
+          city: req.body.place.city,
+          zipCode: req.body.place.zipCode,
+        },
+      });
+
+      if (!location) {
+        location = await db.Location.create({
+          owner: req.body.creator,
+          streetAddress: req.body.place.streetAddress,
+          city: req.body.place.city,
+          zipCode: req.body.place.zipCode,
+        });
+      }
+
+      // Add new listing to database
+      Listing.create({
+        creator: req.body.creator,
+        place: location.id,
+        typeofwork: req.body.typeofwork,
+        description: req.body.description,
+        lengthinMinutes: req.body.lengthinMinutes,
+      });
+
+      // Redirect to the user to whatever page specified
+      res.redirect(req.body.target);
+    } else {
+      res.status(400).json({ err: 'Bad Request' });
+    }
   } else {
     res.status(400).json({ err: 'Bad Request' });
   }
