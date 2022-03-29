@@ -11,41 +11,32 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      //this.hasOne(models['UserAccount'])
-      //this.hasOne(models['Location'])
-      //this.hasOne(models['TypeOfWork'])
-      //this.hasOne(models['Review'])
-      //this.hasOne(models['WorkStatus'])
+      this.belongsTo(models['UserAccount'])
+      this.belongsTo(models['Location'])
+      this.belongsTo(models['TypeOfWork'])
+      this.belongsTo(models['Review'])
+      this.belongsTo(models['WorkStatus'])
+
+      this.hasMany(models['Bid'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'order',
+        },
+        onDelete: 'CASCADE',
+      });
+
+      this.hasMany(models['Review'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'listing',
+        },
+        onDelete: 'SET NULL',
+      });
     }
   }
   Listing.init({
-    creator: {
-      type: DataTypes.INTEGER,
-      references: "UserAccounts",
-      referencesKey: "id",
-    },
-    place: {
-      type: DataTypes.INTEGER,
-      references: "Locations",
-      referencesKey: "id",
-    },
-    typeOfWork: {
-      type: DataTypes.INTEGER,
-      references: "TypesOfWork",
-      referencesKey: "id",
-    },
     description: DataTypes.STRING,
     lengthInMinutes: DataTypes.INTEGER,
-    review: {
-      type: DataTypes.INTEGER,
-      references: "Reviews",
-      referencesKey: "id",
-    },
-    workStatus: {
-      type: DataTypes.INTEGER,
-      references: "WorkStatuses",
-      referencesKey: "id",
-    },
   }, {
     sequelize,
     modelName: 'Listing',
