@@ -3,8 +3,8 @@ import { readdirSync, statSync } from 'fs';
 import { join, relative, resolve, sep, posix } from 'path';
 
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
+import { createVuePlugin as Vue2 } from 'vite-plugin-vue2';
+import ScriptSetup from 'unplugin-vue2-script-setup/vite';
 import FullReload from 'vite-plugin-full-reload';
 
 const getAllFiles = function (dirPath, arrayOfFiles) {
@@ -49,9 +49,11 @@ export default defineConfig({
     middlewareMode: true,
   },
   plugins: [
-    vue(),
-    vueJsx(),
-    FullReload(['server/views/**/*'], { root: fileURLToPath(import.meta.url) }),
+    Vue2(),
+    ScriptSetup(),
+    FullReload(['server/views/**/*', 'client/public/styles/**/*.css'], {
+      root: fileURLToPath(import.meta.url),
+    }),
   ],
   build: {
     manifest: true,
@@ -66,5 +68,10 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./client', import.meta.url)),
     },
+  },
+  test: {
+    setupFiles: [
+      fileURLToPath(new URL('./client/vuePlugins.js', import.meta.url)),
+    ],
   },
 });
