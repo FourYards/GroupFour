@@ -10,27 +10,52 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      //this.hasOne(models['Role']);
-      //this.hasOne(models['DisplayType']);
+      this.belongsTo(models['Role']);
+      this.belongsTo(models['DisplayType']);
+
+      this.hasMany(models['Bid'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'bidder',
+        },
+        onDelete: 'CASCADE',
+      });
+
+      this.hasMany(models['Listing'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'creator',
+        },
+        onDelete: 'SET NULL',
+      });
+
+      this.hasMany(models['Location'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'owner',
+        },
+        onDelete: 'CASCADE',
+      });
+
+      this.hasMany(models['Review'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'author',
+        },
+        onDelete: 'SET NULL',
+      });
     }
   }
   UserAccount.init(
     {
-      emailAddress: DataTypes.STRING,
+      emailAddress: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
       realName: DataTypes.STRING,
-      passwordHash: DataTypes.STRING,
+      passwordHash: DataTypes.STRING(255),
       phoneNumber: DataTypes.STRING,
-      role: {
-        type: DataTypes.STRING,
-        references: 'Roles',
-        referencesKey: 'id',
-      },
-      displayType: {
-        type: DataTypes.STRING,
-        references: 'DisplayTypes',
-        referencesKey: 'id',
-      },
+      balance: DataTypes.INTEGER,
     },
     {
       sequelize,

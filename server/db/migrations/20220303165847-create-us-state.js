@@ -1,17 +1,13 @@
 'use strict';
 
+const db = require('../models');
+
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    queryInterface.createTable("USStates", {
-      id: {
-        allowNull: false,
-        primaryKey: true,
-        type: Sequelize.STRING
-      },
-    });
+  async up () {
+    await db.USState.sync();
   },
 
-  async down (queryInterface, Sequelize) {
-    queryInterface.dropTable("USStates");
+  async down () {
+    await db.USState.drop();
   }
 };
