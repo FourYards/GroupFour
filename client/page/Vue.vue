@@ -1,8 +1,3 @@
-<script setup>
-import HelloWorld from '../components/HelloWorld.vue';
-import TheWelcome from '../components/TheWelcome.vue';
-</script>
-
 <template>
   <fragment>
     <header>
@@ -14,8 +9,8 @@ import TheWelcome from '../components/TheWelcome.vue';
         height="125"
       />
 
-      <div class="wrapper">
-        <HelloWorld msg="You did it!" />
+      <div>
+        <HelloWorld />
       </div>
     </header>
 
@@ -24,6 +19,24 @@ import TheWelcome from '../components/TheWelcome.vue';
     </main>
   </fragment>
 </template>
+
+<script>
+import HelloWorld from '../components/HelloWorld.vue';
+import TheWelcome from '../components/TheWelcome.vue';
+
+export default {
+  name: 'app',
+  components: {
+    HelloWorld,
+    TheWelcome,
+  },
+  data() {
+    return {
+      jobListings: [],
+    };
+  },
+};
+</script>
 
 <style>
 @import '../assets/base.css';
