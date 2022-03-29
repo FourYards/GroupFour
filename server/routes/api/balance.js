@@ -15,6 +15,7 @@ router.get('/', (req, res, next) => {
 });
 
 /* PUT funds into or out of user's account */
+// TODO make this post for diff or patch for total
 router.put('/', (req, res, next) => {
   // TODO validate user is authentic
   // TODO get user account
