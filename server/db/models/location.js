@@ -10,25 +10,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      //this.hasOne(models['UserAccount'])
-      //this.hasOne(models['USState'])
+      this.belongsTo(models['UserAccount']);
+
+      this.hasMany(models['Listing'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'place',
+        },
+        onDelete: 'SET NULL',
+      });
     }
   }
   Location.init({
-    owner: {
-      type: DataTypes.INTEGER,
-      references: "UserAccounts",
-      referencesKey: "id",
-    },
     streetAddress: DataTypes.STRING,
     city: DataTypes.STRING,
     zipCode: DataTypes.STRING,
-    state: {
-      type: DataTypes.STRING,
-      references: "USStates",
-      referencesKey: "id",
-    },
   }, {
     sequelize,
     modelName: 'Location',

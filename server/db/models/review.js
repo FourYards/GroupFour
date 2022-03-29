@@ -11,21 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      //this.hasOne(models['UserAccount'])
-      //this.hasOne(models['Listing'])
+      this.belongsTo(models['UserAccount'])
+      this.belongsTo(models['Listing'])
+
+      this.hasMany(models['Listing'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'review',
+        },
+        onDelete: 'SET NULL',
+      });
     }
   }
   Review.init({
-    author: {
-      type: DataTypes.INTEGER,
-      references: "UserAccounts",
-      referencesKey: "id",
-    },
-    listing: {
-      type: DataTypes.INTEGER,
-      references: "Listings",
-      referencesKey: "id",
-    },
     comment: DataTypes.STRING,
     rating: DataTypes.INTEGER,
   }, {

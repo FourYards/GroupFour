@@ -11,22 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      //this.hasOne(models['UserAccount']);
-      //this.hasOne(models['Listing']);
+      this.belongsTo(models['UserAccount']);
+      this.belongsTo(models['Listing']);
     }
   }
   Bid.init({
-    bidder: {
-      type: DataTypes.INTEGER,
-      references: "UserAccount",
-      referencesKey: "id",
-    },
     amount: DataTypes.INTEGER,
-    order: {
-      type: DataTypes.INTEGER,
-      references: "DisplayTypes",
-      referencesKey: "id",
-    },
   }, {
     sequelize,
     modelName: 'Bid',
