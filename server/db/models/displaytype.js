@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   DisplayType.init(
     {
       code: {
-        type: DisplayType.STRING(3),
+        type: DataTypes.STRING(3),
         allowNull: false,
         primaryKey: true,
       },

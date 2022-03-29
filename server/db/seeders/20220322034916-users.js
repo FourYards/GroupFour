@@ -18,8 +18,6 @@ module.exports = {
           passwordHash:
             '$argon2id$v=19$m=15360,t=3,p=1$qztbmFD2qq0t+rs5PFAvdA$zPubCBzB3sWuBuFw2oY97kk/SsVfYPGRhHgCpHH8fh3f2n1u92xmGI2OV9+OkyWngpjnyuiO4sTwNEyGeQxOiVMXxfSYEn9skshDiwR0BK8TDHdI8ISG8Cvtg0MT89VE1AIoqegwNCkW/Et/PnnKcjM2iLDeMaFImlPM7kFKe/I',
           phoneNumber: '1234567890',
-          createdAt: new Date(),
-          updatedAt: new Date(),
           displayType: null,
           role: 'ADM',
         },

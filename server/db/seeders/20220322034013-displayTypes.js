@@ -7,9 +7,11 @@ module.exports = {
       [
         {
           name: 'Customer',
+          code: 'CUS',
         },
         {
           name: 'Provider',
+          code: 'PRO',
         },
       ],
       {}
