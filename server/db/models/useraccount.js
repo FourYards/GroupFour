@@ -12,6 +12,38 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models['Role']);
       this.belongsTo(models['DisplayType']);
+
+      this.hasMany(models['Bid'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'bidder',
+        },
+        onDelete: 'CASCADE',
+      });
+
+      this.hasMany(models['Listing'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'creator',
+        },
+        onDelete: 'SET NULL',
+      });
+
+      this.hasMany(models['Location'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'owner',
+        },
+        onDelete: 'CASCADE',
+      });
+
+      this.hasMany(models['Review'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'author',
+        },
+        onDelete: 'SET NULL',
+      });
     }
   }
   UserAccount.init(
@@ -23,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
       realName: DataTypes.STRING,
       passwordHash: DataTypes.STRING(255),
       phoneNumber: DataTypes.STRING,
+      balance: DataTypes.INTEGER,
     },
     {
       sequelize,

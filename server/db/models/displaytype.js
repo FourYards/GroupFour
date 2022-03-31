@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   DisplayType.init(
     {
+      code: {
+        type: DataTypes.STRING(3),
+        allowNull: false,
+        primaryKey: true,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
