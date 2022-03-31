@@ -2,6 +2,9 @@
   <fragment>
     <header></header>
     <body class="container">
+      <b-button id="FAB" variant="success" block href="/listing/create"
+        >Post a Listing</b-button
+      >
       <JobListingsTable :jobs="jobs" />
     </body>
   </fragment>
@@ -87,5 +90,9 @@ export default {
 .container {
   margin: 0px auto;
   padding: 0px;
+}
+
+#FAB {
+  margin-top: 16px;
 }
 </style>
