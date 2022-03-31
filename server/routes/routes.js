@@ -3,6 +3,7 @@ const router = express.Router();
 
 const indexRouter = require('./index');
 const browseRouter = require('./browse');
+const myjobsRouter = require('./myjobs');
 const dashboardRouter = require('./dashboard');
 const loginRouter = require('./login');
 const userRouter = require('./user/routes');
@@ -12,6 +13,7 @@ const apiRouter = require('./api/routes');
 
 router.use('/', indexRouter);
 router.use('/browse', browseRouter);
+router.use('/myjobs', myjobsRouter);
 router.use('/dashboard', dashboardRouter);
 router.use('/login', loginRouter);
 router.use('/user', userRouter);
