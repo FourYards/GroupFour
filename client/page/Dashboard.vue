@@ -1,21 +1,9 @@
 <template>
   <fragment>
     <body class="container">
-      <div>
-        <b-button v-b-modal.modal-1 class="addJob" block variant="success">
-          Post a Job</b-button
-        >
-        <b-modal id="modal-1" title="BootstrapVue">
-          <p class="my-4">Hello from modal!</p>
-          <p class="my-4">Hello from modal!</p>
-          <p class="my-4">Hello from modal!</p>
-          <p class="my-4">Hello from modal!</p>
-          <p class="my-4">Hello from modal!</p>
-          <p class="my-4">Hello from modal!</p>
-          <p class="my-4">Hello from modal!</p>
-          <p class="my-4">Hello from modal!</p>
-        </b-modal>
-      </div>
+      <b-button id="FAB" variant="success" block href="/listing/create"
+        >Post a Listing</b-button
+      >
       <JobListingsTable :jobs="jobs" />
     </body>
   </fragment>
@@ -104,5 +92,9 @@ export default {
 .container {
   margin: 0px auto;
   padding: 0px;
+}
+
+#FAB {
+  margin-top: 16px;
 }
 </style>
