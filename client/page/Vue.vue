@@ -9,27 +9,17 @@
         height="125"
       />
 
-      <div>
-        <HelloWorld />
-      </div>
+      <div></div>
     </header>
 
-    <main>
-      <TheWelcome />
-    </main>
+    <main></main>
   </fragment>
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld.vue';
-import TheWelcome from '../components/TheWelcome.vue';
-
 export default {
   name: 'app',
-  components: {
-    HelloWorld,
-    TheWelcome,
-  },
+  components: {},
   data() {
     return {
       jobListings: [],
