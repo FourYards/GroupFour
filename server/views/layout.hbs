@@ -13,7 +13,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" style="font-size: 3rem" href="#">FourYards</a>
+      <a class="navbar-brand" style="margin-left: 75px; font-size: 3rem" href="/">FourYards</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -25,17 +25,30 @@
          <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button> 
         </form> --}}
         <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" style="font-size: 1.5rem" href="#" id="navbarDarkDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              My Profile
-            </a>
-            <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <a class="dropdown-item" href="#">My Jobs</a>
-              <a class="dropdown-item" href="#">Preferences</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item">Balance - {{Balance}}</a>
-            </div>
-          </li>
+          {{#if isAuthenticated}}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My Profile
+              </a>
+              <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <span class="dropdown-item">Hello {{user.realName}}</span>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item">Balance - {{balance}}</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">My Jobs</a>
+                <a class="dropdown-item" href="#">Preferences</a>
+                <div class="dropdown-divider"></div>
+                <form class="form-inline" action="/logout" method="post">
+                  {{csrfField}}
+                  <button class="btn-link dropdown-item" type="submit" style="outline: none;">Logout</button>
+                </form>
+              </div>
+            </li>
+          {{else}}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Sign In</a>
+            </li>
+          {{/if}}
         </ul>
       </div>
     </nav>
