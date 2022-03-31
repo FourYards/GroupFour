@@ -1,1 +1,0 @@
-DB Seeds will go in this folder. Delete this file once a seed file is added and committed.

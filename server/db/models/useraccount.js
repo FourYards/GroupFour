@@ -10,27 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      this.hasOne(models['Role']);
-      this.hasOne(models['DisplayType']);
+      this.belongsTo(models['Role']);
+      this.belongsTo(models['DisplayType']);
     }
   }
   UserAccount.init(
     {
-      emailAddress: DataTypes.STRING,
+      emailAddress: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
       realName: DataTypes.STRING,
-      passwordHash: DataTypes.STRING,
+      passwordHash: DataTypes.STRING(255),
       phoneNumber: DataTypes.STRING,
-      role: {
-        type: DataTypes.INTEGER,
-        references: 'Roles',
-        referencesKey: 'id',
-      },
-      displayType: {
-        type: DataTypes.INTEGER,
-        references: 'DisplayTypes',
-        referencesKey: 'id',
-      },
     },
     {
       sequelize,
