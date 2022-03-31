@@ -19,11 +19,15 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  TypeOfWork.init({
-    description: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'TypeOfWork',
-  });
+  TypeOfWork.init(
+    {
+      description: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      tableName: 'TypesOfWork',
+      modelName: 'TypeOfWork',
+    }
+  );
   return TypeOfWork;
 };
