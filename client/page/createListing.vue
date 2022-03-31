@@ -217,7 +217,7 @@ export default {
       if (errors.length > 0) {
         let err = 'Incorrect entries for: ';
         for (let i of errors) {
-          err += i + ',\n ';
+          err += i + ', ';
         }
         alert(err);
         return;
@@ -236,6 +236,7 @@ export default {
         redirect: 'follow',
         body: JSON.stringify(body),
       });
+      window.location.reload(true);
     },
 
     //TODO request job types from db
