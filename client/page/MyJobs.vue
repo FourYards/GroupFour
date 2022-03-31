@@ -1,10 +1,33 @@
 <template>
   <fragment>
     <body class="container">
-      <b-button id="FAB" variant="success" block href="/listing/create"
-        >Post a Listing</b-button
-      >
-      <JobListingsTable :jobs="jobs" />
+      <div class="accordion" role="tablist">
+        <b-card no-body class="mb-1">
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-button block v-b-toggle.accordion-1 variant="success"
+              >My Listings</b-button
+            >
+          </b-card-header>
+          <b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
+            <b-card-body>
+              <JobListingsTable :jobs="jobs" />
+            </b-card-body>
+          </b-collapse>
+        </b-card>
+
+        <b-card no-body class="mb-1">
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-button block v-b-toggle.accordion-2 variant="success"
+              >My Bids</b-button
+            >
+          </b-card-header>
+          <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+            <b-card-body>
+              <JobListingsTable :jobs="jobs" />
+            </b-card-body>
+          </b-collapse>
+        </b-card>
+      </div>
     </body>
   </fragment>
 </template>
@@ -15,9 +38,8 @@ import JobListingsTable from '../components/JobListingsTable.vue';
 
 export default {
   //Page name
-  name: 'dashboard-page',
+  name: 'my-jobs-page',
   components: {
-    //Name of any components used on the page
     JobListingsTable,
   },
   data() {
@@ -41,6 +63,7 @@ export default {
           customer: 'Wesley Perrett',
           description: 'This is a description for a job',
           date: 'March 23, 2021',
+          status: 'In Progress',
         },
         {
           id: 2,
@@ -48,6 +71,7 @@ export default {
           customer: 'Wesley Perrett',
           description: 'This is a description for a job',
           date: 'March 23, 2021',
+          status: 'In Progress',
         },
         {
           id: 3,
@@ -55,6 +79,7 @@ export default {
           customer: 'Wesley Perrett',
           description: 'This is a description for a job.',
           date: 'March 23, 2021',
+          status: 'In Progress',
         },
         {
           id: 4,
@@ -62,6 +87,7 @@ export default {
           customer: 'Wesley Perrett',
           description: 'This is a description for a job',
           date: 'March 23, 2021',
+          status: 'In Progress',
         },
         {
           id: 5,
@@ -69,6 +95,7 @@ export default {
           customer: 'Wesley Perrett',
           description: 'This is a description for a job',
           date: 'March 23, 2021',
+          status: 'In Progress',
         },
         {
           id: 6,
@@ -76,6 +103,7 @@ export default {
           customer: 'Wesley Perrett',
           description: 'This is a description for a job',
           date: 'March 23, 2021',
+          status: 'In Progress',
         },
       ];
     },
@@ -92,9 +120,6 @@ export default {
 .container {
   margin: 0px auto;
   padding: 0px;
-}
-
-#FAB {
-  margin-top: 16px;
+  margin-top: 20px;
 }
 </style>

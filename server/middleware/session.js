@@ -8,13 +8,13 @@ const store = new SequelizeStore({
 
 exports.sequelizeStore = store;
 
-exports.sessionMiddleware = function (app) {
+exports.sessionMiddleware = function () {
   return session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: app.get('env') === 'development' ? 4320 : null,
+      maxAge: 86400000,
     },
     store,
   });
