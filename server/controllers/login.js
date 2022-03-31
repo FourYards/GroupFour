@@ -41,7 +41,11 @@ passport.deserializeUser(function (id, done) {
 
 /** @type {import('express').RequestHandler} */
 module.exports.loginPageController = function (req, res, next) {
-  return res.render('login', { title: 'Login' });
+  if (req.isAuthenticated()) {
+    return res.redirect('/');
+  } else {
+    return res.render('login', { title: 'Login' });
+  }
 };
 
 /** @type {[import('express').RequestHandler]} */

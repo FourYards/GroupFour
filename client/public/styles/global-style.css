@@ -24,3 +24,7 @@ h6 {
 a {
   color: #00b7ff;
 }
+
+.nav-link {
+  font-size: 1.5rem;
+}

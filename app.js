@@ -8,6 +8,7 @@ const hbs = require('hbs');
 const hbsHelpers = require('./server/views/helpers');
 const csrfProtection = require('./server/middleware/csrf');
 const { sessionMiddleware } = require('./server/middleware/session');
+const { userStatusLocals } = require('./server/middleware/auth');
 
 const indexRouter = require('./server/routes/routes');
 
@@ -28,6 +29,7 @@ app.initPromise = (async () => {
   app.use(sessionMiddleware());
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(userStatusLocals);
 
   app.use(express.static(path.join(__dirname, 'client', 'public')));
 

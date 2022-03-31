@@ -11,9 +11,9 @@ const reviewRouter = require('./review/routes');
 const apiRouter = require('./api/routes');
 
 router.use('/', indexRouter);
+router.use('/', loginRouter);
 router.use('/browse', browseRouter);
 router.use('/dashboard', dashboardRouter);
-router.use('/login', loginRouter);
 router.use('/user', userRouter);
 router.use('/listing', listingRouter);
 router.use('/review', reviewRouter);

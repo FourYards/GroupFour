@@ -6,8 +6,8 @@ const {
   logoutController,
 } = require('../controllers/login');
 
-router.get('/', loginPageController);
-router.post('/', loginController);
-router.delete('/', logoutController);
+router.get('/login', loginPageController);
+router.post('/login', loginController);
+router.post('/logout', logoutController);
 
 module.exports = router;
