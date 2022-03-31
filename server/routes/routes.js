@@ -10,8 +10,11 @@ const listingRouter = require('./listing/routes');
 const reviewRouter = require('./review/routes');
 const apiRouter = require('./api/routes');
 
+const { logoutController } = require('../controllers/login');
+
 router.use('/', indexRouter);
-router.use('/', loginRouter);
+router.use('/login', loginRouter);
+router.post('/logout', logoutController);
 router.use('/browse', browseRouter);
 router.use('/dashboard', dashboardRouter);
 router.use('/user', userRouter);

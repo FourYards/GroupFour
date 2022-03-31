@@ -40,7 +40,7 @@ passport.deserializeUser(function (id, done) {
 });
 
 /** @type {import('express').RequestHandler} */
-module.exports.loginPageController = function (req, res, next) {
+exports.loginPageController = function (req, res) {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   } else {
@@ -49,17 +49,17 @@ module.exports.loginPageController = function (req, res, next) {
 };
 
 /** @type {[import('express').RequestHandler]} */
-module.exports.loginController = [
+exports.loginController = [
   passport.authenticate('local', {
     session: true,
     failWithError: true,
   }),
   function (req, res) {
-    return res.redirect(303, req.query?.redirect || '/');
+    return res.redirect(303, req.query.redirect || '/');
   },
   function (err, req, res, next) {
     if (err.name === 'AuthenticationError') {
-      res.redirect(303, 'back');
+      return res.redirect(303, 'back');
     } else {
       next(err);
     }
@@ -67,7 +67,48 @@ module.exports.loginController = [
 ];
 
 /** @type {import('express').RequestHandler} */
-module.exports.logoutController = function (req, res, next) {
+exports.logoutController = function (req, res) {
   req.logout();
   res.redirect('/');
+};
+
+/** @type {import('express').RequestHandler} */
+exports.signupPageController = function (req, res) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/');
+  } else {
+    return res.render('signUp', { title: 'Sign Up' });
+  }
+};
+
+/** @type {import('express').RequestHandler} */
+exports.signupNewUserController = async function (req, res, next) {
+  if (req.body.password !== req.body.confirmPassword) {
+    return res.status(400).send('Passwords do not match!');
+  }
+
+  try {
+    const newUser = await UserAccount.create({
+      emailAddress: req.body.username,
+      realName: req.body.name,
+      phoneNumber: req.body.phone,
+      passwordHash: await argon2.hash(req.body.password, {
+        type: argon2.argon2id,
+        hashLength: 128,
+        memoryCost: 15360,
+        timeCost: 3,
+        parallelism: 1,
+      }),
+      RoleCode: 'USR',
+    });
+
+    req.login(newUser, (err) => {
+      if (err) next(err);
+      else {
+        return res.redirect(303, req.query.redirect || '/');
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
 };
