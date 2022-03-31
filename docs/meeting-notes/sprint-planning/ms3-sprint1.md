@@ -1,7 +1,7 @@
 # Milestone 3 Sprint 1 Planning Meeting Notes
 
 - Team Members: Richard Snider, Kyler Nelson, Wesley Perrett, Keaton Anderson.
-- Sprint End date: Spring Break: March 7.
+- Sprint End date: March 25.
 - Hours estimated for sprint:
 - Evaluation method for end of sprint: Reliability
 - Availability: Take President's Day off. Generally keeping weekends free for everyone.
