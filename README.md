@@ -9,10 +9,16 @@
 
 ## Workspace Layout
 
+### Documentation/Planning Files
+
 The Four Yards web app will be stored in this repository.
 The documentation and resources for this project will be kept in the `docs` folder. This includes use case diagrams, the project plan, database diagrams, and more as the
 project progresses.
 The project itself is made up of all other files in the repository.
+
+Each type of document will exist in a subfolder (ex. sprint planning, standups, etc)
+
+### Application Folders and Additional Info
 
 Individual folders may contain a readme explaining their use. In general, the bulk of the application code resides in either `client` or `server`, holding code that is relevant to the frontend and backend respectively. Additional top-level folders exist as needed. Top-level files are almost exclusively configuration files, excluding app.js, which defines the middleware and routing stack entrypoints for the application. The `bin` folder contains the executable entrypoint for the server. This is executed by npm scripts.
 
