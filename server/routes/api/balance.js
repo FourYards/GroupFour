@@ -3,16 +3,36 @@ const router = express.Router();
 
 /* GET user balance. */
 router.get('/', (req, res, next) => {
-  res.send(
-    'This URL will respond to GET and PUT requests about the balance of the authorized user.'
-  );
+  const mockBalance = {
+    balance: 100,
+  };
+  // TODO validate user is authentic
+
+  // TODO get the users balance from the database model
+  const data = mockBalance;
+  // Send the information back to the client
+  res.json(data);
 });
 
 /* PUT funds into or out of user's account */
+// TODO make this post for diff or patch for total
 router.put('/', (req, res, next) => {
-  res.send(
-    "This endpoint will update the user's balance to add or remove funds."
-  );
+  // TODO validate user is authentic
+  // TODO get user account
+  if (req.body.balance) {
+    if (isNaN(req.body.balance) || req.body.balance < 0) {
+      res
+        .status(400)
+        .json({ err: 'Bad Request', message: 'Improper balance value' });
+    } else {
+      // TODO update user balance
+      res.status(204).send();
+    }
+  } else {
+    res
+      .status(400)
+      .json({ err: 'Bad Request', message: 'Request needs a balance value' });
+  }
 });
 
 module.exports = router;
