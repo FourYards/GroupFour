@@ -4,6 +4,8 @@
 
 See `docs/meeting-notes/sprint-planning`
 
+Sprint backlog is still being updated in issues for the repo.
+
 ## Stand-up Reports
 
 See `docs/meeting-notes/stand-up-meetings`
