@@ -66,6 +66,15 @@ will be needed to run and build the application dependencies.
 7. The server will be available at the port indicated by the program&#39;s console output.
 8. Launch your preferred browser and navigate to the address of the machine running the application, providing the port specified in the console output of the server. This is typically `localhost:3000`.
 
+## Default Local Dev User Info
+
+This application will seed one user by default at the current time. The credentials to log in as this user are:
+
+- Username: test.user@usu.edu
+- Password: password
+
+You can sign up a new user from the login page of the app as well.
+
 ## Testing Instructions
 
 Perform the following steps after performing the first five steps of the app's run instructions
