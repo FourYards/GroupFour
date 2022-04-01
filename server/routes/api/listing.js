@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
     // Get all listings created by a certain user
     const data = await Listing.findAll({
       where: {
-        creator: req.query.creator,
+        UserAccountId: req.query.creator,
       },
     });
     if (data) {
@@ -28,10 +28,7 @@ router.get('/', async (req, res, next) => {
     res.json(data);
   } else {
     // Get a list of recent listings
-    const data = await Listing.findAll({
-      limit: 30,
-      order: [['createdAt', 'DESC']],
-    });
+    const data = await Listing.findAll();
     if (data) {
       res.json(data);
     } else {
@@ -39,6 +36,7 @@ router.get('/', async (req, res, next) => {
     }
     res.json(data);
   }
+  res.status(400).json({ err: 'Bad Request' });
 });
 
 /* POST a new listing. */
@@ -67,12 +65,10 @@ router.post('/', async (req, res, next) => {
         req.body.place.city &&
         req.body.place.zipCode
       ) {
-        res
-          .status(400)
-          .json({
-            err: 'Bad Request',
-            msg: 'Inadequate place information in request',
-          });
+        res.status(400).json({
+          err: 'Bad Request',
+          msg: 'Inadequate place information in request',
+        });
       }
 
       // Create new location if needed
