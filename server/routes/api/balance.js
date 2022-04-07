@@ -1,38 +1,43 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../../db/models');
 
-/* GET user balance. */
-router.get('/', (req, res, next) => {
-  const mockBalance = {
-    balance: 100,
-  };
+/* GET user balance. Returns balance of logged-in user in cents
+response = {
+  balance: *user balance in cents*
+}
+*/
+router.get('/', async (req, res, next) => {
   // TODO validate user is authentic
 
   // TODO get the users balance from the database model
-  const data = mockBalance;
+  const user = await db.UserAccount.findByPk(req.user.id);
+  const data = user.balance;
   // Send the information back to the client
-  res.json(data);
+  if (data) {
+    res.json({ balance: data });
+  } else {
+    res.json({ balance: 0 });
+  }
 });
 
-/* PUT funds into or out of user's account */
-// TODO make this post for diff or patch for total
-router.put('/', (req, res, next) => {
-  // TODO validate user is authentic
-  // TODO get user account
-  if (req.body.balance) {
-    if (isNaN(req.body.balance) || req.body.balance < 0) {
-      res
-        .status(400)
-        .json({ err: 'Bad Request', message: 'Improper balance value' });
-    } else {
-      // TODO update user balance
-      res.status(204).send();
-    }
-  } else {
-    res
-      .status(400)
-      .json({ err: 'Bad Request', message: 'Request needs a balance value' });
+/* PATCH an account to have a different amount of funds 
+  INPUT FUNDS AMOUNT SHOULD BE IN CENTS
+  Request format:
+  {
+    balance: *integer amount of cents*
   }
+*/
+router.patch('/', async (req, res, next) => {
+  // TODO validate user is authentic
+
+  // Validate balance input
+  if (req.body.balance && !isNaN(req.body.balance) && req.body.balance >= 0) {
+    const user = await db.UserAccount.findByPk(req.user.id);
+    user.balance = parseInt(req.body.balance);
+    await user.save();
+    res.status(204);
+  } else res.status(400);
 });
 
 module.exports = router;
