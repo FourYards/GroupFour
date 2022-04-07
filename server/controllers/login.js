@@ -92,6 +92,7 @@ exports.signupNewUserController = async function (req, res, next) {
       emailAddress: req.body.username,
       realName: req.body.name,
       phoneNumber: req.body.phone,
+      role: 'USR',
       passwordHash: await argon2.hash(req.body.password, {
         type: argon2.argon2id,
         hashLength: 128,
@@ -99,7 +100,6 @@ exports.signupNewUserController = async function (req, res, next) {
         timeCost: 3,
         parallelism: 1,
       }),
-      RoleCode: 'USR',
     });
 
     req.login(newUser, (err) => {
