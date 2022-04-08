@@ -13,9 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models['UserAccount'], {
         foreignKey: {
           allowNull: false,
+          name: 'role',
           field: 'role',
         },
         onDelete: 'RESTRICT',
+        as: 'accounts',
       });
     }
   }
