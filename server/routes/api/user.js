@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../../db/models');
-const UserAccount = db.UserAccount;
 
 /* PATCH the user settings 
 req format:
@@ -13,24 +11,30 @@ Locked values:
 */
 router.patch('/', async (req, res, next) => {
   let changed = false;
-  const user = UserAccount.findByPk(req.user.id);
+  const user = req.user; // UserAccount.findByPk(req.user.id);
   for (let key of Object.keys(req.body)) {
     if (
-      Object.key(user.dataValues).contains(key) &&
+      typeof user.get(key) !== 'undefined' &&
       key != 'passwordHash' &&
       key != 'id'
     ) {
       // TODO conver req.user to a db object
-      user.dataValues[key] = req.body[key];
+      console.log('.');
+      user.set(key, req.body[key]);
+      console.log(',');
       changed = true;
     }
   }
 
   if (changed) {
+    user.save();
+    console.log(';');
     res.status(204);
   } else {
     res.status(400);
   }
+
+  res.send();
 });
 
 module.exports = router;
