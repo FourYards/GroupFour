@@ -2,7 +2,7 @@
   <fragment>
     <body class="container">
       <p><strong>Email Address: </strong> {{ emailAddress }}</p>
-      <p><strong>Name:</strong> {{ name }}</p>
+      <p><strong>Name:</strong> {{ realName }}</p>
       <p><strong>Phone Number:</strong> {{ formattedPhoneNumber }}</p>
       <p><strong>Preferred Display Type:</strong> {{ displayType }}</p>
 
@@ -15,7 +15,7 @@
       </p>
       <p>
         <strong>Update Name:</strong>
-        <b-input v-model="nameBox" :placeholder="name"></b-input>
+        <b-input v-model="realNameBox" :placeholder="realName"></b-input>
       </p>
       <p>
         <strong>Update Phone Number:</strong>
@@ -57,26 +57,26 @@
 //Import statements including components used on the page
 
 export default {
-  //Page name
-  name: 'app',
+  //Page realName
+  realName: 'app',
 
   components: {},
 
   data() {
     return {
-      emailAddress: 'trongle@polygons.net',
-      name: 'Trongle Trongle',
-      displayType: 'Provider',
-      phoneNumber: '3 33    (5) 5  5- 0 1- 3 3 ',
+      emailAddress: '',
+      realName: '',
+      displayType: '',
+      phoneNumber: '',
       emailAddressBox: '',
-      nameBox: '',
+      realNameBox: '',
       displayTypeBox: '',
       phoneNumberBox: '',
       password1: '',
       password2: '',
       displayTypes: [
-        { value: 'Provider', text: 'Provider' },
-        { value: 'Customer', text: 'Customer' },
+        { value: 'PRO', text: 'Provider' },
+        { value: 'CUS', text: 'Customer' },
       ],
       finalText: '',
       csrfToken: '',
@@ -85,6 +85,25 @@ export default {
 
   mounted() {
     this.csrfToken = document.querySelector('meta[name=csrf-token]').content;
+
+    fetch('/api/user', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': this.csrfToken,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        for (const key of [
+          'emailAddress',
+          'realName',
+          'displayType',
+          'phoneNumber',
+        ]) {
+          this[key] = res[key];
+        }
+      });
   },
 
   methods: {
@@ -95,8 +114,8 @@ export default {
         toUpdate.emailAddress = this.emailAddressBox;
       }
 
-      if (this.nameBox != '') {
-        toUpdate.realName = this.nameBox;
+      if (this.realNameBox != '') {
+        toUpdate.realName = this.realNameBox;
       }
 
       if (this.displayTypeBox != '') {
@@ -129,9 +148,9 @@ export default {
             this.emailAddressBox = '';
           }
 
-          if (this.nameBox != '') {
-            this.name = this.nameBox;
-            this.nameBox = '';
+          if (this.realNameBox != '') {
+            this.realName = this.realNameBox;
+            this.realNameBox = '';
           }
 
           if (this.displayTypeBox != '') {

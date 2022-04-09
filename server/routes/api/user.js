@@ -11,30 +11,45 @@ Locked values:
 */
 router.patch('/', async (req, res, next) => {
   let changed = false;
-  const user = req.user; // UserAccount.findByPk(req.user.id);
   for (let key of Object.keys(req.body)) {
     if (
-      typeof user.get(key) !== 'undefined' &&
+      typeof req.user.get(key) !== 'undefined' &&
       key != 'passwordHash' &&
-      key != 'id'
+      key != 'id' &&
+      key != 'role'
     ) {
       // TODO conver req.user to a db object
-      console.log('.');
-      user.set(key, req.body[key]);
-      console.log(',');
+      req.user.set(key, req.body[key]);
       changed = true;
     }
   }
 
   if (changed) {
-    user.save();
-    console.log(';');
+    req.user.save();
     res.status(204);
   } else {
     res.status(400);
   }
 
   res.send();
+});
+
+router.get('/', async (req, res, next) => {
+  const ret = {};
+  for (let key of Object.keys(req.user.dataValues)) {
+    if (
+      typeof req.user.get(key) !== 'undefined' &&
+      key != 'passwordHash' &&
+      key != 'id'
+    ) {
+      ret[key] = req.user.get(key);
+    }
+  }
+
+  res.status(200);
+
+  res.type('application/json');
+  res.send(JSON.stringify(ret));
 });
 
 module.exports = router;
