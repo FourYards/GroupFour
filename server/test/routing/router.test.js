@@ -5,18 +5,13 @@ const app = createServer();
 
 describe('GET index page', () => {
   it('responds with a redirect to another page', async () => {
-    await supertest(app)
-      .get('/')
-      .expect(200)
-      .then((response) => {
-        console.log('We recieved a response, ' + response);
-      });
+    await supertest(app).get('/').expect(302);
   });
 });
 
-describe('GET browse page', () => {
+describe('GET my jobs page', () => {
   it('responds with a rendered webpage', async () => {
-    await supertest(app).get('/browse').expect(200);
+    await supertest(app).get('/myjobs').expect(200);
   });
 });
 
