@@ -1,0 +1,77 @@
+<div class="container content-container">
+  <h1 class="row justify-content-center">{{title}}</h1>
+  <div class="row justify-content-center">
+    <div class="col">
+      <div class="card">
+        <div class="card-body bg-light">
+          <form action="/user/newSignUp" method="post">
+            {{csrfField}}
+            <div class="form-group">
+              <label for="username">Email</label>
+              <input
+                name="username"
+                type="text"
+                class="form-control"
+                placeholder="Email Address"
+                autocomplete="username"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                name="name"
+                type="text"
+                class="form-control"
+                placeholder="Name"
+                autocomplete="name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input
+                name="phone"
+                type="tel"
+                class="form-control"
+                placeholder="(012) 345-6789"
+                autocomplete="tel"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password*</label>
+              <input
+                name="password"
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password*</label>
+              <input
+                name="confirmPassword"
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+            <small class="form-text text-danger mb-3">*Passwords must match to
+              submit form</small>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              disabled
+            >Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{clientScripts "signUp"}}

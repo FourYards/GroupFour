@@ -1,61 +1,33 @@
 # Rubric
 
-## Product Backlog
+## Sprint Planning Documents
 
-- [Issue feed](https://github.com/FourYards/yard-work-marketplace/issues)
-- [Page for milestone 2](https://github.com/FourYards/yard-work-marketplace/milestone/1)
+See `docs/meeting-notes/sprint-planning`
 
-## README.md
+Sprint backlog is still being updated in issues for the repo.
 
-- [README.md](https://github.com/FourYards/yard-work-marketplace/blob/main/README.md)
+## Stand-up Reports
 
-### Revisions
+See `docs/meeting-notes/stand-up-meetings`
 
-- Added naming standards
+## Sprint Retrospective Reports
 
-## Project plan
+See `docs/meeting-notes/retrospectives`
 
-- [Plan.md](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/Plan.md)
+## Application Implemented
 
-### Revisions
+All pages except for the site admin and user profile pages have been implemented and are in either their final design or are in the stage where the more dynamic page logic is what remains. Reviews page is needing a bit more work before it is ready for full deployment to this app, though the main application pages have been built at this point. Some DB refresh still has some kinks to work out.
 
-- Copied software process from the slides
+All outstanding PRs have been merged in. No new regressions have been caused. App launches and sets up as expected. (just make sure to get the prerequs setup properly on your machine)
 
-## Use Case Diagrams
+## Testing
 
-- [Use Case Diagrams in Requirements.md](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/Requirements.md#users-and-their-goals)
+See the sections on testing in the README. Some unit tests have already been written. We're having to go back through and rework a number of our tests due to some framework changes that we had to make recently. Testing info is provided beneath the application setup info.
 
-### Revisions
+## Updated Documentation
 
-- Switch out some UML diagrams for more detailed ones.
-- Added entry/exit conditions
-  - Note that some of the entry/exit conditions are listed in the document below the diagram image, while others may be listed directly in the image itself.
+Requriements definition has stayed largely the same. We have not made any major architectural changes this milestone. Some items may be pushed off as lower priority and may be removed from the project depending on time constraints, but this judgement will be made during milestone 4.
 
-### Requirements.md Revisions
+## Updated README Documentation
 
-- Translated functional and non-functional requirements to markdown
-
-### Code Styling Revisions
-
-- [Code Style](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/CodeStyle.md)
-
-## Class Diagrams
-
-- [UML Class Diagram](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/img/uml-class-diagram.svg)
-
-## Activity Diagrams
-
-- [ActivityDiagrams.md](https://github.com/FourYards/yard-work-marketplace/blob/main/docs/ActivityDiagrams.md)
-
-## High-Fidelity Prototype
-
-- [Wireframe diagrams directory](https://github.com/FourYards/yard-work-marketplace/tree/main/docs/HighFidelity)
-
-## Low-Fidelity Prototype
-
-- [See class diagrams section](#class-diagrams)
-
-## History on Scrum Board
-
-- [See product backlog section](#product-backlog)
-- We have been assigning issues to relevant people; when issues are modified GitHub tracks it.
+README has received a significant update. It now includes a section on running, testing, and the location of documentation.

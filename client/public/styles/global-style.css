@@ -6,6 +6,25 @@ body {
   padding: 50px;
 }
 
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 2rem;
+}
+
 a {
   color: #00b7ff;
+}
+
+.nav-link {
+  font-size: 1.5rem;
 }

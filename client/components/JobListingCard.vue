@@ -1,6 +1,6 @@
 <template>
   <fragment>
-    <div class="mt-4">
+    <div @click="openDetails" class="mt-4">
       <b-card
         img-src="https://placekitten.com/300/300"
         img-alt="Card image"
@@ -20,6 +20,9 @@
             </tr>
             <tr>
               <td>Posted by: {{ job.customer }}</td>
+            </tr>
+            <tr>
+              <td>{{ job.status }}</td>
             </tr>
           </table>
         </b-card-text>
@@ -43,6 +46,8 @@ export default {
   },
   methods: {
     //Methods for component
+    // openDetails(event){
+    // }
   },
 };
 </script>

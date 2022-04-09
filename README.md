@@ -9,10 +9,16 @@
 
 ## Workspace Layout
 
+### Documentation/Planning Files
+
 The Four Yards web app will be stored in this repository.
 The documentation and resources for this project will be kept in the `docs` folder. This includes use case diagrams, the project plan, database diagrams, and more as the
 project progresses.
 The project itself is made up of all other files in the repository.
+
+Each type of document will exist in a subfolder (ex. sprint planning, standups, etc)
+
+### Application Folders and Additional Info
 
 Individual folders may contain a readme explaining their use. In general, the bulk of the application code resides in either `client` or `server`, holding code that is relevant to the frontend and backend respectively. Additional top-level folders exist as needed. Top-level files are almost exclusively configuration files, excluding app.js, which defines the middleware and routing stack entrypoints for the application. The `bin` folder contains the executable entrypoint for the server. This is executed by npm scripts.
 
@@ -65,6 +71,15 @@ will be needed to run and build the application dependencies.
      - If you are running the app for development, run `npm run dev` instead of `npm start` to enable auto-reload of the server when changes are detected.
 7. The server will be available at the port indicated by the program&#39;s console output.
 8. Launch your preferred browser and navigate to the address of the machine running the application, providing the port specified in the console output of the server. This is typically `localhost:3000`.
+
+## Default Local Dev User Info
+
+This application will seed one user by default at the current time. The credentials to log in as this user are:
+
+- Username: test.user@usu.edu
+- Password: password
+
+You can sign up a new user from the login page of the app as well.
 
 ## Testing Instructions
 
