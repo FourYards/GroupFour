@@ -11,8 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models['UserAccount'])
-      this.belongsTo(models['Listing'])
+      this.belongsTo(models['UserAccount'], {
+        foreignKey: 'authorId',
+        as: 'author',
+      });
+      this.belongsTo(models['Listing']);
 
       this.hasMany(models['Listing'], {
         foreignKey: {
@@ -23,13 +26,16 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Review.init({
-    comment: DataTypes.STRING,
-    rating: DataTypes.INTEGER,
-  }, {
-    sequelize,
-    modelName: 'Review',
-  });
+  Review.init(
+    {
+      comment: DataTypes.STRING,
+      rating: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: 'Review',
+    }
+  );
 
   return Review;
 };

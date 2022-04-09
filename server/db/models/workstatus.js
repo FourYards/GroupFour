@@ -14,17 +14,22 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: {
           allowNull: false,
           field: 'status',
+          name: 'status',
         },
         onDelete: 'RESTRICT',
+        as: 'listings',
       });
     }
   }
-  WorkStatus.init({
-    description: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'WorkStatus',
-  });
+  WorkStatus.init(
+    {
+      description: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: 'WorkStatus',
+    }
+  );
 
   return WorkStatus;
 };

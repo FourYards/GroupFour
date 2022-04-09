@@ -13,8 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models['UserAccount'], {
         foreignKey: {
           field: 'displayType',
+          name: 'displayType',
         },
         onDelete: 'SET NULL',
+        as: 'users',
       });
     }
   }

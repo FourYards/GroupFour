@@ -11,18 +11,32 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models['UserAccount'])
-      this.belongsTo(models['Location'])
-      this.belongsTo(models['TypeOfWork'])
-      this.belongsTo(models['Review'])
-      this.belongsTo(models['WorkStatus'])
+      this.belongsTo(models['UserAccount'], {
+        foreignKey: 'creatorId',
+        as: 'creator',
+      });
+      this.belongsTo(models['Location'], {
+        foreignKey: 'placeId',
+        as: 'place',
+      });
+      this.belongsTo(models['TypeOfWork'], {
+        foreignKey: 'type',
+        as: 'typeDetails',
+      });
+      this.belongsTo(models['Review']);
+      this.belongsTo(models['WorkStatus'], {
+        foreignKey: 'status',
+        as: 'workStatusDetails',
+      });
 
       this.hasMany(models['Bid'], {
         foreignKey: {
           allowNull: false,
-          field: 'order',
+          field: 'listing',
+          name: 'listingId',
         },
         onDelete: 'CASCADE',
+        as: 'bids',
       });
 
       this.hasMany(models['Review'], {
@@ -34,13 +48,16 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Listing.init({
-    description: DataTypes.STRING,
-    lengthInMinutes: DataTypes.INTEGER,
-  }, {
-    sequelize,
-    modelName: 'Listing',
-  });
+  Listing.init(
+    {
+      description: DataTypes.STRING,
+      lengthInMinutes: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: 'Listing',
+    }
+  );
 
   return Listing;
 };
