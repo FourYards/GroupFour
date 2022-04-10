@@ -35,10 +35,10 @@ router.get('/', async (req, res, next) => {
 
 /* POST a new listing. */
 router.post('/', async (req, res, next) => {
-  // TODO ensure user is authentic
-
-  if (
-    req.user &&
+  // Ensure user is authentic
+  if (req.user.isUnauthenticated()) {
+    res.status(401);
+  } else if (
     req.body.place &&
     req.body.typeofwork &&
     req.body.lengthinMinutes &&
@@ -116,11 +116,16 @@ router.patch('/', async (req, res, next) => {
 
 /* DELETE a listing. */
 router.delete('/', (req, res, next) => {
-  // TODO ensure user is authentic
-  if (req.body.id) {
-    //TODO remove the listing from the db
-
-    res.status(204);
+  if (req.user.isUnauthenticated()) {
+    res.status(401);
+  } else if (req.body.id) {
+    const listing = Listing.findByPk(req.body.id);
+    if (listing.UserAccountId == req.user.id || req.user.role == 'ADM') {
+      listing.destroy();
+      res.status(204);
+    } else {
+      res.json(403);
+    }
   } else {
     res.status(400);
   }

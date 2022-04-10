@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../../db/models');
 
 /* GET user balance. Returns balance of logged-in user in cents
 response = {
@@ -8,16 +7,16 @@ response = {
 }
 */
 router.get('/', async (req, res, next) => {
-  // TODO validate user is authentic
-
-  // TODO get the users balance from the database model
-  const user = await db.UserAccount.findByPk(req.user.id);
-  const data = user.balance;
-  // Send the information back to the client
-  if (data) {
-    res.json({ balance: data });
-  } else {
-    res.json({ balance: 0 });
+  // Validate user is authentic
+  if (req.user.isAuthenticated()) {
+    // TODO get the users balance from the database model
+    const data = req.user.balance;
+    // Send the information back to the client
+    if (data) {
+      res.json({ balance: data });
+    } else {
+      res.json({ balance: 0 });
+    }
   }
 });
 
@@ -29,11 +28,14 @@ router.get('/', async (req, res, next) => {
   }
 */
 router.patch('/', async (req, res, next) => {
-  // TODO validate user is authentic
+  // Validate user is authentic
+  if (req.isUnauthenticated()) {
+    res.status(401);
+  }
 
   // Validate balance input
   if (req.body.balance && !isNaN(req.body.balance) && req.body.balance >= 0) {
-    const user = await db.UserAccount.findByPk(req.user.id);
+    const user = req.user;
     user.balance = parseInt(req.body.balance);
     await user.save();
     res.status(204);
