@@ -1,24 +1,53 @@
-/** @type {[import('express').RequestHandler]} */
-exports.userStatusLocals = function (req, res, next) {
+const express = require('express');
+
+/** @type {import('express').RequestHandler} */
+function userStatusLocals(req, res, next) {
   res.locals.user = req.user;
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.isUnauthenticated = req.isUnauthenticated();
   next();
-};
-
-// TODO: Refactor out the middleware for login checks and call the middleware from others as needed
+}
 
 /** @type {import('express').RequestHandler} */
-exports.adminPage = function (req, res, next) {
+function loginRequiredPage(req, res, next) {
   if (!req.isAuthenticated()) {
-    return res.redirect('/login');
+    return res.redirect(
+      req.query.redirect ? '/login' : `/login?redirect=${req.url}`
+    );
   }
+  next();
+}
 
+/** @type {import('express').RequestHandler} */
+function loginRequiredApi(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).send('Please log in.');
+  }
+  next();
+}
+
+const adminPage = express.Router();
+adminPage.use(loginRequiredPage, (req, res, next) => {
   if (req.user.role !== 'ADM') {
-    // Respond with a 403 access denied page
-  } else {
-    next();
+    return res.redirect('/403');
   }
-};
+  next();
+});
 
-exports.adminApi = function (req, res, next) {};
+const adminApi = express.Router();
+adminApi.use(loginRequiredApi, (req, res, next) => {
+  if (req.user.role !== 'ADM') {
+    return res
+      .status(403)
+      .send('You do not have permission to access the requested resource.');
+  }
+  next();
+});
+
+module.exports = {
+  userStatusLocals,
+  loginRequiredPage,
+  loginRequiredApi,
+  adminPage,
+  adminApi,
+};
