@@ -16,7 +16,8 @@ router.patch('/', async (req, res, next) => {
       typeof req.user.get(key) !== 'undefined' &&
       key != 'passwordHash' &&
       key != 'id' &&
-      key != 'role'
+      key != 'role' &&
+      key != 'balance'
     ) {
       // TODO conver req.user to a db object
       req.user.set(key, req.body[key]);
