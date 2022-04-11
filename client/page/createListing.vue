@@ -114,11 +114,7 @@ export default {
         zipcode: null,
         desc: null,
       },
-      jobs: [
-        { text: 'Select One', value: null },
-        'Lawn Mowing',
-        'Snow Shoveling',
-      ],
+      jobs: null,
       states: null,
     };
   },
@@ -184,7 +180,16 @@ export default {
       window.location.reload(true);
     },
 
-    getJobTypes() {},
+    getJobTypes() {
+      fetch('/api/worktypes')
+        .then((res) => res.json())
+        .then((json) => {
+          if (json) {
+            json.unshift({ value: null, text: 'Select One' });
+            this.jobs = json;
+          }
+        });
+    },
 
     getUSStates() {
       fetch('/api/states')
