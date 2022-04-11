@@ -114,74 +114,15 @@ export default {
         zipcode: null,
         desc: null,
       },
-      jobs: [
-        { text: 'Select One', value: null },
-        'Lawn Mowing',
-        'Snow Shoveling',
-      ],
-      states: [
-        { text: 'Select One', value: null },
-        'Alabama',
-        'Alaska',
-        'American Samoa',
-        'Arizona',
-        'Arkansas',
-        'California',
-        'Colorado',
-        'Connecticut',
-        'Delaware',
-        'District of Columbia',
-        'Florida',
-        'Georgia',
-        'Guam',
-        'Hawaii',
-        'Idaho',
-        'Illinois',
-        'Indiana',
-        'Iowa',
-        'Kansas',
-        'Kentucky',
-        'Louisiana',
-        'Maine',
-        'Maryland',
-        'Massachusetts',
-        'Michigan',
-        'Minnesota',
-        'Minor Outlying Islands',
-        'Mississippi',
-        'Missouri',
-        'Montana',
-        'Nebraska',
-        'Nevada',
-        'New Hampshire',
-        'New Jersey',
-        'New Mexico',
-        'New York',
-        'North Carolina',
-        'North Dakota',
-        'Northern Mariana Islands',
-        'Ohio',
-        'Oklahoma',
-        'Oregon',
-        'Pennsylvania',
-        'Puerto Rico',
-        'Rhode Island',
-        'South Carolina',
-        'South Dakota',
-        'Tennessee',
-        'Texas',
-        'Utah',
-        'Vermont',
-        'Virginia',
-        'Washington',
-        'West Virginia',
-        'Wisconsin',
-        'Wyoming',
-      ],
+      jobs: null,
+      states: null,
     };
   },
 
-  mounted() {},
+  mounted() {
+    this.getJobTypes();
+    this.getUSStates();
+  },
 
   methods: {
     //Api calls to populate data
@@ -191,7 +132,7 @@ export default {
 
       // Validate input
       let errors = [];
-      if (!this.jobs.includes(this.form.job)) {
+      if (!this.form.job) {
         errors.push('Job Type');
       }
       if (isNaN(this.form.lengthMin) || this.form.lengthMin < 0) {
@@ -203,7 +144,7 @@ export default {
       if (!this.form.city) {
         errors.push('City');
       }
-      if (!this.states.includes(this.form.state)) {
+      if (!this.form.state) {
         errors.push('State');
       }
       if (
@@ -239,7 +180,31 @@ export default {
       window.location.reload(true);
     },
 
-    //TODO request job types from db
+    getJobTypes() {
+      fetch('/api/worktypes')
+        .then((res) => res.json())
+        .then((json) => {
+          if (json) {
+            json.unshift({ value: null, text: 'Select One' });
+            this.jobs = json;
+          }
+        });
+    },
+
+    getUSStates() {
+      fetch('/api/states')
+        .then((res) => res.json())
+        .then((json) => {
+          if (json) {
+            for (let i of json) {
+              i['text'] = i['id'];
+              i['value'] = i['id'];
+            }
+            json.unshift({ value: null, text: 'Select One' });
+            this.states = json;
+          }
+        });
+    },
   },
 };
 </script>
