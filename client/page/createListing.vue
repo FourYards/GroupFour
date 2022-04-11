@@ -132,7 +132,7 @@ export default {
 
       // Validate input
       let errors = [];
-      if (!this.jobs.includes(this.form.job)) {
+      if (!this.form.job) {
         errors.push('Job Type');
       }
       if (isNaN(this.form.lengthMin) || this.form.lengthMin < 0) {
@@ -144,7 +144,7 @@ export default {
       if (!this.form.city) {
         errors.push('City');
       }
-      if (!this.states.includes(this.form.state)) {
+      if (!this.form.state) {
         errors.push('State');
       }
       if (
@@ -198,6 +198,7 @@ export default {
           if (json) {
             for (let i of json) {
               i['text'] = i['id'];
+              i['value'] = i['id'];
             }
             json.unshift({ value: null, text: 'Select One' });
             this.states = json;
