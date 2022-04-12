@@ -94,11 +94,33 @@ router.post('/', async (req, res, next) => {
 
 /* PATCH the status of a listing */
 router.patch('/', async (req, res, next) => {
-  // TODO validate user
+  // Validate user
+  if (!req.user.isAuthenticated) {
+    return res.status(401);
+  }
 
-  // TODO get the listing to update
+  // Validate Request body
+  if (!req.body.id) {
+    return res.status(400);
+  }
 
-  // TODO update the status of the listing
+  // Get the listing to update
+  const list = Listing.findByPk();
+
+  if (list && list.UserAccountId == req.user.id) {
+    // Update the status of the listing
+    let stat = await list.getWorkStatus();
+    if (stat.description == 'Completed') {
+      return req.status(204);
+    }
+
+    list.setWorkStatus(list.WorkStatusId + 1);
+    await list.save();
+    res.status(204);
+  } else {
+    return res.status(401);
+  }
+
   res.status(500);
 });
 
