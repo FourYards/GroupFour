@@ -23,7 +23,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Bid.init(
     {
-      amount: DataTypes.INTEGER,
+      amount: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
     {
       sequelize,

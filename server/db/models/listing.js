@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'type',
         as: 'typeDetails',
       });
-      this.belongsTo(models['Review']);
       this.belongsTo(models['WorkStatus'], {
         foreignKey: 'status',
         as: 'workStatusDetails',
@@ -41,10 +40,12 @@ module.exports = (sequelize, DataTypes) => {
 
       this.hasMany(models['Review'], {
         foreignKey: {
-          allowNull: false,
+          allowNull: true,
           field: 'listing',
+          name: 'listingId',
         },
         onDelete: 'SET NULL',
+        as: 'providerReviews',
       });
     }
   }

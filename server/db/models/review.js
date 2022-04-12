@@ -15,14 +15,15 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'authorId',
         as: 'author',
       });
-      this.belongsTo(models['Listing']);
 
-      this.hasMany(models['Listing'], {
-        foreignKey: {
-          allowNull: false,
-          field: 'review',
-        },
-        onDelete: 'SET NULL',
+      this.belongsTo(models['Listing'], {
+        foreignKey: 'listingId',
+        as: 'listing',
+      });
+
+      this.belongsTo(models['UserAccount'], {
+        foreignKey: 'userAccountId',
+        as: 'provider',
       });
     }
   }

@@ -55,6 +55,16 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'SET NULL',
         as: 'reviews',
       });
+
+      this.hasMany(models['Review'], {
+        foreignKey: {
+          allowNull: true,
+          field: 'userAccount',
+          name: 'userAccountId',
+        },
+        onDelete: 'CASCADE',
+        as: 'customerReviews',
+      });
     }
   }
   UserAccount.init(
@@ -62,9 +72,10 @@ module.exports = (sequelize, DataTypes) => {
       emailAddress: {
         type: DataTypes.STRING,
         unique: true,
+        allowNull: false,
       },
-      realName: DataTypes.STRING,
-      passwordHash: DataTypes.STRING(255),
+      realName: { type: DataTypes.STRING, allowNull: false },
+      passwordHash: { type: DataTypes.STRING(255), allowNull: false },
       phoneNumber: DataTypes.STRING,
       balance: DataTypes.INTEGER,
     },
