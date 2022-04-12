@@ -10,7 +10,11 @@
             label="Job Type:"
             label-for="input-1"
           >
-            <b-form-select id="input-1" v-model="form.job" :options="jobs">
+            <b-form-select
+              id="input-1"
+              v-model="form.typeofwork"
+              :options="jobs"
+            >
               >
             </b-form-select>
           </b-form-group>
@@ -23,7 +27,7 @@
             <b-input-group append="min">
               <b-form-input
                 id="input-2"
-                v-model="form.lengthMin"
+                v-model="form.lengthinMinutes"
                 placeholder="0"
                 type="number"
                 min="0"
@@ -65,7 +69,7 @@
           >
             <b-form-input
               id="input-6"
-              v-model="form.zipcode"
+              v-model="form.zipCode"
               type="text"
               placeholder="00000"
               required
@@ -79,7 +83,7 @@
           >
             <b-form-textarea
               id="input-7"
-              v-model="form.desc"
+              v-model="form.description"
               placeholder="Additional Information"
               rows="3"
               max-rows="6"
@@ -106,13 +110,13 @@ export default {
     return {
       //Any variables / data used on the page
       form: {
-        job: null,
-        lengthMin: 0,
+        typeofwork: null,
+        lengthinMinutes: 0,
         streetAddress: null,
         city: null,
         state: null,
-        zipcode: null,
-        desc: null,
+        zipCode: null,
+        description: null,
       },
       jobs: null,
       states: null,
@@ -132,10 +136,10 @@ export default {
 
       // Validate input
       let errors = [];
-      if (!this.form.job) {
+      if (!this.form.typeofwork) {
         errors.push('Job Type');
       }
-      if (isNaN(this.form.lengthMin) || this.form.lengthMin < 0) {
+      if (isNaN(this.form.lengthinMinutes) || this.form.lengthinMinutes < 0) {
         errors.push('Time Estimate');
       }
       if (!this.form.streetAddress) {
@@ -148,9 +152,9 @@ export default {
         errors.push('State');
       }
       if (
-        !this.form.zipcode ||
-        this.form.zipcode.length != 5 ||
-        isNaN(this.form.zipcode)
+        !this.form.zipCode ||
+        this.form.zipCode.length != 5 ||
+        isNaN(this.form.zipCode)
       ) {
         errors.push('Zip Code');
       }
@@ -167,15 +171,14 @@ export default {
       // POST the listing to the database
       const url = '/api/listing';
       let body = this.form;
-      body['target'] = '/dashboard';
       fetch(url, {
         method: 'POST',
-        mode: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },
-        redirect: 'follow',
         body: JSON.stringify(body),
+      }).catch((err) => {
+        console.log(err);
       });
       window.location.reload(true);
     },
