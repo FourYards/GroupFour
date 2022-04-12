@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/models');
 const Listing = db.Listing;
+const { loginRequiredApi } = require('../../middleware/auth');
 
 /* GET one or many listings. */
 router.get('/', async (req, res, next) => {
@@ -42,12 +43,8 @@ router.get('/', async (req, res, next) => {
 });
 
 /* POST a new listing. */
-router.post('/', async (req, res, next) => {
-  // TODO ensure user is authentic
-
+router.post('/', loginRequiredApi, async (req, res, next) => {
   if (
-    req.body.creator && // this may be done by the login system
-    req.body.place &&
     req.body.typeofwork &&
     req.body.lengthinMinutes &&
     req.body.description &&
@@ -67,12 +64,10 @@ router.post('/', async (req, res, next) => {
         req.body.place.city &&
         req.body.place.zipCode
       ) {
-        res
-          .status(400)
-          .json({
-            err: 'Bad Request',
-            msg: 'Inadequate place information in request',
-          });
+        res.status(400).json({
+          err: 'Bad Request',
+          msg: 'Inadequate place information in request',
+        });
       }
 
       // Create new location if needed
@@ -106,10 +101,10 @@ router.post('/', async (req, res, next) => {
       // Redirect to the user to whatever page specified
       res.redirect(req.body.target);
     } else {
-      res.status(400).json({ err: 'Bad Request' });
+      res.status(400).send();
     }
   } else {
-    res.status(400).json({ err: 'Bad Request' });
+    res.status(400).send();
   }
 });
 

@@ -166,18 +166,24 @@ export default {
 
       // POST the listing to the database
       const url = '/api/listing';
-      let body = this.form;
-      body['target'] = '/dashboard';
+      const body = this.form;
+      const csrfToken = document.querySelector('meta[name=csrf-token]').content;
       fetch(url, {
         method: 'POST',
         mode: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
         },
         redirect: 'follow',
         body: JSON.stringify(body),
-      });
-      window.location.reload(true);
+      })
+        .then(() => {
+          window.location.replace('/myjobs');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
 
     getJobTypes() {
