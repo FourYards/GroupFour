@@ -11,10 +11,10 @@ module.exports = {
           creator: 2,
           place: 2,
           type: 2,
-          status: 1,
+          status: 6,
         },
         {
-          description: 'Weekly lawnmowing post',
+          description: 'Weekly lawnmowing post #2',
           lengthInMinutes: 30,
           creator: 2,
           place: 3,
@@ -28,6 +28,14 @@ module.exports = {
           place: 4,
           type: 3,
           status: 2,
+        },
+        {
+          description: 'Weekly lawnmowing post #1',
+          lengthInMinutes: 30,
+          creator: 2,
+          place: 3,
+          type: 1,
+          status: 6,
         },
       ],
       {}

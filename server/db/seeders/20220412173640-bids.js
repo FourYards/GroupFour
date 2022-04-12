@@ -40,6 +40,28 @@ module.exports = {
           bidder: 4,
           listing: 3,
         },
+
+        // on listing 4
+        {
+          amount: 3000,
+          bidder: 3,
+          listing: 4,
+        },
+        {
+          amount: 2700,
+          bidder: 4,
+          listing: 4,
+        },
+        {
+          amount: 1600,
+          bidder: 3,
+          listing: 4,
+        },
+        {
+          amount: 1400,
+          bidder: 4,
+          listing: 4,
+        },
       ],
       {}
     );
