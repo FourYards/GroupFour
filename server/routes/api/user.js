@@ -47,10 +47,7 @@ router.get('/', async (req, res, next) => {
     }
   }
 
-  res.status(200);
-
-  res.type('application/json');
-  res.send(JSON.stringify(ret));
+  res.send(ret);
 });
 
 module.exports = router;
