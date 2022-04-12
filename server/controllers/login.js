@@ -6,7 +6,7 @@ const argon2 = require('argon2');
 const UserAccount = db.UserAccount;
 
 passport.use(
-  new LocalStrategy(function (username, password, done) {
+  new LocalStrategy((username, password, done) => {
     const authenticate = async () => {
       const user = await UserAccount.findOne({
         where: { emailAddress: username },
@@ -28,11 +28,11 @@ passport.use(
   })
 );
 
-passport.serializeUser(function (user, done) {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
+passport.deserializeUser((id, done) => {
   UserAccount.findByPk(id).then(
     (user) => done(null, user),
     (err) => done(err)

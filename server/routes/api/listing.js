@@ -39,63 +39,51 @@ router.post('/', async (req, res, next) => {
   if (req.user.isUnauthenticated()) {
     res.status(401);
   } else if (
-    req.body.place &&
     req.body.typeofwork &&
     req.body.lengthinMinutes &&
     req.body.description &&
-    req.body.target
+    req.body.streetAddress &&
+    req.body.city &&
+    req.body.zipCode &&
+    req.body.state
   ) {
     // Validate type of work and length in minutes values
     if (
-      (await db.TypeOfWork.findOne({
-        where: {
-          description: req.body.typeofwork,
-        },
-      })) &&
+      (await db.TypeOfWork.findByPk(req.body.typeofwork)) &&
       req.body.lengthinMinutes > 0
     ) {
-      // Validate location
-      if (
-        req.body.place.streetAddress &&
-        req.body.place.city &&
-        req.body.place.zipCode &&
-        req.body.place.USStateId
-      ) {
-        res.status(400);
-      }
-
       // Create new location if needed
       let location = await db.Location.findOne({
         where: {
           UserAccountId: req.user.id,
-          streetAddress: req.body.place.streetAddress,
-          city: req.body.place.city,
-          zipCode: req.body.place.zipCode,
-          USStateId: req.body.place.USStateId,
+          streetAddress: req.body.streetAddress,
+          city: req.body.city,
+          zipCode: req.body.zipCode,
+          USStateId: req.body.state,
         },
       });
 
       if (!location) {
         location = await db.Location.create({
           UserAccountId: req.user.id,
-          streetAddress: req.body.place.streetAddress,
-          city: req.body.place.city,
-          zipCode: req.body.place.zipCode,
-          USStateId: req.body.place.USStateId,
+          streetAddress: req.body.streetAddress,
+          city: req.body.city,
+          zipCode: req.body.zipCode,
+          USStateId: req.body.state,
         });
       }
 
       // Add new listing to database
       Listing.create({
-        creator: req.user.id,
-        place: location.id,
-        typeofwork: req.body.typeofwork,
+        UserAccountId: req.user.id,
+        LocationId: location.id,
+        TypeOfWorkId: req.body.typeofwork,
         description: req.body.description,
-        lengthinMinutes: req.body.lengthinMinutes,
+        lengthInMinutes: req.body.lengthinMinutes,
+        WorkStatusId: 1,
       });
 
-      // Redirect to the user to whatever page specified
-      res.redirect(req.body.target);
+      res.send('Post Created Successfully.');
     } else {
       res.status(400);
     }
@@ -106,11 +94,33 @@ router.post('/', async (req, res, next) => {
 
 /* PATCH the status of a listing */
 router.patch('/', async (req, res, next) => {
-  // TODO validate user
+  // Validate user
+  if (!req.user.isAuthenticated) {
+    return res.status(401);
+  }
 
-  // TODO get the listing to update
+  // Validate Request body
+  if (!req.body.id) {
+    return res.status(400);
+  }
 
-  // TODO update the status of the listing
+  // Get the listing to update
+  const list = Listing.findByPk();
+
+  if (list && list.UserAccountId == req.user.id) {
+    // Update the status of the listing
+    let stat = await list.getWorkStatus();
+    if (stat.description == 'Completed') {
+      return req.status(204);
+    }
+
+    list.setWorkStatus(list.WorkStatusId + 1);
+    await list.save();
+    res.status(204);
+  } else {
+    return res.status(401);
+  }
+
   res.status(500);
 });
 

@@ -10,7 +10,11 @@
             label="Job Type:"
             label-for="input-1"
           >
-            <b-form-select id="input-1" v-model="form.job" :options="jobs">
+            <b-form-select
+              id="input-1"
+              v-model="form.typeofwork"
+              :options="jobs"
+            >
               >
             </b-form-select>
           </b-form-group>
@@ -23,7 +27,7 @@
             <b-input-group append="min">
               <b-form-input
                 id="input-2"
-                v-model="form.lengthMin"
+                v-model="form.lengthinMinutes"
                 placeholder="0"
                 type="number"
                 min="0"
@@ -65,7 +69,7 @@
           >
             <b-form-input
               id="input-6"
-              v-model="form.zipcode"
+              v-model="form.zipCode"
               type="text"
               placeholder="00000"
               required
@@ -79,7 +83,7 @@
           >
             <b-form-textarea
               id="input-7"
-              v-model="form.desc"
+              v-model="form.description"
               placeholder="Additional Information"
               rows="3"
               max-rows="6"
@@ -106,82 +110,23 @@ export default {
     return {
       //Any variables / data used on the page
       form: {
-        job: null,
-        lengthMin: 0,
+        typeofwork: null,
+        lengthinMinutes: 0,
         streetAddress: null,
         city: null,
         state: null,
-        zipcode: null,
-        desc: null,
+        zipCode: null,
+        description: null,
       },
-      jobs: [
-        { text: 'Select One', value: null },
-        'Lawn Mowing',
-        'Snow Shoveling',
-      ],
-      states: [
-        { text: 'Select One', value: null },
-        'Alabama',
-        'Alaska',
-        'American Samoa',
-        'Arizona',
-        'Arkansas',
-        'California',
-        'Colorado',
-        'Connecticut',
-        'Delaware',
-        'District of Columbia',
-        'Florida',
-        'Georgia',
-        'Guam',
-        'Hawaii',
-        'Idaho',
-        'Illinois',
-        'Indiana',
-        'Iowa',
-        'Kansas',
-        'Kentucky',
-        'Louisiana',
-        'Maine',
-        'Maryland',
-        'Massachusetts',
-        'Michigan',
-        'Minnesota',
-        'Minor Outlying Islands',
-        'Mississippi',
-        'Missouri',
-        'Montana',
-        'Nebraska',
-        'Nevada',
-        'New Hampshire',
-        'New Jersey',
-        'New Mexico',
-        'New York',
-        'North Carolina',
-        'North Dakota',
-        'Northern Mariana Islands',
-        'Ohio',
-        'Oklahoma',
-        'Oregon',
-        'Pennsylvania',
-        'Puerto Rico',
-        'Rhode Island',
-        'South Carolina',
-        'South Dakota',
-        'Tennessee',
-        'Texas',
-        'Utah',
-        'Vermont',
-        'Virginia',
-        'Washington',
-        'West Virginia',
-        'Wisconsin',
-        'Wyoming',
-      ],
+      jobs: null,
+      states: null,
     };
   },
 
-  mounted() {},
+  mounted() {
+    this.getJobTypes();
+    this.getUSStates();
+  },
 
   methods: {
     //Api calls to populate data
@@ -191,10 +136,10 @@ export default {
 
       // Validate input
       let errors = [];
-      if (!this.jobs.includes(this.form.job)) {
+      if (!this.form.typeofwork) {
         errors.push('Job Type');
       }
-      if (isNaN(this.form.lengthMin) || this.form.lengthMin < 0) {
+      if (isNaN(this.form.lengthinMinutes) || this.form.lengthinMinutes < 0) {
         errors.push('Time Estimate');
       }
       if (!this.form.streetAddress) {
@@ -203,13 +148,13 @@ export default {
       if (!this.form.city) {
         errors.push('City');
       }
-      if (!this.states.includes(this.form.state)) {
+      if (!this.form.state) {
         errors.push('State');
       }
       if (
-        !this.form.zipcode ||
-        this.form.zipcode.length != 5 ||
-        isNaN(this.form.zipcode)
+        !this.form.zipCode ||
+        this.form.zipCode.length != 5 ||
+        isNaN(this.form.zipCode)
       ) {
         errors.push('Zip Code');
       }
@@ -226,20 +171,43 @@ export default {
       // POST the listing to the database
       const url = '/api/listing';
       let body = this.form;
-      body['target'] = '/dashboard';
       fetch(url, {
         method: 'POST',
-        mode: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },
-        redirect: 'follow',
         body: JSON.stringify(body),
+      }).catch((err) => {
+        console.log(err);
       });
       window.location.reload(true);
     },
 
-    //TODO request job types from db
+    getJobTypes() {
+      fetch('/api/worktypes')
+        .then((res) => res.json())
+        .then((json) => {
+          if (json) {
+            json.unshift({ value: null, text: 'Select One' });
+            this.jobs = json;
+          }
+        });
+    },
+
+    getUSStates() {
+      fetch('/api/states')
+        .then((res) => res.json())
+        .then((json) => {
+          if (json) {
+            for (let i of json) {
+              i['text'] = i['id'];
+              i['value'] = i['id'];
+            }
+            json.unshift({ value: null, text: 'Select One' });
+            this.states = json;
+          }
+        });
+    },
   },
 };
 </script>
