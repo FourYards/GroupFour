@@ -25,6 +25,7 @@ coverage
 
 # SQLite Database
 sqlite.db
+sqlite.db-journal
 
 # Logs
 logs
