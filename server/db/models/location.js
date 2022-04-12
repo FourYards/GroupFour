@@ -11,12 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models['UserAccount'], {
-        foreignKey: 'ownerId',
+        foreignKey: {
+          allowNull: false,
+          field: 'owner',
+          name: 'ownerId',
+        },
+        onDelete: 'CASCADE',
         as: 'owner',
       });
 
       this.belongsTo(models['USState'], {
-        foreignKey: 'state',
+        foreignKey: { name: 'state', allowNull: false },
+        onDelete: 'RESTRICT',
         as: 'stateDetails',
       });
 
@@ -26,7 +32,6 @@ module.exports = (sequelize, DataTypes) => {
           field: 'place',
           name: 'placeId',
         },
-        onDelete: 'SET NULL',
         as: 'listings',
       });
     }

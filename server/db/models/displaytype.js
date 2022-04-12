@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
           field: 'displayType',
           name: 'displayType',
         },
-        onDelete: 'SET NULL',
         as: 'users',
       });
     }

@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models['Role'], { foreignKey: 'role', as: 'roleDetails' });
       this.belongsTo(models['DisplayType'], {
-        foreignKey: 'displayType',
+        foreignKey: { name: 'displayType', allowNull: false },
+        onDelete: 'SET NULL',
         as: 'displayTypeDetails',
       });
 
@@ -22,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
           field: 'bidder',
           name: 'bidderId',
         },
-        onDelete: 'CASCADE',
         as: 'bids',
       });
 
@@ -32,7 +32,6 @@ module.exports = (sequelize, DataTypes) => {
           field: 'creator',
           name: 'creatorId',
         },
-        onDelete: 'SET NULL',
         as: 'listings',
       });
 
@@ -42,7 +41,6 @@ module.exports = (sequelize, DataTypes) => {
           field: 'owner',
           name: 'ownerId',
         },
-        onDelete: 'CASCADE',
         as: 'locations',
       });
 
@@ -52,17 +50,15 @@ module.exports = (sequelize, DataTypes) => {
           field: 'author',
           name: 'authorId',
         },
-        onDelete: 'SET NULL',
         as: 'reviews',
       });
 
       this.hasMany(models['Review'], {
         foreignKey: {
           allowNull: true,
-          field: 'userAccount',
-          name: 'userAccountId',
+          field: 'provider',
+          name: 'providerId',
         },
-        onDelete: 'CASCADE',
         as: 'customerReviews',
       });
     }
@@ -77,7 +73,7 @@ module.exports = (sequelize, DataTypes) => {
       realName: { type: DataTypes.STRING, allowNull: false },
       passwordHash: { type: DataTypes.STRING(255), allowNull: false },
       phoneNumber: DataTypes.STRING,
-      balance: DataTypes.INTEGER,
+      balance: { type: DataTypes.INTEGER, defaultValue: 0 },
     },
     {
       sequelize,

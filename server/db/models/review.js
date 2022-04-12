@@ -12,17 +12,32 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models['UserAccount'], {
-        foreignKey: 'authorId',
+        foreignKey: {
+          allowNull: false,
+          field: 'author',
+          name: 'authorId',
+        },
+        onDelete: 'CASCADE',
         as: 'author',
       });
 
       this.belongsTo(models['Listing'], {
-        foreignKey: 'listingId',
+        foreignKey: {
+          allowNull: true,
+          field: 'listing',
+          name: 'listingId',
+        },
+        onDelete: 'CASCADE',
         as: 'listing',
       });
 
       this.belongsTo(models['UserAccount'], {
-        foreignKey: 'userAccountId',
+        foreignKey: {
+          allowNull: true,
+          field: 'provider',
+          name: 'providerId',
+        },
+        onDelete: 'CASCADE',
         as: 'provider',
       });
     }
@@ -30,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
   Review.init(
     {
       comment: DataTypes.STRING,
-      rating: DataTypes.INTEGER,
+      rating: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       sequelize,

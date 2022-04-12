@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
           field: 'status',
           name: 'status',
         },
-        onDelete: 'RESTRICT',
         as: 'listings',
       });
     }

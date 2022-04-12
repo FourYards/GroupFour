@@ -12,19 +12,39 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models['UserAccount'], {
-        foreignKey: 'creatorId',
+        foreignKey: {
+          allowNull: false,
+          field: 'creator',
+          name: 'creatorId',
+        },
+        onDelete: 'CASCADE',
         as: 'creator',
       });
       this.belongsTo(models['Location'], {
-        foreignKey: 'placeId',
+        foreignKey: {
+          allowNull: false,
+          field: 'place',
+          name: 'placeId',
+        },
+        onDelete: 'CASCADE',
         as: 'place',
       });
       this.belongsTo(models['TypeOfWork'], {
-        foreignKey: 'type',
+        foreignKey: {
+          allowNull: false,
+          field: 'type',
+          name: 'type',
+        },
+        onDelete: 'RESTRICT',
         as: 'typeDetails',
       });
       this.belongsTo(models['WorkStatus'], {
-        foreignKey: 'status',
+        foreignKey: {
+          allowNull: false,
+          field: 'status',
+          name: 'status',
+        },
+        onDelete: 'RESTRICT',
         as: 'workStatusDetails',
       });
 
@@ -34,7 +54,6 @@ module.exports = (sequelize, DataTypes) => {
           field: 'listing',
           name: 'listingId',
         },
-        onDelete: 'CASCADE',
         as: 'bids',
       });
 
@@ -44,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
           field: 'listing',
           name: 'listingId',
         },
-        onDelete: 'SET NULL',
+        onDelete: 'CASCADE',
         as: 'providerReviews',
       });
     }
