@@ -44,7 +44,9 @@
       </p>
 
       <p>
-        <b-button @click="updateData">Update User Data</b-button>
+        <b-button variant="success" @click="updateData"
+          >Update User Data</b-button
+        >
       </p>
       <p v-if="finalText">
         {{ finalText }}
