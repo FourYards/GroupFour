@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/models');
 const Listing = db.Listing;
+const { loginRequiredApi } = require('../../middleware/auth');
 
 /* GET one or many listings. */
 router.get('/', async (req, res, next) => {
@@ -34,12 +35,8 @@ router.get('/', async (req, res, next) => {
 });
 
 /* POST a new listing. */
-router.post('/', async (req, res, next) => {
-  // Ensure user is authentic
-  if (req.user.isUnauthenticated()) {
-    res.status(401);
-  } else if (
-    req.body.place &&
+router.post('/', loginRequiredApi, async (req, res, next) => {
+  if (
     req.body.typeofwork &&
     req.body.lengthinMinutes &&
     req.body.description &&
@@ -97,6 +94,7 @@ router.post('/', async (req, res, next) => {
       // Redirect to the user to whatever page specified
       res.redirect(req.body.target);
     } else {
+
       res.status(400);
     }
   } else {
