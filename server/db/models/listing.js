@@ -72,7 +72,10 @@ module.exports = (sequelize, DataTypes) => {
     {
       description: DataTypes.STRING,
       lengthInMinutes: DataTypes.INTEGER,
-      title: DataTypes.STRING,
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       sequelize,

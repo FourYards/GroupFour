@@ -1,6 +1,6 @@
 <template>
   <fragment>
-    <div @click="openDetails" class="mt-4">
+    <div @click="openDetails(job)" class="mt-4">
       <b-card
         :img-src="job.img"
         img-alt="Card image"
@@ -35,7 +35,7 @@
 export default {
   name: 'job-listing-card',
   props: {
-    job: Array,
+    job: Object,
   },
   data() {
     //Data to populate component
@@ -46,8 +46,9 @@ export default {
   },
   methods: {
     //Methods for component
-    // openDetails(event){
-    // }
+    openDetails(job) {
+      location.href = `/jobdetails?id=${job.id}`;
+    },
   },
 };
 </script>
@@ -74,5 +75,6 @@ td {
 .card:hover {
   border: 1px solid #000;
   box-shadow: 0 0 0 2px #d0d0d0;
+  cursor: pointer;
 }
 </style>
