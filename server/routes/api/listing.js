@@ -23,7 +23,20 @@ router.get('/', async (req, res, next) => {
   } else {
     // Get recent listings
     data = {
-      data: await Listing.findAll(),
+      data: await Listing.findAll({
+        attributes: ['id', 'description', 'title'],
+        where: {
+          status: 1,
+        },
+        include: [
+          { model: db.UserAccount, as: 'creator', attributes: ['realName'] },
+          {
+            model: db.TypeOfWork,
+            as: 'typeDetails',
+            attributes: ['description'],
+          },
+        ],
+      }),
     };
   }
 
@@ -94,7 +107,6 @@ router.post('/', loginRequiredApi, async (req, res, next) => {
       // Redirect to the user to whatever page specified
       res.redirect(req.body.target);
     } else {
-
       res.status(400);
     }
   } else {

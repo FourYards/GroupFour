@@ -34,50 +34,43 @@ export default {
   methods: {
     //Api calls to populate data
     async getJobs() {
-      this.jobs = [
-        {
-          id: 1,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-        },
-        {
-          id: 2,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-        },
-        {
-          id: 3,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job.',
-          date: 'March 23, 2021',
-        },
-        {
-          id: 4,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-        },
-        {
-          id: 5,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-        },
-        {
-          id: 6,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-        },
-      ];
+      // [{
+      //     id: 1,
+      //     title: 'Hard Job',
+      //     customer: 'Wesley Perrett',
+      //     description: 'This is a description for a job',
+      //     date: 'March 23, 2021',
+      //   },]
+
+      const response = await fetch('/api/listing');
+      this.jobs = await response.json();
+      this.jobs = this.jobs.data;
+
+      for (let i in this.jobs) {
+        switch (this.jobs[i].typeDetails.description) {
+          case 'Lawn Mowing':
+            this.jobs[i]['img'] = '/public/images/mowing.svg';
+            break;
+          case 'Raking':
+            this.jobs[i]['img'] = '/public/images/rake.svg';
+            break;
+          case 'Snow Clearing':
+            this.jobs[i]['img'] = '/public/images/shovel.svg';
+            break;
+          case 'Plant Pruning':
+            this.jobs[i]['img'] = '/public/images/pruner.svg';
+            break;
+          case 'Housework':
+            this.jobs[i]['img'] = '/public/images/house.svg';
+            break;
+          case 'Other':
+            this.jobs[i]['img'] = '/public/images/misc.svg';
+            break;
+          default:
+            this.jobs[i]['img'] = 'https://placekitten.com/300/300';
+            break;
+        }
+      }
     },
   },
 };

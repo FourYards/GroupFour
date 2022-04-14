@@ -2,7 +2,7 @@
   <fragment>
     <div @click="openDetails(job)" class="mt-4">
       <b-card
-        img-src="https://placekitten.com/300/300"
+        :img-src="job.img"
         img-alt="Card image"
         img-left
         class="mb-3 card"
@@ -16,10 +16,10 @@
               <td>{{ job.description }}</td>
             </tr>
             <tr>
-              <td>Date: {{ job.date }}</td>
+              <td>Job: {{ job.typeDetails.description }}</td>
             </tr>
             <tr>
-              <td>Posted by: {{ job.customer }}</td>
+              <td>Posted by: {{ job.creator.realName }}</td>
             </tr>
             <tr>
               <td>{{ job.status }}</td>
