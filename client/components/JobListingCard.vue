@@ -2,7 +2,7 @@
   <fragment>
     <div @click="openDetails(job)" class="mt-4">
       <b-card
-        :img-src="job.img"
+        img-src="https://placekitten.com/300/300"
         img-alt="Card image"
         img-left
         class="mb-3 card"
