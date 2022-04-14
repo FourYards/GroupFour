@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import '../vuePlugins.js';
-import createListing from './createListing.vue';
+import createListing from './CreateListing.vue';
 
 new Vue({
   el: '#vue-root-component',

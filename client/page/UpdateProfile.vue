@@ -44,7 +44,9 @@
       </p>
 
       <p>
-        <b-button @click="updateData">Update User Data</b-button>
+        <b-button variant="success" @click="updateData"
+          >Update User Data</b-button
+        >
       </p>
       <p v-if="finalText">
         {{ finalText }}
@@ -202,4 +204,9 @@ export default {
 
 <style>
 /* Any styles specific to the page */
+.container {
+  margin: 0px auto;
+  padding: 0px;
+  margin-top: 20px;
+}
 </style>

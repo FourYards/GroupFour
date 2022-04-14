@@ -8,7 +8,11 @@
       <p>
         <b-input v-model="numInput" type="number" placeholder="5.00"></b-input>
       </p>
-      <p><b-button @click="requestAddFunds">Add funds</b-button></p>
+      <p>
+        <b-button variant="success" @click="requestAddFunds"
+          >Add funds</b-button
+        >
+      </p>
       <p v-if="errMsg != ''">{{ errMsg }}</p>
     </body>
   </fragment>
@@ -88,4 +92,10 @@ export default {
 
 <style>
 /* Any styles specific to the page */
+
+.container {
+  margin: 0px auto;
+  padding: 0px;
+  margin-top: 20px;
+}
 </style>
