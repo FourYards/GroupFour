@@ -1,21 +1,53 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET users listing. */
-router.get('/', (req, res, next) => {
-  res.send(
-    'This URL will handle POST, PUT, and DELETE requests relating to user accounts.'
-  );
+/* PATCH the user settings 
+req format:
+{
+  model-value: new-value
+}
+Locked values:
+* passwordHash
+*/
+router.patch('/', async (req, res, next) => {
+  let changed = false;
+  for (let key of Object.keys(req.body)) {
+    if (
+      typeof req.user.get(key) !== 'undefined' &&
+      key != 'passwordHash' &&
+      key != 'id' &&
+      key != 'role' &&
+      key != 'balance'
+    ) {
+      // TODO conver req.user to a db object
+      req.user.set(key, req.body[key]);
+      changed = true;
+    }
+  }
+
+  if (changed) {
+    req.user.save();
+    res.status(204);
+  } else {
+    res.status(400);
+  }
+
+  res.send();
 });
 
-/* POST a new User. */
-router.post('/', (req, res, next) => {
-  res.send('This endpoint will try to create a new user.');
-});
+router.get('/', async (req, res, next) => {
+  const ret = {};
+  for (let key of Object.keys(req.user.dataValues)) {
+    if (
+      typeof req.user.get(key) !== 'undefined' &&
+      key != 'passwordHash' &&
+      key != 'id'
+    ) {
+      ret[key] = req.user.get(key);
+    }
+  }
 
-/* PUT a new User. */
-router.put('/', (req, res, next) => {
-  res.send('This endpoint will update the users information.');
+  res.send(ret);
 });
 
 module.exports = router;

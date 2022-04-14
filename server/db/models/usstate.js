@@ -13,20 +13,24 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models['Location'], {
         foreignKey: {
           allowNull: false,
-          field: 'state',
+          field: 'id',
+          name: 'state',
         },
-        onDelete: 'RESTRICT',
+        as: 'locations',
       });
     }
   }
-  USState.init({
-    id: {
-      type: DataTypes.STRING(2),
-      primaryKey: true,
+  USState.init(
+    {
+      id: {
+        type: DataTypes.STRING(2),
+        primaryKey: true,
+      },
+    },
+    {
+      sequelize,
+      modelName: 'USState',
     }
-  }, {
-    sequelize,
-    modelName: 'USState',
-  });
+  );
   return USState;
 };

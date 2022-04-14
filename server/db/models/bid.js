@@ -11,16 +11,38 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models['UserAccount']);
-      this.belongsTo(models['Listing']);
+      this.belongsTo(models['UserAccount'], {
+        foreignKey: {
+          name: 'bidderId',
+          allowNull: false,
+          field: 'bidder',
+        },
+        onDelete: 'CASCADE',
+        as: 'bidder',
+      });
+      this.belongsTo(models['Listing'], {
+        foreignKey: {
+          allowNull: false,
+          field: 'listing',
+          name: 'listingId',
+        },
+        onDelete: 'CASCADE',
+        as: 'listing',
+      });
     }
   }
-  Bid.init({
-    amount: DataTypes.INTEGER,
-  }, {
-    sequelize,
-    modelName: 'Bid',
-  });
+  Bid.init(
+    {
+      amount: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: 'Bid',
+    }
+  );
 
   return Bid;
 };

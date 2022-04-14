@@ -14,8 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: {
           allowNull: false,
           field: 'type',
+          name: 'type',
         },
-        onDelete: 'RESTRICT',
+        as: 'listings',
       });
     }
   }

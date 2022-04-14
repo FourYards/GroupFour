@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
           field: 'role',
         },
         onDelete: 'RESTRICT',
-        as: 'accounts',
+        as: 'users',
       });
     }
   }

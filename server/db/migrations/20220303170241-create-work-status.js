@@ -3,11 +3,12 @@
 const db = require('../models');
 
 module.exports = {
-  async up () {
+  async up() {
     await db.WorkStatus.sync();
   },
 
-  async down () {
+  async down() {
+    await db.Location.drop();
     await db.WorkStatus.drop();
-  }
+  },
 };

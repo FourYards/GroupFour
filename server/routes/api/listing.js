@@ -2,101 +2,89 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/models');
 const Listing = db.Listing;
+const { loginRequiredApi } = require('../../middleware/auth');
 
 /* GET one or many listings. */
 router.get('/', async (req, res, next) => {
+  let data = null;
+
   if (req.query.id) {
     // Get the listing by its id in the database
-    const data = await Listing.findByPk(req.query.id);
-    if (data) {
-      res.json(data);
-    } else {
-      res.status(400).json({ err: 'Bad Request' });
-    }
+    data = await Listing.findByPk(req.query.id);
   } else if (req.query.creator) {
-    // Get all listings created by a certain user
-    const data = await Listing.findAll({
-      where: {
-        creator: req.query.creator,
-      },
-    });
-    if (data) {
-      res.json(data);
-    } else {
-      res.status(400).json({ err: 'Bad Request' });
-    }
+    // Get all listing created by a user
+    data = {
+      data: await Listing.findAll({
+        where: {
+          UserAccountId: req.query.creator,
+        },
+      }),
+    };
+  } else {
+    // Get recent listings
+    data = {
+      data: await Listing.findAll(),
+    };
+  }
+
+  if (data) {
     res.json(data);
   } else {
-    // Get a list of recent listings
-    const data = await Listing.findAll({
-      limit: 30,
-      order: [['createdAt', 'DESC']],
-    });
-    if (data) {
-      res.json(data);
-    } else {
-      res.status(400).json({ err: 'Bad Request' });
-    }
-    res.json(data);
+    res.status(400);
   }
 });
 
 /* POST a new listing. */
-router.post('/', async (req, res, next) => {
-  // TODO ensure user is authentic
-
+router.post('/', loginRequiredApi, async (req, res, next) => {
   if (
-    req.body.creator && // this may be done by the login system
-    req.body.place &&
     req.body.typeofwork &&
     req.body.lengthinMinutes &&
     req.body.description &&
     req.body.target
   ) {
-    // Validate Listing can be created
+    // Validate type of work and length in minutes values
     if (
-      (await db.UserAccount.findByPk(req.body.creator)) &&
       (await db.TypeOfWork.findOne({
         where: {
           description: req.body.typeofwork,
         },
-      }))
+      })) &&
+      req.body.lengthinMinutes > 0
     ) {
+      // Validate location
       if (
         req.body.place.streetAddress &&
         req.body.place.city &&
-        req.body.place.zipCode
+        req.body.place.zipCode &&
+        req.body.place.USStateId
       ) {
-        res
-          .status(400)
-          .json({
-            err: 'Bad Request',
-            msg: 'Inadequate place information in request',
-          });
+        res.status(400);
       }
 
       // Create new location if needed
       let location = await db.Location.findOne({
         where: {
-          owner: req.body.creator,
+          UserAccountId: req.user.id,
           streetAddress: req.body.place.streetAddress,
           city: req.body.place.city,
           zipCode: req.body.place.zipCode,
+          USStateId: req.body.place.USStateId,
         },
       });
 
       if (!location) {
         location = await db.Location.create({
-          owner: req.body.creator,
+          UserAccountId: req.user.id,
           streetAddress: req.body.place.streetAddress,
           city: req.body.place.city,
           zipCode: req.body.place.zipCode,
+          USStateId: req.body.place.USStateId,
         });
       }
 
       // Add new listing to database
       Listing.create({
-        creator: req.body.creator,
+        creator: req.user.id,
         place: location.id,
         typeofwork: req.body.typeofwork,
         description: req.body.description,
@@ -106,42 +94,38 @@ router.post('/', async (req, res, next) => {
       // Redirect to the user to whatever page specified
       res.redirect(req.body.target);
     } else {
-      res.status(400).json({ err: 'Bad Request' });
+
+      res.status(400);
     }
   } else {
-    res.status(400).json({ err: 'Bad Request' });
+    res.status(400);
   }
 });
 
-/* PUT new info on a listing. */
-router.put('/', (req, res, next) => {
-  // TODO Ensure user is authentic
+/* PATCH the status of a listing */
+router.patch('/', async (req, res, next) => {
+  // TODO validate user
 
-  if (req.body.id) {
-    // TODO get listing from database
-    if (req.body.description) {
-      // TODO update the description of the listing
-    }
-    if (req.body.workStatus) {
-      // TODO update the workstatus of the listing
-    }
-    // TODO save new info in db
+  // TODO get the listing to update
 
-    res.status(204).send();
-  } else {
-    res.status(400).json({ err: 'Bad Request' });
-  }
+  // TODO update the status of the listing
+  res.status(500);
 });
 
 /* DELETE a listing. */
 router.delete('/', (req, res, next) => {
-  // TODO ensure user is authentic
-  if (req.body.id) {
-    //TODO remove the listing from the db
-
-    res.status(204).send();
+  if (req.user.isUnauthenticated()) {
+    res.status(401);
+  } else if (req.body.id) {
+    const listing = Listing.findByPk(req.body.id);
+    if (listing.UserAccountId == req.user.id || req.user.role == 'ADM') {
+      listing.destroy();
+      res.status(204);
+    } else {
+      res.json(403);
+    }
   } else {
-    res.status(400).json({ err: 'Bad Request' });
+    res.status(400);
   }
 });
 
