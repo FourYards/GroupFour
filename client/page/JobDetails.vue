@@ -1,6 +1,6 @@
 <template>
   <fragment>
-    <body class="container">
+    <div class="container">
       <div class="mb-3 img-container">
         <b-card
           img-src="https://placekitten.com/300/300"
@@ -25,14 +25,15 @@
         <form action="">
           <b-form-input
             size="lg"
-            value="number"
             placeholder="Enter Bid Amount"
             class="mb-3"
           ></b-form-input>
-          <b-button href="/dashboard" variant="primary">Place Bid</b-button>
+          <b-button href="/dashboard" block variant="success"
+            >Place Bid</b-button
+          >
         </form>
       </b-card>
-    </body>
+    </div>
   </fragment>
 </template>
 

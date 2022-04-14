@@ -11,10 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models['Location']);
-      this.belongsTo(models['TypeOfWork']);
-      this.belongsTo(models['Review']);
-      this.belongsTo(models['WorkStatus']);
       this.belongsTo(models['UserAccount'], {
         foreignKey: {
           allowNull: false,
@@ -76,7 +72,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       description: DataTypes.STRING,
       lengthInMinutes: DataTypes.INTEGER,
-      title: DataTypes.STRING,
     },
     {
       sequelize,

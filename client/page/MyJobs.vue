@@ -1,6 +1,6 @@
 <template>
   <fragment>
-    <body class="container">
+    <div class="container">
       <div class="accordion" role="tablist">
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
@@ -28,7 +28,7 @@
           </b-collapse>
         </b-card>
       </div>
-    </body>
+    </div>
   </fragment>
 </template>
 

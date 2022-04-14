@@ -1,6 +1,6 @@
 <template>
   <fragment>
-    <body class="container">
+    <div class="container">
       <p>
         Your current balance is <strong>{{ formattedBalance }}</strong
         >.
@@ -14,7 +14,7 @@
         >
       </p>
       <p v-if="errMsg != ''">{{ errMsg }}</p>
-    </body>
+    </div>
   </fragment>
 </template>
 

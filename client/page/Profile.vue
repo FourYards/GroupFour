@@ -1,6 +1,6 @@
 <template>
   <fragment>
-    <body class="container">
+    <div class="container">
       <p><strong>Email Address: </strong> {{ emailAddress }}</p>
       <p><strong>Name:</strong> {{ realName }}</p>
       <p><strong>Phone Number:</strong> {{ formattedPhoneNumber }}</p>
@@ -51,7 +51,7 @@
       <p v-if="finalText">
         {{ finalText }}
       </p>
-    </body>
+    </div>
   </fragment>
 </template>
 
