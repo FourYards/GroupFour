@@ -27,10 +27,10 @@
         <ul class="navbar-nav">
           {{#if isAuthenticated}}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" style="color: #fff" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 My Profile
               </a>
-              <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <span class="dropdown-item">Hello {{user.realName}}</span>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/addfunds">Balance</a>
