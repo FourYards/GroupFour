@@ -11,25 +11,47 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models['UserAccount'])
-      this.belongsTo(models['Listing'])
-
-      this.hasMany(models['Listing'], {
+      this.belongsTo(models['UserAccount'], {
         foreignKey: {
           allowNull: false,
-          field: 'review',
+          field: 'author',
+          name: 'authorId',
         },
-        onDelete: 'SET NULL',
+        onDelete: 'CASCADE',
+        as: 'author',
+      });
+
+      this.belongsTo(models['Listing'], {
+        foreignKey: {
+          allowNull: true,
+          field: 'listing',
+          name: 'listingId',
+        },
+        onDelete: 'CASCADE',
+        as: 'listing',
+      });
+
+      this.belongsTo(models['UserAccount'], {
+        foreignKey: {
+          allowNull: true,
+          field: 'provider',
+          name: 'providerId',
+        },
+        onDelete: 'CASCADE',
+        as: 'provider',
       });
     }
   }
-  Review.init({
-    comment: DataTypes.STRING,
-    rating: DataTypes.INTEGER,
-  }, {
-    sequelize,
-    modelName: 'Review',
-  });
+  Review.init(
+    {
+      comment: DataTypes.STRING,
+      rating: { type: DataTypes.INTEGER, allowNull: false },
+    },
+    {
+      sequelize,
+      modelName: 'Review',
+    }
+  );
 
   return Review;
 };

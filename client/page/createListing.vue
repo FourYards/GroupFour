@@ -1,21 +1,18 @@
 <template>
   <fragment>
-    <div id="createListing" align="center">
-      <h1>Post a Listing</h1>
+    <body id="createListing" class="container">
+      <div class="titleContainer">
+        <h1>Post a Listing</h1>
+      </div>
 
-      <div id="postlisting">
+      <div>
         <b-form @submit="onSubmit">
           <b-form-group
             id="input-group-1"
             label="Job Type:"
             label-for="input-1"
           >
-            <b-form-select
-              id="input-1"
-              v-model="form.typeofwork"
-              :options="jobs"
-            >
-              >
+            <b-form-select id="input-1" v-model="form.job" :options="jobs">
             </b-form-select>
           </b-form-group>
 
@@ -58,7 +55,6 @@
 
           <b-form-group id="input-group-5" label="State:" label-for="input-5">
             <b-form-select id="input-5" v-model="form.state" :options="states">
-              >
             </b-form-select>
           </b-form-group>
 
@@ -90,10 +86,12 @@
             ></b-form-textarea>
           </b-form-group>
 
-          <b-button type="submit" variant="primary">Post</b-button>
+          <b-button block href="/dashboard" type="submit" variant="success"
+            >Post</b-button
+          >
         </b-form>
       </div>
-    </div>
+    </body>
   </fragment>
 </template>
 
@@ -219,14 +217,15 @@ export default {
 
 <style>
 /* Any styles specific to the page */
-h1 {
-  padding: 20px;
+.titleContainer {
+  display: flex;
+  justify-content: center;
 }
 
-#postlisting {
-  align-content: center;
-  padding-top: 3em;
-  padding-left: 30em;
-  padding-right: 30em;
+.container {
+  margin: 0px auto;
+  padding: 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 </style>
