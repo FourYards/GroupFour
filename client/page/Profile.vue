@@ -1,6 +1,6 @@
 <template>
   <fragment>
-    <body class="container">
+    <div class="container">
       <p><strong>Email Address: </strong> {{ emailAddress }}</p>
       <p><strong>Name:</strong> {{ realName }}</p>
       <p><strong>Phone Number:</strong> {{ formattedPhoneNumber }}</p>
@@ -44,12 +44,14 @@
       </p>
 
       <p>
-        <b-button @click="updateData">Update User Data</b-button>
+        <b-button variant="success" @click="updateData"
+          >Update User Data</b-button
+        >
       </p>
       <p v-if="finalText">
         {{ finalText }}
       </p>
-    </body>
+    </div>
   </fragment>
 </template>
 

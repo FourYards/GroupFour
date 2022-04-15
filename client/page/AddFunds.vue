@@ -1,16 +1,22 @@
 <template>
   <fragment>
-    <body class="container">
-      <p>
-        Your current balance is <strong>{{ formattedBalance }}</strong
-        >.
-      </p>
+    <div class="container">
+      <div class="center">
+        <h1>
+          Your current balance is <strong>{{ formattedBalance }}</strong
+          >.
+        </h1>
+      </div>
       <p>
         <b-input v-model="numInput" type="number" placeholder="5.00"></b-input>
       </p>
-      <p><b-button @click="requestAddFunds">Add funds</b-button></p>
+      <p>
+        <b-button block variant="success" @click="requestAddFunds"
+          >Add funds</b-button
+        >
+      </p>
       <p v-if="errMsg != ''">{{ errMsg }}</p>
-    </body>
+    </div>
   </fragment>
 </template>
 
@@ -88,4 +94,15 @@ export default {
 
 <style>
 /* Any styles specific to the page */
+
+.container {
+  margin: 0px auto;
+  padding: 0px;
+  margin-top: 20px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
 </style>

@@ -1,11 +1,11 @@
 <template>
   <fragment>
-    <body class="container">
+    <div class="container">
       <b-button id="FAB" variant="success" block href="/listing/create"
         >Post a Listing</b-button
       >
       <JobListingsTable :jobs="jobs" />
-    </body>
+    </div>
   </fragment>
 </template>
 
@@ -34,50 +34,17 @@ export default {
   methods: {
     //Api calls to populate data
     async getJobs() {
-      this.jobs = [
-        {
-          id: 1,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-        },
-        {
-          id: 2,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-        },
-        {
-          id: 3,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job.',
-          date: 'March 23, 2021',
-        },
-        {
-          id: 4,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-        },
-        {
-          id: 5,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-        },
-        {
-          id: 6,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-        },
-      ];
+      // [{
+      //     id: 1,
+      //     title: 'Hard Job',
+      //     customer: 'Wesley Perrett',
+      //     description: 'This is a description for a job',
+      //     date: 'March 23, 2021',
+      //   },]
+
+      const response = await fetch('/api/listing');
+      this.jobs = await response.json();
+      this.jobs = this.jobs.data;
     },
   },
 };
@@ -95,6 +62,6 @@ export default {
 }
 
 #FAB {
-  margin-top: 16px;
+  margin-top: 20px;
 }
 </style>
