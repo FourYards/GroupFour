@@ -16,10 +16,10 @@
               <td>{{ job.description }}</td>
             </tr>
             <tr>
-              <td>Date: {{ job.date }}</td>
+              <td><strong>Job:</strong> {{ job.typeDetails.description }}</td>
             </tr>
             <tr>
-              <td>Posted by: {{ job.customer }}</td>
+              <td><strong>Posted by:</strong> {{ job.creator.realName }}</td>
             </tr>
             <tr>
               <td>{{ job.status }}</td>
