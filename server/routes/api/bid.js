@@ -150,15 +150,16 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-/* POST a new bid. */
+/* POST a new bid. 
+  Creates and posts a bid from whatever user is signed in
+  format: 
+  request.body = {
+    amount: *value > 0*,
+    order: *id of listing*,
+  }
+*/
 router.post('/', loginRequiredApi, async (req, res, next) => {
-  if (req.body.bidder && req.body.amount && req.body.order && req.body.target) {
-    // Validate bidder is a real account
-    const bidder = await db.UserAccount.findByPk(req.body.bidder);
-    if (!bidder) {
-      return res.status(400).send('Bad Request');
-    }
-
+  if (req.body.amount && req.body.order) {
     // Validate order is a real listing
     const order = await db.Listing.findByPk(req.body.order);
     if (!order) {
@@ -166,18 +167,23 @@ router.post('/', loginRequiredApi, async (req, res, next) => {
     }
 
     // Validate amount is a non-negative number
-    if (!req.body.amount > 0) {
+    if (isNaN(req.body.amount) || !req.body.amount > 0) {
       res.status(400).send('Bad Request');
     }
 
-    // input a new bid into the database
-    await Bid.create({
-      bidderId: bidder.id,
+    // Input a new bid into the database
+    const bid = await Bid.create({
+      bidderId: req.user.id,
       amount: req.body.amount,
       listingId: order.id,
     });
 
-    res.send('Post Created Successfully.');
+    if (bid) {
+      res.send('Post Created Successfully.');
+    } else {
+      // bid was not created for some reason
+      res.status(500).send('Unable to create bid.');
+    }
   } else {
     // Bad request
     res.status(400).send('Bad Request');
