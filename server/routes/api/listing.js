@@ -50,67 +50,51 @@ router.get('/', async (req, res, next) => {
 /* POST a new listing. */
 router.post('/', loginRequiredApi, async (req, res, next) => {
   if (
-    req.body.typeofwork &&
+    req.body.title &&
+    req.body.type &&
     req.body.lengthinMinutes &&
     req.body.description &&
-    req.body.target
+    req.body.streetAddress &&
+    req.body.city &&
+    req.body.zipCode &&
+    req.body.state
   ) {
     // Validate type of work and length in minutes values
     if (
-      (await db.TypeOfWork.findOne({
-        where: {
-          description: req.body.typeofwork,
-        },
-      })) &&
+      (await db.TypeOfWork.findByPk(req.body.type)) &&
       req.body.lengthinMinutes > 0
     ) {
-      // Validate location
-      if (
-        req.body.place.streetAddress &&
-        req.body.place.city &&
-        req.body.place.zipCode &&
-        req.body.place.USStateId
-      ) {
-        res.status(400);
-      }
-
       // Create new location if needed
-      let location = await db.Location.findOne({
+      const [location, locCreated] = await db.Location.findOrCreate({
         where: {
-          UserAccountId: req.user.id,
-          streetAddress: req.body.place.streetAddress,
-          city: req.body.place.city,
-          zipCode: req.body.place.zipCode,
-          USStateId: req.body.place.USStateId,
+          ownerId: req.user.id,
+          streetAddress: req.body.streetAddress,
+          city: req.body.city,
+          zipCode: req.body.zipCode,
+          state: req.body.state,
         },
       });
 
-      if (!location) {
-        location = await db.Location.create({
-          UserAccountId: req.user.id,
-          streetAddress: req.body.place.streetAddress,
-          city: req.body.place.city,
-          zipCode: req.body.place.zipCode,
-          USStateId: req.body.place.USStateId,
-        });
+      if (locCreated) {
+        console.log('New Location Added');
       }
 
       // Add new listing to database
       Listing.create({
-        creator: req.user.id,
-        place: location.id,
-        typeofwork: req.body.typeofwork,
+        creatorId: req.user.id,
+        placeId: location.id,
+        title: req.body.title,
+        type: req.body.type,
         description: req.body.description,
-        lengthinMinutes: req.body.lengthinMinutes,
+        lengthInMinutes: req.body.lengthinMinutes,
       });
 
-      // Redirect to the user to whatever page specified
-      res.redirect(req.body.target);
+      res.send('Post Created Successfully.');
     } else {
-      res.status(400);
+      res.status(400).send('Failed to create Listing');
     }
   } else {
-    res.status(400);
+    res.status(400).send('Missing Required Fields');
   }
 });
 
