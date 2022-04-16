@@ -19,6 +19,34 @@ module.exports = {
           comment: 'There were some patches of uncut grass at the edge',
           rating: 1,
         },
+        {
+          listing: 4,
+          author: 2,
+          provider: 4,
+          comment: 'Missed a spot... or two',
+          rating: 2,
+        },
+        {
+          listing: 4,
+          author: 2,
+          provider: 4,
+          comment: 'Machine leaked oil and left a trail of yellow grass behind',
+          rating: 1,
+        },
+        {
+          listing: 4,
+          author: 2,
+          provider: 4,
+          comment: 'Great job',
+          rating: 5,
+        },
+        {
+          listing: 4,
+          author: 2,
+          provider: 4,
+          comment: 'Brought a really cute dog',
+          rating: 4,
+        },
       ],
       {}
     );
