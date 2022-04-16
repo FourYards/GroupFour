@@ -17,9 +17,9 @@ router.patch('/', async (req, res, next) => {
   ) {
     let balance = req.user.get('balance');
     if (balance == null) {
-      req.user.set('balance', req.body.amount);
+      req.user.set('balance', req.body.amount | 0);
     } else {
-      req.user.set('balance', balance + req.body.amount);
+      req.user.set('balance', (balance + req.body.amount) | 0);
     }
     req.user.save();
     res.status(204);
