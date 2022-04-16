@@ -40,9 +40,9 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.belongsTo(models['WorkStatus'], {
         foreignKey: {
-          allowNull: false,
           field: 'status',
           name: 'status',
+          defaultValue: 1,
         },
         onDelete: 'RESTRICT',
         as: 'workStatusDetails',

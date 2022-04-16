@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.hasMany(models['Listing'], {
         foreignKey: {
-          allowNull: false,
           field: 'status',
           name: 'status',
+          defaultValue: 1,
         },
         as: 'listings',
       });
