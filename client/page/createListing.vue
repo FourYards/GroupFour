@@ -8,11 +8,23 @@
       <div>
         <b-form @submit="onSubmit">
           <b-form-group
+            id="input-group-0"
+            label="Listing Title:"
+            label-for="input-0"
+          >
+            <b-form-input
+              id="input-0"
+              v-model="form.title"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
             id="input-group-1"
             label="Job Type:"
             label-for="input-1"
           >
-            <b-form-select id="input-1" v-model="form.job" :options="jobs">
+            <b-form-select id="input-1" v-model="form.type" :options="jobs">
             </b-form-select>
           </b-form-group>
 
@@ -24,7 +36,7 @@
             <b-input-group append="min">
               <b-form-input
                 id="input-2"
-                v-model="form.lengthMin"
+                v-model="form.lengthinMinutes"
                 placeholder="0"
                 type="number"
                 min="0"
@@ -65,7 +77,7 @@
           >
             <b-form-input
               id="input-6"
-              v-model="form.zipcode"
+              v-model="form.zipCode"
               type="text"
               placeholder="00000"
               required
@@ -79,16 +91,14 @@
           >
             <b-form-textarea
               id="input-7"
-              v-model="form.desc"
+              v-model="form.description"
               placeholder="Additional Information"
               rows="3"
               max-rows="6"
             ></b-form-textarea>
           </b-form-group>
 
-          <b-button block href="/dashboard" type="submit" variant="success"
-            >Post</b-button
-          >
+          <b-button type="submit" variant="success">Post</b-button>
         </b-form>
       </div>
     </body>
@@ -108,13 +118,14 @@ export default {
     return {
       //Any variables / data used on the page
       form: {
-        job: null,
-        lengthMin: 0,
+        title: null,
+        type: null,
+        lengthinMinutes: 0,
+        description: null,
         streetAddress: null,
         city: null,
+        zipCode: null,
         state: null,
-        zipcode: null,
-        desc: null,
       },
       jobs: null,
       states: null,
@@ -134,11 +145,14 @@ export default {
 
       // Validate input
       let errors = [];
-      if (!this.form.job) {
+      if (!this.form.type) {
         errors.push('Job Type');
       }
-      if (isNaN(this.form.lengthMin) || this.form.lengthMin < 0) {
+      if (isNaN(this.form.lengthinMinutes) || this.form.lengthinMinutes < 0) {
         errors.push('Time Estimate');
+      }
+      if (!this.form.title) {
+        errors.push('Title');
       }
       if (!this.form.streetAddress) {
         errors.push('Street Address');
@@ -150,9 +164,9 @@ export default {
         errors.push('State');
       }
       if (
-        !this.form.zipcode ||
-        this.form.zipcode.length != 5 ||
-        isNaN(this.form.zipcode)
+        !this.form.zipCode ||
+        this.form.zipCode.length != 5 ||
+        isNaN(this.form.zipCode)
       ) {
         errors.push('Zip Code');
       }
@@ -181,7 +195,7 @@ export default {
         body: JSON.stringify(body),
       })
         .then(() => {
-          window.location.replace('/myjobs');
+          window.location.replace('/dashboard');
         })
         .catch((err) => {
           console.log(err);

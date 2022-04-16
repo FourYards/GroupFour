@@ -54,7 +54,7 @@ export default {
     })
       .then((res) => res.json())
       .then((res) => {
-        this.currentBalance = res.balance;
+        this.currentBalance = res.balance / 100;
       });
   },
 
@@ -71,7 +71,7 @@ export default {
           'Content-Type': 'application/json',
           'X-CSRF-Token': this.csrfToken,
         },
-        body: JSON.stringify({ amount: +this.numInput }),
+        body: JSON.stringify({ amount: +this.numInput * 100 }),
       }).then((res) => {
         if (!res.ok) {
           this.errMsg = 'Something went wrong!';
