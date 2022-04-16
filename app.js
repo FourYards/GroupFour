@@ -51,9 +51,13 @@ app.initPromise = (async () => {
   app.use(csrfProtection);
   app.use('/', indexRouter);
 
-  // catch 404 and forward to error handler
-  app.use(function (req, res, next) {
-    next(createError(404));
+  // catch 404
+  app.use(function (req, res) {
+    const err = createError(404);
+    return res.status(404).render('404', {
+      title: '404 - Page Not Found',
+      error: req.app.get('env') === 'development' ? err : {},
+    });
   });
 
   // error handler
