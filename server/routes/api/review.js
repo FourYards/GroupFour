@@ -67,7 +67,6 @@ router.get('/', async (req, res) => {
     Function to post a review to the database
     Review FORMAT:
     body = {
-      authorId: *id of poster*,
       targetId: *id of target*,
       comment: *string*,
       rating: *number [1,5]*
@@ -84,12 +83,12 @@ router.post('/', loginRequiredApi, async (req, res, next) => {
     return res.status(400);
   }
 
-  if (req.body.authorId && req.body.targetId) {
+  if (req.body.targetId) {
     // Add review to a provider
     let rev = await Review.create({
       comment: req.body.comment,
       rating: req.body.rating,
-      authorId: req.body.authorId,
+      authorId: req.user.id,
       providerId: req.body.targetId,
     });
     if (rev) {
