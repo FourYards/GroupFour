@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const logger = require('morgan');
+const flash = require('connect-flash');
 const hbs = require('hbs');
 const hbsHelpers = require('./server/views/helpers');
 const csrfProtection = require('./server/middleware/csrf');
@@ -29,6 +30,7 @@ app.initPromise = (async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser(process.env.COOKIE_SECRET));
   app.use(sessionMiddleware());
+  app.use(flash());
   app.use(clientContext);
   app.use(passport.initialize());
   app.use(passport.session());

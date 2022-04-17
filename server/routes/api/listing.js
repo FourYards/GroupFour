@@ -10,7 +10,25 @@ router.get('/', async (req, res, next) => {
 
   if (req.query.id) {
     // Get the listing by its id in the database
-    data = await Listing.findByPk(req.query.id);
+    data = await Listing.findOne({
+      where: {
+        id: req.query.id,
+      },
+      attributes: ['id', 'title', 'description', 'lengthInMinutes'],
+      include: [
+        { model: db.UserAccount, as: 'creator', attributes: ['realName'] },
+        {
+          model: db.TypeOfWork,
+          as: 'typeDetails',
+          attributes: ['description'],
+        },
+        {
+          model: db.WorkStatus,
+          as: 'workStatusDetails',
+          attributes: ['description'],
+        },
+      ],
+    });
   } else if (req.query.creator) {
     // Get all listing created by a user
     data = {

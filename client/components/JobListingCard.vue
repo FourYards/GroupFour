@@ -7,7 +7,7 @@
         img-left
         class="mb-3 card"
       >
-        <b-card-text class="b-card">
+        <b-card-text>
           <table class="table">
             <tr>
               <td class="title">{{ job.title }}</td>
@@ -35,7 +35,7 @@
 export default {
   name: 'job-listing-card',
   props: {
-    job: Object,
+    job: {},
   },
   data() {
     //Data to populate component
@@ -62,14 +62,12 @@ td {
   padding: 0px;
   border-bottom: 1px solid;
 }
-.b-card {
-  overflow: auto;
-}
 
 .card {
   width: 100%;
   margin: 0px auto;
   height: 250px;
+  overflow: auto;
 }
 
 .card:hover {
