@@ -6,7 +6,7 @@
       </div>
 
       <div v-else>
-        <div v- class="mb-3 img-container">
+        <div class="mb-3 img-container">
           <b-card
             img-src="https://placekitten.com/300/300"
             img-alt="Card image"
@@ -14,28 +14,31 @@
             class="mb-3 image"
           ></b-card>
         </div>
+        <b-card-text class="header text-center"> {{ job.title }}</b-card-text>
         <b-card class="mb-3 b-card">
-          <b-card-text> {{ job.title }}</b-card-text>
+          <b-card-text
+            ><strong>Description:</strong> {{ job.description }}
+          </b-card-text>
         </b-card>
         <b-card class="mb-3 b-card">
-          <b-card-text> {{ job.description }} </b-card-text>
-        </b-card>
-        <b-card class="mb-3 b-card">
-          <b-card-text> Posted By: {{ job.creator.realName }} </b-card-text>
-        </b-card>
-        <b-card class="mb-3 b-card">
-          <b-card-text>
-            Estimated Time: {{ job.lengthInMinutes }} min</b-card-text
-          >
-        </b-card>
-        <b-card class="mb-3 b-card">
-          <b-card-text>
-            Job Type: {{ job.typeDetails.description }}
+          <b-card-text
+            ><strong>Posted By:</strong> {{ job.creator.realName }}
           </b-card-text>
         </b-card>
         <b-card class="mb-3 b-card">
           <b-card-text>
-            Status: {{ job.workStatusDetails.description }}
+            <strong>Estimated Time:</strong>
+            {{ job.lengthInMinutes }} min</b-card-text
+          >
+        </b-card>
+        <b-card class="mb-3 b-card">
+          <b-card-text>
+            <strong>Job Type:</strong> {{ job.typeDetails.description }}
+          </b-card-text>
+        </b-card>
+        <b-card class="mb-3 b-card">
+          <b-card-text>
+            <strong>Status:</strong> {{ job.workStatusDetails.description }}
           </b-card-text>
         </b-card>
         <b-card class="mb-3 b-card">
@@ -110,5 +113,11 @@ export default {
 .img-container {
   display: flex;
   justify-content: center;
+}
+
+.header {
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 1px solid;
 }
 </style>
