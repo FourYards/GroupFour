@@ -1,45 +1,63 @@
 <template>
   <fragment>
     <div class="container">
-      <div class="mb-3 img-container">
-        <b-card
-          img-src="https://placekitten.com/300/300"
-          img-alt="Card image"
-          img-left
-          class="mb-3 image"
-        ></b-card>
+      <div v-if="job === null" class="titleContainer center">
+        <h1>Job not Found</h1>
       </div>
-      <b-card class="mb-3 b-card">
-        <b-card-text class="header"> {{ job.title }}</b-card-text>
-        <b-card-text>
-          <strong>Description:</strong> {{ job.description }}
-        </b-card-text>
-        <b-card-text>
-          <strong>Posted By:</strong> {{ job.realname }}
-        </b-card-text>
-        <b-card-text>
-          <strong>Posted Date:</strong> {{ job.date }}
-        </b-card-text>
-        <b-card-text>
-          <strong>Estimated Time: </strong>
-          {{ job.lengthInMinutes }} Min</b-card-text
-        >
 
-        <b-form @submit="onSubmit">
-          <b-input-group prepend="$" size="lg" class="mb-3">
-            <b-form-input
-              size="lg"
-              type="number"
-              min="0.00"
-              step="any"
-              placeholder="Enter Bid Amount"
-              class=""
-              v-model="form.amount"
-            ></b-form-input>
-          </b-input-group>
-          <b-button block type="submit" variant="success">Place Bid</b-button>
-        </b-form>
-      </b-card>
+      <div v-else>
+        <div class="mb-3 img-container">
+          <b-card
+            img-src="https://placekitten.com/300/300"
+            img-alt="Card image"
+            img-left
+            class="mb-3 image"
+          ></b-card>
+        </div>
+        <b-card-text class="header text-center"> {{ job.title }}</b-card-text>
+        <b-card class="mb-3 b-card">
+          <b-card-text
+            ><strong>Description:</strong> {{ job.description }}
+          </b-card-text>
+        </b-card>
+        <b-card class="mb-3 b-card">
+          <b-card-text
+            ><strong>Posted By:</strong> {{ job.creator.realName }}
+          </b-card-text>
+        </b-card>
+        <b-card class="mb-3 b-card">
+          <b-card-text>
+            <strong>Estimated Time:</strong>
+            {{ job.lengthInMinutes }} min</b-card-text
+          >
+        </b-card>
+        <b-card class="mb-3 b-card">
+          <b-card-text>
+            <strong>Job Type:</strong> {{ job.typeDetails.description }}
+          </b-card-text>
+        </b-card>
+        <b-card class="mb-3 b-card">
+          <b-card-text>
+            <strong>Status:</strong> {{ job.workStatusDetails.description }}
+          </b-card-text>
+        </b-card>
+        <b-card class="mb-3 b-card">
+          <b-form @submit="onSubmit">
+            <b-input-group prepend="$" size="lg" class="mb-3">
+              <b-form-input
+                size="lg"
+                type="number"
+                min="0.00"
+                step="any"
+                placeholder="Enter Bid Amount"
+                class=""
+                v-model="form.amount"
+              ></b-form-input>
+            </b-input-group>
+            <b-button block type="submit" variant="success">Place Bid</b-button>
+          </b-form>
+        </b-card>
+      </div>
     </div>
   </fragment>
 </template>
@@ -52,30 +70,18 @@ export default {
   name: 'job-details',
   data() {
     return {
-      job: {},
+      job: null,
+      form: {
+        amount: 0,
+        order: new URLSearchParams(location.search.substring(1)).get('id'),
+      },
     };
   },
   components: {
     //Name of any components used on the page
   },
   mounted() {
-    const csrfToken = document.querySelector('meta[name=csrf-token]').content;
-    fetch(
-      `/api/listing?id=${new URLSearchParams(location.search.substring(1)).get(
-        'id'
-      )}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': csrfToken,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        this.job = res;
-      });
+    this.getListing();
   },
   methods: {
     onSubmit(event) {
@@ -110,6 +116,20 @@ export default {
       });
     },
     //Api calls to populate data
+    getListing() {
+      fetch(
+        `/api/listing?id=${new URLSearchParams(
+          location.search.substring(1)
+        ).get('id')}`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          this.job = res;
+        })
+        .catch((err) => {
+          console.log('error while fetching listing: ' + err);
+        });
+    },
   },
 };
 </script>
