@@ -47,6 +47,77 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+/** GET all listings needed for the myjobs page
+ * Returns the logged in users posted listings, and listings that they have bid on
+ * Each listing should include: id, title, desc, type, status, poster,
+ * response.body = {
+ * posted: [],
+ * bid: [],
+ * }
+ *
+ */
+router.get('/myjobs', loginRequiredApi, async (req, res, next) => {
+  let data = {
+    posted: null,
+    bid: null,
+  };
+
+  // Get users listings
+  data.posted = await Listing.findAll({
+    where: {
+      creatorId: req.user.id,
+    },
+    attributes: ['id', 'title', 'description'],
+    include: [
+      { model: db.UserAccount, as: 'creator', attributes: ['id', 'realName'] },
+      { model: db.TypeOfWork, as: 'typeDetails', attributes: ['description'] },
+      {
+        model: db.WorkStatus,
+        as: 'workStatusDetails',
+        attributes: ['description'],
+      },
+    ],
+  });
+
+  // Get users bid-on listings
+  data.bid = await db.Bid.findAll({
+    where: {
+      bidderId: req.user.id,
+    },
+    attributes: ['id'],
+    include: [
+      {
+        model: Listing,
+        as: 'listing',
+        attributes: ['id', 'title', 'description'],
+        include: [
+          {
+            model: db.UserAccount,
+            as: 'creator',
+            attributes: ['id', 'realName'],
+          },
+          {
+            model: db.TypeOfWork,
+            as: 'typeDetails',
+            attributes: ['description'],
+          },
+          {
+            model: db.WorkStatus,
+            as: 'workStatusDetails',
+            attributes: ['description'],
+          },
+        ],
+      },
+    ],
+  });
+
+  data.bid.forEach((current, i) => {
+    data.bid[i] = current.listing;
+  });
+
+  res.json(data);
+});
+
 /* POST a new listing. */
 router.post('/', loginRequiredApi, async (req, res, next) => {
   if (
