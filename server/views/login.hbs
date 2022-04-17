@@ -7,6 +7,9 @@
           {{#each errorMessages}}
             <div class="alert alert-danger" role="alert">{{this}}</div>
           {{/each}}
+          {{#each primaryMessages}}
+            <div class="alert alert-primary" role="alert">{{this}}</div>
+          {{/each}}
           <form action="/login{{~#if redirect~}}?redirect={{redirect}}{{~/if~}}" method="post">
             {{csrfField}}
             <div class="form-group">

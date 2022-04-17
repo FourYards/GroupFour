@@ -11,6 +11,7 @@ function userStatusLocals(req, res, next) {
 /** @type {import('express').RequestHandler} */
 function loginRequiredPage(req, res, next) {
   if (!req.isAuthenticated()) {
+    req.flash('primary', 'Please log in to access the requested page.');
     return res.redirect(
       req.query.redirect ? '/login' : `/login?redirect=${req.originalUrl}`
     );

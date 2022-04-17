@@ -48,6 +48,7 @@ exports.loginPageController = function (req, res) {
       title: 'Login',
       redirect: req.query.redirect,
       errorMessages: req.flash('error'),
+      primaryMessages: req.flash('primary'),
     });
   }
 };
