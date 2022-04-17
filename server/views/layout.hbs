@@ -10,6 +10,10 @@
     {{#isnt settings.env "production"}}
       <script type="module" src="http://localhost:{{settings.port}}/@vite/client"></script>
     {{/isnt}}
+    <script id="application-context" type="application/json">{{{JSONstringify clientContext}}}</script>
+    <script>
+      window.context = JSON.parse(document.querySelector('#application-context').textContent);
+    </script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
