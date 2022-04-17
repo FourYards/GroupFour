@@ -44,7 +44,12 @@ exports.loginPageController = function (req, res) {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   } else {
-    return res.render('login', { title: 'Login' });
+    return res.render('login', {
+      title: 'Login',
+      redirect: req.query.redirect,
+      errorMessages: req.flash('error'),
+      primaryMessages: req.flash('primary'),
+    });
   }
 };
 
@@ -53,6 +58,7 @@ exports.loginController = [
   passport.authenticate('local', {
     session: true,
     failWithError: true,
+    failureFlash: 'Username or password is invalid.',
   }),
   function (req, res) {
     return res.redirect(303, req.query.redirect || '/');
