@@ -40,7 +40,7 @@ export default {
       searchBox: '',
       workTypes: [],
       prevWorkType: 0,
-      workTypeBox: null,
+      workTypeBox: 0,
     };
   },
 
@@ -70,6 +70,7 @@ export default {
         .then((res) => res.json())
         .then((res) => {
           this.workTypes = res;
+          this.workTypes.unshift({ value: 0, text: 'All' });
         });
     },
 
@@ -77,7 +78,7 @@ export default {
     // called as part of searchName.
     // uses typeFilteredJobs to cache.
     searchType() {
-      if (this.workTypeBox == null) {
+      if (this.workTypeBox == 0) {
         this.filteredJobs = this.jobs;
         return;
       }
