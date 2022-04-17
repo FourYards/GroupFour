@@ -23,6 +23,9 @@
         <b-card class="mb-3 b-card">
           <b-card-text
             ><strong>Posted By:</strong> {{ job.creator.realName }}
+            <span class="float-right border border-primary p-1 m-0">
+              <a :href="reviewURL">Review User</a>
+            </span>
           </b-card-text>
         </b-card>
         <b-card class="mb-3 b-card">
@@ -68,6 +71,11 @@ export default {
     return {
       job: null,
     };
+  },
+  computed: {
+    reviewURL() {
+      return '/addReview/' + this.job.creator.id;
+    },
   },
   components: {
     //Name of any components used on the page
