@@ -44,7 +44,10 @@ exports.loginPageController = function (req, res) {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   } else {
-    return res.render('login', { title: 'Login' });
+    return res.render('login', {
+      title: 'Login',
+      redirect: req.query.redirect,
+    });
   }
 };
 

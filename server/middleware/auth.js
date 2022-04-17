@@ -12,7 +12,7 @@ function userStatusLocals(req, res, next) {
 function loginRequiredPage(req, res, next) {
   if (!req.isAuthenticated()) {
     return res.redirect(
-      req.query.redirect ? '/login' : `/login?redirect=${req.url}`
+      req.query.redirect ? '/login' : `/login?redirect=${req.originalUrl}`
     );
   }
   next();
