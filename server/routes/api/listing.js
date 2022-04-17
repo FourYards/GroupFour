@@ -33,7 +33,7 @@ router.get('/', async (req, res, next) => {
           {
             model: db.TypeOfWork,
             as: 'typeDetails',
-            attributes: ['description'],
+            attributes: ['id', 'description'],
           },
         ],
       }),
