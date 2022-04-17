@@ -23,9 +23,13 @@
         <b-card class="mb-3 b-card">
           <b-card-text
             ><strong>Posted By:</strong> {{ job.creator.realName }}
-            <span class="float-right border border-primary p-1 m-0">
-              <a :href="reviewURL">Review User</a>
-            </span>
+          </b-card-text>
+        </b-card>
+        <b-card class="mb-3 b-card">
+          <b-card-text>
+            <b-button variant="outline-primary" :href="reviewURL"
+              >Review User</b-button
+            >
           </b-card-text>
         </b-card>
         <b-card class="mb-3 b-card">
