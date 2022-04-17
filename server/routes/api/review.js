@@ -74,30 +74,28 @@ router.get('/', async (req, res) => {
 */
 router.post('/', loginRequiredApi, async (req, res, next) => {
   if (
+    !req.body.targetId ||
+    isNaN(req.body.targetId) ||
     !req.body.comment ||
     !req.body.rating ||
     isNaN(req.body.rating) ||
     req.body.rating > 5 ||
     req.body.rating < 0
   ) {
-    return res.status(400);
+    return res.status(400).send('Invalid data');
   }
 
-  if (req.body.targetId) {
-    // Add review to a provider
-    let rev = await Review.create({
-      comment: req.body.comment,
-      rating: req.body.rating,
-      authorId: req.user.id,
-      providerId: req.body.targetId,
-    });
-    if (rev) {
-      return res.status(204);
-    } else {
-      return res.status(500);
-    }
+  // Add review to a user
+  let rev = await Review.create({
+    comment: req.body.comment,
+    rating: req.body.rating,
+    authorId: req.user.id,
+    providerId: req.body.targetId,
+  });
+  if (rev) {
+    return res.status(204).send('Review Created Successfully');
   } else {
-    return res.status(400);
+    return res.status(500).send('Something went wrong creating the Review.');
   }
 });
 
