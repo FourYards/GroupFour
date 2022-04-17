@@ -1,5 +1,19 @@
 <template>
   <fragment>
+    <div class="hero">
+      <h1>Welcome to Four Yards!</h1>
+      <p class="hero-paragraph">
+        We are the premiere online yard work marketplace where anyone can find
+        yard work to get paid for, or can post a listing for yard work that you
+        need to have done.
+      </p>
+      <p class="hero-paragraph">
+        Since March 2021, we have been the leading online yard work marketplace.
+        We have since expanded to provide a place to find other forms of outdoor
+        work for all seasons after the initial success with yard work in the
+        four neighborhoods we initially launched in.
+      </p>
+    </div>
     <div class="container">
       <b-button id="FAB" variant="success" block href="/listing/create"
         >Post a Listing</b-button
@@ -59,6 +73,10 @@ export default {
 .container {
   margin: 0px auto;
   padding: 0px;
+}
+
+.hero-paragraph {
+  font-size: medium;
 }
 
 #FAB {
