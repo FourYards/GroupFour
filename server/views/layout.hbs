@@ -10,9 +10,15 @@
     {{#isnt settings.env "production"}}
       <script type="module" src="http://localhost:{{settings.port}}/@vite/client"></script>
     {{/isnt}}
-    <script id="application-context" type="application/json">{{{JSONstringify clientContext}}}</script>
+    <script id="application-context" type="application/json">{{JSONstringify clientContext}}</script>
     <script>
-      window.context = JSON.parse(document.querySelector('#application-context').textContent);
+      window.context = JSON.parse(decodeHTMLEntities(document.querySelector('#application-context').textContent));
+
+      function decodeHTMLEntities(str) {
+        const txt = document.createElement('textarea');
+        txt.innerHTML = str;
+        return txt.value;
+      }
     </script>
   </head>
   <body>
