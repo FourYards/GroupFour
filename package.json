@@ -31,6 +31,7 @@
     "argon2": "^0.28.5",
     "bootstrap-vue": "2.21.2",
     "chalk": "^4.1.2",
+    "connect-flash": "^0.1.1",
     "connect-session-sequelize": "^7.1.2",
     "cookie-parser": "~1.4.4",
     "csurf": "^1.11.0",

@@ -4,6 +4,9 @@
     <div class="col">
       <div class="card">
         <div class="card-body bg-light">
+          {{#each errorMessages}}
+            <div class="alert alert-danger" role="alert">{{this}}</div>
+          {{/each}}
           <form action="/login{{~#if redirect~}}?redirect={{redirect}}{{~/if~}}" method="post">
             {{csrfField}}
             <div class="form-group">

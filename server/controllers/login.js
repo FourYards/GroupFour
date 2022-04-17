@@ -47,6 +47,7 @@ exports.loginPageController = function (req, res) {
     return res.render('login', {
       title: 'Login',
       redirect: req.query.redirect,
+      errorMessages: req.flash('error'),
     });
   }
 };
@@ -56,6 +57,7 @@ exports.loginController = [
   passport.authenticate('local', {
     session: true,
     failWithError: true,
+    failureFlash: 'Username or password is invalid.',
   }),
   function (req, res) {
     return res.redirect(303, req.query.redirect || '/');
