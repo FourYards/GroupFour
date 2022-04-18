@@ -59,6 +59,9 @@ export default {
       return !!this.$scopedSlots.footer;
     },
     completable() {
+      if (!window.context.user) {
+        return false;
+      }
       return (
         this.job.creator.id == window.context.user.id &&
         this.job.workStatusDetails.description === 'In Progress'
