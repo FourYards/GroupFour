@@ -14,35 +14,25 @@
             class="mb-3 image"
           ></b-card>
         </div>
-        <b-card-text class="header text-center"> {{ job.title }}</b-card-text>
-        <b-card class="mb-3 b-card">
-          <b-card-text
-            ><strong>Description:</strong> {{ job.description }}
+        <b-card class="text-center mb-3">
+          <b-card-text class="header text-center"> {{ job.title }}</b-card-text>
+          <b-card-text>
+            <strong>Description:</strong> {{ job.description }}
           </b-card-text>
-        </b-card>
-        <b-card class="mb-3 b-card">
-          <b-card-text
-            ><strong>Posted By:</strong> {{ job.creator.realName }}
+          <b-card-text>
+            <strong>Posted By:</strong> {{ job.creator.realName }}
           </b-card-text>
-        </b-card>
-        <b-card class="mb-3 b-card">
           <b-card-text>
             <strong>Estimated Time:</strong>
             {{ job.lengthInMinutes }} min</b-card-text
           >
-        </b-card>
-        <b-card class="mb-3 b-card">
           <b-card-text>
             <strong>Job Type:</strong> {{ job.typeDetails.description }}
           </b-card-text>
-        </b-card>
-        <b-card class="mb-3 b-card">
           <b-card-text>
             <strong>Status:</strong> {{ job.workStatusDetails.description }}
           </b-card-text>
-        </b-card>
-        <b-card class="mb-3 b-card">
-          <b-form @submit="onSubmit">
+          <b-form v-if="!isOwner" @submit="onSubmit">
             <b-input-group prepend="$" size="lg" class="mb-3">
               <b-form-input
                 size="lg"
@@ -56,14 +46,31 @@
             </b-input-group>
             <b-button block type="submit" variant="success">Place Bid</b-button>
           </b-form>
+          <div v-else></div>
         </b-card>
       </div>
+      <div v-if="isOwner">
+        <b-card no-body class="mb-1">
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-button block v-b-toggle.accordion-2 variant="info"
+              >Current Bids</b-button
+            >
+          </b-card-header>
+          <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+            <b-card-body>
+              <BidCardTable :bid="bid" />
+            </b-card-body>
+          </b-collapse>
+        </b-card>
+      </div>
+      <div v-else></div>
     </div>
   </fragment>
 </template>
 
 <script>
 //Import statements including components used on the page
+import BidCardTable from '../components/BidCardTable.vue';
 
 export default {
   //Page name
@@ -75,10 +82,11 @@ export default {
         amount: 0,
         order: new URLSearchParams(location.search.substring(1)).get('id'),
       },
+      isOwner: false,
     };
   },
   components: {
-    //Name of any components used on the page
+    BidCardTable,
   },
   mounted() {
     this.getListing();
@@ -125,6 +133,9 @@ export default {
         .then((res) => res.json())
         .then((res) => {
           this.job = res;
+          if (this.job.creator.id == window.context.user.id) {
+            this.isOwner = true;
+          }
         })
         .catch((err) => {
           console.log('error while fetching listing: ' + err);

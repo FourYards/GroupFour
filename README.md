@@ -74,12 +74,18 @@ will be needed to run and build the application dependencies.
 
 ## Default Local Dev User Info
 
-This application will seed one user by default at the current time. The credentials to log in as this user are:
+The credentials to log in to the admin user are:
 
 - Username: test.user@usu.edu
 - Password: password
 
-You can sign up a new user from the login page of the app as well.
+You can sign up a new user from the login page of the app as well. These users will be created as regular users.
+
+The following additional regular users exist for the application. They share the same password as the admin user:
+
+- alice.test@usu.edu
+- bob.test@usu.edu
+- carrot.cake@usu.edu
 
 ## Testing Instructions
 
