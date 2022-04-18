@@ -191,15 +191,60 @@ router.post('/', loginRequiredApi, async (req, res, next) => {
   }
 });
 
-/* PATCH the status of a listing */
-router.patch('/', async (req, res, next) => {
-  // TODO validate user
+/* PATCH to mark a listing as complete */
+router.patch(
+  '/complete/:listingId',
+  loginRequiredApi,
+  async (req, res, next) => {
+    const list = await Listing.findOne({
+      where: {
+        id: req.params.listingId,
+      },
+      include: ['creator', 'workStatusDetails'],
+    });
 
-  // TODO get the listing to update
+    if (!list) {
+      return res.status(400).send('Not a real listing');
+    }
 
-  // TODO update the status of the listing
-  res.status(500);
-});
+    console.log(list);
+    if (list.creator.id != req.user.id) {
+      return res.status(401).send('This is not your listing');
+    }
+
+    if (
+      (list.creator.id == req.user.id || req.user.role == 'ADM') &&
+      list.workStatusDetails.description == 'In Progress'
+    ) {
+      // Change status
+      list.setDataValue('status', 3);
+      await list.save();
+
+      // Move balance
+      const bid = await db.Bid.findOne({
+        where: {
+          accepted: true,
+          listingId: list.id,
+        },
+        include: ['bidder'],
+      });
+
+      if (!bid) {
+        console.log('LISTING COMPLETE WITH NO BID SELECTED');
+        return res.status(500).send('Internal Server Error');
+      }
+
+      const amount = bid.amount;
+      list.creator.setDataValue('balance', list.creator.balance - amount);
+      console.log(bid);
+      bid.bidder.balance.setDataValue('balance', bid.bidder.balance + amount);
+
+      res.status(204).send('Listing Successfully Completed');
+    }
+
+    res.status(500);
+  }
+);
 
 /* DELETE a listing. */
 router.delete('/', async (req, res, next) => {

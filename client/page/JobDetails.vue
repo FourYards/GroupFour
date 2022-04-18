@@ -19,8 +19,9 @@
           <b-card-text>
             <strong>Description:</strong> {{ job.description }}
           </b-card-text>
-          <b-card-text>
-            <strong>Posted By:</strong> {{ job.creator.realName }}
+          <b-card-text
+            ><strong>Posted By:</strong>
+            <a :href="userURL"> {{ job.creator.realName }}</a>
           </b-card-text>
           <b-card-text>
             <strong>Estimated Time:</strong>
@@ -79,6 +80,7 @@ export default {
     return {
       job: null,
       bid: {},
+      userURL: null,
       form: {
         amount: 0,
         order: new URLSearchParams(location.search.substring(1)).get('id'),
@@ -134,6 +136,7 @@ export default {
         .then((res) => res.json())
         .then((res) => {
           this.job = res;
+          this.userURL = '/user/' + res.creator.id;
           if (this.job.creator.id == window.context.user.id) {
             this.isOwner = true;
           }
@@ -145,7 +148,6 @@ export default {
   },
 };
 </script>
-
 <style>
 /* Any styles specific to the page */
 .container {
