@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../../db/models');
 
 /* PATCH the user settings 
 req format:
@@ -36,14 +37,23 @@ router.patch('/', async (req, res, next) => {
 });
 
 router.get('/', async (req, res, next) => {
-  const ret = {};
-  for (let key of Object.keys(req.user.dataValues)) {
-    if (
-      typeof req.user.get(key) !== 'undefined' &&
-      key != 'passwordHash' &&
-      key != 'id'
-    ) {
-      ret[key] = req.user.get(key);
+  let ret = {};
+  if (req.query.userId) {
+    ret = await db.UserAccount.findOne({
+      where: {
+        id: req.query.userId,
+      },
+      attributes: ['id', 'emailAddress', 'realName', 'phoneNumber'],
+    });
+  } else {
+    for (let key of Object.keys(req.user.dataValues)) {
+      if (
+        typeof req.user.get(key) !== 'undefined' &&
+        key != 'passwordHash' &&
+        key != 'id'
+      ) {
+        ret[key] = req.user.get(key);
+      }
     }
   }
 

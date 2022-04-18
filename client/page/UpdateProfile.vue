@@ -7,54 +7,57 @@
       <p><strong>Email Address: </strong> {{ emailAddress }}</p>
       <p><strong>Name:</strong> {{ realName }}</p>
       <p><strong>Phone Number:</strong> {{ formattedPhoneNumber }}</p>
-      <p><strong>Preferred Display Type:</strong> {{ displayType }}</p>
 
-      <p>
-        <strong>Update Email Address:</strong>
-        <b-input
-          v-model="emailAddressBox"
-          :placeholder="emailAddress"
-        ></b-input>
-      </p>
-      <p>
-        <strong>Update Name:</strong>
-        <b-input v-model="realNameBox" :placeholder="realName"></b-input>
-      </p>
-      <p>
-        <strong>Update Phone Number:</strong>
-        <b-input
-          v-model="phoneNumberBox"
-          type="tel"
-          :placeholder="formattedPhoneNumber"
-        ></b-input>
-      </p>
-      <p>
-        <strong>Update Preferred Display Type:</strong>
-        <b-select v-model="displayTypeBox" :options="displayTypes"></b-select>
-      </p>
-      <p>
-        <strong>Update Password:</strong>
-        <b-input
-          v-model="password1"
-          type="password"
-          placeholder="Enter password"
-        ></b-input>
-        <b-input
-          v-model="password2"
-          type="password"
-          placeholder="Re-enter password"
-        ></b-input>
-      </p>
-      <div class="buttonContainer">
+      <div id="updateForm" v-if="isOwner">
+        <p><strong>Preferred Display Type:</strong> {{ displayType }}</p>
         <p>
-          <b-button variant="success" @click="updateData"
-            >Update User Data</b-button
-          >
+          <strong>Update Email Address:</strong>
+          <b-input
+            v-model="emailAddressBox"
+            :placeholder="emailAddress"
+          ></b-input>
+        </p>
+        <p>
+          <strong>Update Name:</strong>
+          <b-input v-model="realNameBox" :placeholder="realName"></b-input>
+        </p>
+        <p>
+          <strong>Update Phone Number:</strong>
+          <b-input
+            v-model="phoneNumberBox"
+            type="tel"
+            :placeholder="formattedPhoneNumber"
+          ></b-input>
+        </p>
+        <p>
+          <strong>Update Preferred Display Type:</strong>
+          <b-select v-model="displayTypeBox" :options="displayTypes"></b-select>
+        </p>
+        <p>
+          <strong>Update Password:</strong>
+          <b-input
+            v-model="password1"
+            type="password"
+            placeholder="Enter password"
+          ></b-input>
+          <b-input
+            v-model="password2"
+            type="password"
+            placeholder="Re-enter password"
+          ></b-input>
+        </p>
+        <div class="buttonContainer">
+          <p>
+            <b-button variant="success" @click="updateData"
+              >Update User Data</b-button
+            >
+          </p>
+        </div>
+        <p v-if="finalText">
+          {{ finalText }}
         </p>
       </div>
-      <p v-if="finalText">
-        {{ finalText }}
-      </p>
+
       <div class="accordion" role="tablist">
         <b-card no-body class="mb-3">
           <b-card-header header-tag="header" class="p-1" role="tab">
@@ -69,9 +72,12 @@
           </b-collapse>
         </b-card>
       </div>
+
       <div class="buttonContainer">
         <p>
-          <b-button variant="info" href="/addreview">Add Review</b-button>
+          <b-button variant="info" :href="reviewURL" v-if="isNotOwner"
+            >Add Review</b-button
+          >
         </p>
       </div>
     </div>
@@ -106,30 +112,22 @@ export default {
       ],
       finalText: '',
       csrfToken: '',
+      isOwner: false,
     };
   },
 
   mounted() {
     this.csrfToken = document.querySelector('meta[name=csrf-token]').content;
 
-    fetch('/api/user', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': this.csrfToken,
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        for (const key of [
-          'emailAddress',
-          'realName',
-          'displayType',
-          'phoneNumber',
-        ]) {
-          this[key] = res[key];
-        }
-      });
+    if (
+      window.context.profile ||
+      window.context.user.id == window.context.userId
+    ) {
+      this.getMyProfile();
+      this.isOwner = true;
+    } else {
+      this.getUserProfile();
+    }
   },
 
   methods: {
@@ -201,6 +199,49 @@ export default {
         }
       });
     },
+
+    getMyProfile() {
+      fetch('/api/user', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': this.csrfToken,
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          for (const key of [
+            'emailAddress',
+            'realName',
+            'displayType',
+            'phoneNumber',
+          ]) {
+            this[key] = res[key];
+          }
+        });
+    },
+
+    getUserProfile() {
+      const url = '/api/user?userId=' + window.context.userId;
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': this.csrfToken,
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          for (const key of [
+            'emailAddress',
+            'realName',
+            'displayType',
+            'phoneNumber',
+          ]) {
+            this[key] = res[key];
+          }
+        });
+    },
   },
 
   computed: {
@@ -221,6 +262,17 @@ export default {
       } else {
         return digits.join('');
       }
+    },
+
+    reviewURL() {
+      if (this.isOwner) {
+        return window.location.value;
+      }
+      return '/addReview/' + window.context.userId;
+    },
+
+    isNotOwner() {
+      return !this.isOwner;
     },
   },
 };
