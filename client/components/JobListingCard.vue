@@ -73,7 +73,10 @@ export default {
     openDetails(job) {
       location.href = `/jobdetails?id=${job.id}`;
     },
-    completeJob() {
+    completeJob(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
       const url = '/api/listing/complete/' + this.job.id;
       const csrfToken = document.querySelector('meta[name=csrf-token]').content;
       fetch(url, {
