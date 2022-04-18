@@ -7,7 +7,7 @@
         img-left
         class="mb-3 card"
         :class="{ 'card-withButtons': hasFooter }"
-        @click.self="openDetails(job)"
+        @click="openDetails(job)"
       >
         <b-card-text>
           <table class="table">

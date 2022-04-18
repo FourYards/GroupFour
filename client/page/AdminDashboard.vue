@@ -3,7 +3,7 @@
     <h1 class="mt-5">Admin Dashboard</h1>
     <JobListingsTable :jobs="jobs">
       <template #listingButtons="{ job: { id } }">
-        <b-button variant="danger" @click="deleteJob(id)">Delete</b-button>
+        <b-button variant="danger" @click.stop="deleteJob(id)">Delete</b-button>
         <p class="text-danger mt-1" v-if="error">{{ error }}</p>
       </template>
     </JobListingsTable>
