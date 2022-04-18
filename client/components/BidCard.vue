@@ -8,7 +8,7 @@
               <td><strong>Name: </strong>{{ bid.bidder.realName }}</td>
             </tr>
             <tr>
-              <td><strong>Amount: </strong>{{ bid.amount }}</td>
+              <td><strong>Amount: </strong>${{ bid.amount / 100 }}</td>
             </tr>
           </table>
         </b-card-text>
