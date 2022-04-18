@@ -4,6 +4,7 @@
     <JobListingsTable :jobs="jobs">
       <template #listingButtons="{ job: { id } }">
         <b-button variant="danger" @click="deleteJob(id)">Delete</b-button>
+        <p class="text-danger mt-1" v-if="error">{{ error }}</p>
       </template>
     </JobListingsTable>
   </div>
@@ -21,6 +22,7 @@ export default {
   data() {
     return {
       jobs: [],
+      error: null,
     };
   },
 
@@ -43,8 +45,29 @@ export default {
       this.jobs = this.jobs.data;
     },
 
-    deleteJob(id) {
-      console.log(id);
+    async deleteJob(id) {
+      const csrfToken = document.querySelector('meta[name=csrf-token]').content;
+
+      try {
+        const res = await fetch('/api/listing/', {
+          method: 'DELETE',
+          body: JSON.stringify({ id }),
+          mode: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken,
+          },
+        });
+
+        if (res.status > 299) {
+          this.error = await res.text();
+        } else {
+          window.location.reload();
+        }
+      } catch (e) {
+        console.error(e);
+        this.error = e.message;
+      }
     },
   },
 };
