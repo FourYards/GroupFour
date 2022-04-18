@@ -218,7 +218,6 @@ router.patch(
     ) {
       // Change status
       list.setDataValue('status', 3);
-      await list.save();
 
       // Move balance
       const bid = await db.Bid.findOne({
@@ -234,9 +233,13 @@ router.patch(
         return res.status(500).send('Internal Server Error');
       }
 
+      await list.save();
+
       const amount = bid.amount;
       list.creator.setDataValue('balance', list.creator.balance - amount);
+      await list.creator.save();
       bid.bidder.setDataValue('balance', bid.bidder.balance + amount);
+      await bid.bidder.save();
 
       res.status(204).send('Listing Successfully Completed');
     }
