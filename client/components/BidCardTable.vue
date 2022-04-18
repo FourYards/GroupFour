@@ -6,7 +6,7 @@
         <tbody>
           <tr :key="bid.id" v-for="bid in bids">
             <td>
-              <BidCard :bid="bid" />
+              <BidCard :listing="listing" :bid="bid" />
             </td>
           </tr>
         </tbody>
@@ -20,7 +20,9 @@ import BidCard from './BidCard.vue';
 
 export default {
   name: 'bid-card-table',
-  props: {},
+  props: {
+    listing: {},
+  },
   data() {
     //Data to populate component
     return {
