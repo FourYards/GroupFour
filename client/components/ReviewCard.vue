@@ -4,10 +4,15 @@
       <b-card
         bg-variant="info"
         text-variant="white"
-        header="Name of Reviewer"
-        class="text-center"
+        :header="authorName"
+        class="overflow text-center"
       >
-        <b-card-text>Review of the person</b-card-text>
+        <b-card-text
+          ><strong>Review: </strong>{{ review.rating }}/5</b-card-text
+        >
+        <b-card-text
+          ><strong>Comment: </strong> {{ review.comment }}</b-card-text
+        >
       </b-card>
     </div>
   </fragment>
@@ -15,12 +20,16 @@
 
 <script>
 export default {
-  name: 'example-component',
+  name: 'review-card',
   props: {
     //Data variables
+    review: {},
   },
   data() {
     //Data to populate component
+    return {
+      authorName: this.review.author.realName,
+    };
   },
   computed: {
     //Computed variables
@@ -31,4 +40,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.overflow {
+  overflow: auto;
+}
+</style>

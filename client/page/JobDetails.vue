@@ -23,7 +23,7 @@
         <b-card class="mb-3 b-card">
           <b-card-text
             ><strong>Posted By:</strong>
-            <a :href="userURL">{{ job.creator.realName }}</a>
+            <a :href="userURL"> {{ job.creator.realName }}</a>
           </b-card-text>
         </b-card>
         <b-card class="mb-3 b-card">

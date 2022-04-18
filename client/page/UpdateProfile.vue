@@ -67,7 +67,7 @@
           </b-card-header>
           <b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-              <ReviewCard />
+              <ReviewCardTable :reviews="reviews" />
             </b-card-body>
           </b-collapse>
         </b-card>
@@ -85,14 +85,14 @@
 </template>
 
 <script>
-import ReviewCard from '../components/ReviewCard.vue';
 //Import statements including components used on the page
+import ReviewCardTable from '../components/ReviewCardTable.vue';
 
 export default {
   //Page realName
   realName: 'app',
 
-  components: { ReviewCard },
+  components: { ReviewCardTable },
 
   data() {
     return {
@@ -113,6 +113,7 @@ export default {
       finalText: '',
       csrfToken: '',
       isOwner: false,
+      reviews: [],
     };
   },
 
@@ -128,6 +129,8 @@ export default {
     } else {
       this.getUserProfile();
     }
+
+    this.getReviews();
   },
 
   methods: {
@@ -221,6 +224,20 @@ export default {
         });
     },
 
+    getReviews() {
+      fetch(`/api/review?providerId=${this.profileId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': this.csrfToken,
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          this.reviews = res.data;
+        });
+    },
+
     getUserProfile() {
       const url = '/api/user?userId=' + window.context.userId;
       fetch(url, {
@@ -273,6 +290,14 @@ export default {
 
     isNotOwner() {
       return !this.isOwner;
+    },
+
+    profileId() {
+      if (window.context.profile) {
+        return window.context.user.id;
+      } else {
+        return window.context.userId;
+      }
     },
   },
 };
