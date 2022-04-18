@@ -22,7 +22,8 @@
         </b-card>
         <b-card class="mb-3 b-card">
           <b-card-text
-            ><strong>Posted By:</strong> {{ job.creator.realName }}
+            ><strong>Posted By:</strong>
+            <a :href="userURL">{{ job.creator.realName }}</a>
           </b-card-text>
         </b-card>
         <b-card class="mb-3 b-card">
@@ -67,6 +68,7 @@ export default {
   data() {
     return {
       job: null,
+      userURL: null,
     };
   },
   components: {
@@ -86,6 +88,7 @@ export default {
         .then((res) => res.json())
         .then((res) => {
           this.job = res;
+          this.userURL = '/user/' + res.creator.id;
         })
         .catch((err) => {
           console.log('error while fetching listing: ' + err);
