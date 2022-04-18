@@ -3,11 +3,8 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('WorkStatuses', [
-      { description: 'Awaiting Provider' },
-      { description: 'Awaiting Beginning' },
-      { description: 'Awaiting Completion' },
-      { description: 'Awaiting Approval' },
-      { description: 'Awaiting Reviews' },
+      { description: 'New' },
+      { description: 'In Progress' },
       { description: 'Completed' },
     ]);
   },

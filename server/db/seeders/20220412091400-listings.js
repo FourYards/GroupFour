@@ -12,7 +12,7 @@ module.exports = {
           creator: 2,
           place: 2,
           type: 2,
-          status: 6,
+          status: 3,
         },
         {
           title: 'Weekly Lawn Mowing',
@@ -22,7 +22,7 @@ module.exports = {
           creator: 2,
           place: 3,
           type: 1,
-          status: 3,
+          status: 2,
         },
         {
           title: 'Lovely April Snow',
@@ -32,7 +32,7 @@ module.exports = {
           creator: 3,
           place: 4,
           type: 3,
-          status: 2,
+          status: 1,
         },
         {
           title: 'Weekly Lawn Mowing ~$125',
