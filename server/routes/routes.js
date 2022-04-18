@@ -13,6 +13,7 @@ const reviewRouter = require('./review/routes');
 const apiRouter = require('./api/routes');
 const profileRouter = require('./profile');
 const addFundsRouter = require('./addfunds');
+const adminRouter = require('./admin');
 const accessDeniedPageRouter = require('./403');
 
 const { logoutController } = require('../controllers/login');
@@ -30,6 +31,7 @@ router.use('/review', reviewRouter);
 router.use('/api', apiRouter);
 router.use('/profile', profileRouter);
 router.use('/addfunds', addFundsRouter);
+router.use('/admin', adminRouter);
 router.use('/403', accessDeniedPageRouter);
 
 module.exports = router;
