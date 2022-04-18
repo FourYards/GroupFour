@@ -1,16 +1,12 @@
 <template>
   <fragment>
-    <div class="table-container" id="job-listings-table">
-      <p v-if="jobs.length < 1" class="empty-table">No Jobs Listed</p>
+    <div class="table-container" id="bid-card-table">
+      <p v-if="bids.length < 1" class="empty-table">No Bids</p>
       <table class="table" v-else>
         <tbody>
-          <tr :key="job.id" v-for="job in jobs">
+          <tr :key="bid.id" v-for="bid in bids">
             <td>
-              <JobListingCard :job="job">
-                <template #footer="slotData" v-if="$scopedSlots.listingButtons">
-                  <slot name="listingButtons" v-bind="slotData"></slot>
-                </template>
-              </JobListingCard>
+              <BidCard :bid="bid" />
             </td>
           </tr>
         </tbody>
@@ -20,26 +16,35 @@
 </template>
 
 <script>
-import JobListingCard from './JobListingCard.vue';
+import BidCard from './BidCard.vue';
 
 export default {
-  name: 'job-listings-table',
-  props: {
-    jobs: Array,
-  },
+  name: 'bid-card-table',
+  props: {},
   data() {
     //Data to populate component
-    return {};
+    return {
+      bids: [],
+      listingID: new URLSearchParams(location.search.substring(1)).get('id'),
+    };
+  },
+  mounted() {
+    this.getBids();
   },
   components: {
     //Name of any components used on the page
-    JobListingCard,
+    BidCard,
   },
   computed: {
     //Computed variables
   },
   methods: {
     //Methods for component
+    async getBids() {
+      const response = await fetch(`/api/bid?order=${this.listingID}`);
+      const json = await response.json();
+      this.bids = json.data;
+    },
   },
 };
 </script>

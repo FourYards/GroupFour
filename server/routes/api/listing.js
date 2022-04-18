@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
         {
           model: db.UserAccount,
           as: 'creator',
-          attributes: ['id', 'realName'],
+          attributes: ['realName', 'id'],
         },
         {
           model: db.TypeOfWork,
@@ -202,19 +202,23 @@ router.patch('/', async (req, res, next) => {
 });
 
 /* DELETE a listing. */
-router.delete('/', (req, res, next) => {
-  if (req.user.isUnauthenticated()) {
-    res.status(401);
-  } else if (req.body.id) {
-    const listing = Listing.findByPk(req.body.id);
-    if (listing.UserAccountId == req.user.id || req.user.role == 'ADM') {
-      listing.destroy();
-      res.status(204);
+router.delete('/', async (req, res, next) => {
+  try {
+    if (req.isUnauthenticated()) {
+      res.status(401);
+    } else if (req.body.id) {
+      const listing = await Listing.findByPk(req.body.id);
+      if (listing.UserAccountId == req.user.id || req.user.role == 'ADM') {
+        await listing.destroy();
+        res.status(204).send();
+      } else {
+        res.json(403);
+      }
     } else {
-      res.json(403);
+      res.status(400).send();
     }
-  } else {
-    res.status(400);
+  } catch (e) {
+    return res.status(500).send(e.message);
   }
 });
 
