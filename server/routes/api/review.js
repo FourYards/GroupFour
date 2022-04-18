@@ -52,6 +52,13 @@ router.get('/', async (req, res) => {
           providerId: req.query.providerId,
         },
         attributes: ['id', 'comment', 'rating'],
+        include: [
+          {
+            model: db.UserAccount,
+            as: 'author',
+            attributes: ['realName', 'id'],
+          },
+        ],
       }),
     };
   }

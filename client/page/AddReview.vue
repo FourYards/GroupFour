@@ -111,7 +111,7 @@ export default {
         },
         body: JSON.stringify(this.form),
       }).then(() => {
-        window.location.replace('/dashboard');
+        window.location.replace(`/user/${this.form.targetId}`);
       });
     },
     //Api calls to populate data
