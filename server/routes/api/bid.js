@@ -190,6 +190,49 @@ router.post('/', loginRequiredApi, async (req, res, next) => {
   }
 });
 
+/* Accept a bid
+  Tries to accept a bid if no other bids have been accepted
+  endpoint: api/bid/accept/:bidId
+*/
+router.patch('/accept/:bidId', loginRequiredApi, async (req, res, next) => {
+  const bid = await Bid.findOne({
+    where: {
+      id: req.params.bidId,
+    },
+    include: [
+      {
+        model: db.Listing,
+        as: 'listing',
+        include: [
+          { model: db.UserAccount, as: 'creator' },
+          { model: db.WorkStatus, as: 'workStatusDetails' },
+        ],
+      },
+    ],
+  });
+
+  if (!bid) {
+    return res.status(400).send('Bid does not exist');
+  }
+
+  if (req.user.id != bid.listing.creator.id) {
+    return res.status(401).send('You are not the author of this listing');
+  }
+
+  if (bid.listing.workStatusDetails.description === 'New') {
+    // Set workstatus to in progress
+    bid.listing.setDataValue('status', 2);
+    await bid.listing.save();
+
+    // Accept Bid
+    bid.setDataValue('accepted', true);
+    await bid.save();
+
+    return res.status(204).send();
+  }
+  return res.status(400).send('Bid already accepted');
+});
+
 /* DELETE a bid. */
 router.delete('/', loginRequiredApi, async (req, res, next) => {
   if (req.body.id) {

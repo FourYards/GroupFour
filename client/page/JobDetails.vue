@@ -59,7 +59,7 @@
           </b-card-header>
           <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-              <BidCardTable :bid="bid" />
+              <BidCardTable :listing="job" :bid="bid" />
             </b-card-body>
           </b-collapse>
         </b-card>
@@ -79,6 +79,7 @@ export default {
   data() {
     return {
       job: null,
+      bid: {},
       userURL: null,
       form: {
         amount: 0,
