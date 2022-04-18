@@ -16,7 +16,11 @@ router.get('/', async (req, res, next) => {
       },
       attributes: ['id', 'title', 'description', 'lengthInMinutes'],
       include: [
-        { model: db.UserAccount, as: 'creator', attributes: ['realName'] },
+        {
+          model: db.UserAccount,
+          as: 'creator',
+          attributes: ['realName', 'id'],
+        },
         {
           model: db.TypeOfWork,
           as: 'typeDetails',
