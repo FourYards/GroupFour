@@ -236,8 +236,7 @@ router.patch(
 
       const amount = bid.amount;
       list.creator.setDataValue('balance', list.creator.balance - amount);
-      console.log(bid);
-      bid.bidder.balance.setDataValue('balance', bid.bidder.balance + amount);
+      bid.bidder.setDataValue('balance', bid.bidder.balance + amount);
 
       res.status(204).send('Listing Successfully Completed');
     }
