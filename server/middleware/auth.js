@@ -2,9 +2,21 @@ const express = require('express');
 
 /** @type {import('express').RequestHandler} */
 function userStatusLocals(req, res, next) {
-  res.locals.user = req.user;
+  if (req.user) {
+    res.locals.user = Object.assign({}, req.user.dataValues);
+    delete res.locals.user.passwordHash;
+    delete res.locals.user.emailAddress;
+    delete res.locals.user.phoneNumber;
+    delete res.locals.user.balance;
+  }
+
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.isUnauthenticated = req.isUnauthenticated();
+
+  if (req.isAuthenticated()) {
+    res.locals.clientContext.user = res.locals.user;
+  }
+
   next();
 }
 
