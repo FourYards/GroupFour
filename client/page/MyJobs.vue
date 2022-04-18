@@ -23,7 +23,7 @@
           </b-card-header>
           <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-              <JobListingsTable :jobs="jobs" />
+              <JobListingsTable :jobs="bids" />
             </b-card-body>
           </b-collapse>
         </b-card>
@@ -46,6 +46,7 @@ export default {
     return {
       //Any variables / data used on the page
       jobs: [],
+      bids: [],
     };
   },
 
@@ -56,56 +57,10 @@ export default {
   methods: {
     //Api calls to populate data
     async getJobs() {
-      this.jobs = [
-        {
-          id: 1,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-          status: 'In Progress',
-        },
-        {
-          id: 2,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-          status: 'In Progress',
-        },
-        {
-          id: 3,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job.',
-          date: 'March 23, 2021',
-          status: 'In Progress',
-        },
-        {
-          id: 4,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-          status: 'In Progress',
-        },
-        {
-          id: 5,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-          status: 'In Progress',
-        },
-        {
-          id: 6,
-          title: 'Hard Job',
-          customer: 'Wesley Perrett',
-          description: 'This is a description for a job',
-          date: 'March 23, 2021',
-          status: 'In Progress',
-        },
-      ];
+      const response = await fetch('/api/listing/myjobs');
+      const json = await response.json();
+      this.jobs = json.posted;
+      this.bids = json.bid;
     },
   },
 };

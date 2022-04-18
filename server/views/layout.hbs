@@ -10,6 +10,18 @@
     {{#isnt settings.env "production"}}
       <script type="module" src="http://localhost:{{settings.port}}/@vite/client"></script>
     {{/isnt}}
+    <script id="application-context" type="application/json">{{JSONstringify clientContext}}</script>
+    <script>
+      window.context = JSON.parse(decodeHTMLEntities(document.querySelector('#application-context').textContent));
+
+      // Generally, you'd want to use a library's implementation of html entity decoding. This is just a quick-and-dirty way
+      // to get this working.
+      function decodeHTMLEntities(str) {
+        const txt = document.createElement('textarea');
+        txt.innerHTML = str;
+        return txt.value;
+      }
+    </script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,14 +40,14 @@
           {{#if isAuthenticated}}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" style="color: #fff" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                My Profile
+                Menu
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <span class="dropdown-item">Hello {{user.realName}}</span>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/addfunds">Balance</a>
                 <a class="dropdown-item" href="/myjobs">My Jobs</a>
-                <a class="dropdown-item" href="#">Preferences</a>
+                <a class="dropdown-item" href="/profile">My Profile</a>
                 <div class="dropdown-divider"></div>
                 <form class="form-inline" action="/logout" method="post">
                   {{csrfField}}

@@ -1,6 +1,9 @@
 <template>
   <fragment>
     <div class="container">
+      <div class="titleContainer">
+        <h1>{{ realName }} Profile</h1>
+      </div>
       <p><strong>Email Address: </strong> {{ emailAddress }}</p>
       <p><strong>Name:</strong> {{ realName }}</p>
       <p><strong>Phone Number:</strong> {{ formattedPhoneNumber }}</p>
@@ -42,27 +45,48 @@
           placeholder="Re-enter password"
         ></b-input>
       </p>
-
-      <p>
-        <b-button variant="success" @click="updateData"
-          >Update User Data</b-button
-        >
-      </p>
+      <div class="buttonContainer">
+        <p>
+          <b-button variant="success" @click="updateData"
+            >Update User Data</b-button
+          >
+        </p>
+      </div>
       <p v-if="finalText">
         {{ finalText }}
       </p>
+      <div class="accordion" role="tablist">
+        <b-card no-body class="mb-3">
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-button block v-b-toggle.accordion-1 variant="info"
+              >Reviews</b-button
+            >
+          </b-card-header>
+          <b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
+            <b-card-body>
+              <ReviewCard />
+            </b-card-body>
+          </b-collapse>
+        </b-card>
+      </div>
+      <div class="buttonContainer">
+        <p>
+          <b-button variant="info" href="/addreview">Add Review</b-button>
+        </p>
+      </div>
     </div>
   </fragment>
 </template>
 
 <script>
+import ReviewCard from '../components/ReviewCard.vue';
 //Import statements including components used on the page
 
 export default {
   //Page realName
   realName: 'app',
 
-  components: {},
+  components: { ReviewCard },
 
   data() {
     return {
@@ -208,5 +232,15 @@ export default {
   margin: 0px auto;
   padding: 0px;
   margin-top: 20px;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: right;
 }
 </style>

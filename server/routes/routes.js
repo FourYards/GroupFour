@@ -7,6 +7,7 @@ const myjobsRouter = require('./myjobs');
 const jobdetails = require('./jobdetails');
 const dashboardRouter = require('./dashboard');
 const loginRouter = require('./login');
+const addreview = require('./addreview');
 const userRouter = require('./user/routes');
 const listingRouter = require('./listing/routes');
 const reviewRouter = require('./review/routes');
@@ -20,6 +21,7 @@ const { logoutController } = require('../controllers/login');
 
 router.use('/', indexRouter);
 router.use('/login', loginRouter);
+router.use('/addreview', addreview);
 router.post('/logout', logoutController);
 router.use('/browse', browseRouter);
 router.use('/myjobs', myjobsRouter);

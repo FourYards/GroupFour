@@ -4,9 +4,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const logger = require('morgan');
+const flash = require('connect-flash');
 const hbs = require('hbs');
 const hbsHelpers = require('./server/views/helpers');
 const csrfProtection = require('./server/middleware/csrf');
+const clientContext = require('./server/middleware/client-context');
 const { sessionMiddleware } = require('./server/middleware/session');
 const { userStatusLocals } = require('./server/middleware/auth');
 
@@ -22,15 +24,19 @@ app.initPromise = (async () => {
   hbs.localsAsTemplateData(app);
   hbsHelpers(hbs);
 
+  // App-level middleware stack
   app.use(logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser(process.env.COOKIE_SECRET));
   app.use(sessionMiddleware());
+  app.use(flash());
+  app.use(clientContext);
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(userStatusLocals);
 
+  // Static files in public directory
   app.use(express.static(path.join(__dirname, 'client', 'public')));
 
   // Dev server init
@@ -48,6 +54,7 @@ app.initPromise = (async () => {
     }
   }
 
+  // Application routes (csrf protection not needed for static resources or vite dev server)
   app.use(csrfProtection);
   app.use('/', indexRouter);
 

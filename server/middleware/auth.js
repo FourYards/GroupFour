@@ -2,17 +2,30 @@ const express = require('express');
 
 /** @type {import('express').RequestHandler} */
 function userStatusLocals(req, res, next) {
-  res.locals.user = req.user;
+  if (req.user) {
+    res.locals.user = Object.assign({}, req.user.dataValues);
+    delete res.locals.user.passwordHash;
+    delete res.locals.user.emailAddress;
+    delete res.locals.user.phoneNumber;
+    delete res.locals.user.balance;
+  }
+
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.isUnauthenticated = req.isUnauthenticated();
+
+  if (req.isAuthenticated()) {
+    res.locals.clientContext.user = res.locals.user;
+  }
+
   next();
 }
 
 /** @type {import('express').RequestHandler} */
 function loginRequiredPage(req, res, next) {
   if (!req.isAuthenticated()) {
+    req.flash('primary', 'Please log in to access the requested page.');
     return res.redirect(
-      req.query.redirect ? '/login' : `/login?redirect=${req.url}`
+      req.query.redirect ? '/login' : `/login?redirect=${req.originalUrl}`
     );
   }
   next();

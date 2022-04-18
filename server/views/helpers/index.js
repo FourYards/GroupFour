@@ -8,6 +8,6 @@ function registerHelperModule(hbs, helperModule) {
 }
 
 module.exports = function registerHelpers(hbs) {
-  registerHelperModule(hbs, helpers(['comparison']));
+  registerHelperModule(hbs, helpers(['comparison', 'object']));
   registerHelperModule(hbs, clientScriptHelpers);
 };
