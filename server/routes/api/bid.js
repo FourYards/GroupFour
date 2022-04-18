@@ -219,7 +219,7 @@ router.patch('/accept/:bidId', loginRequiredApi, async (req, res, next) => {
     return res.status(401).send('You are not the author of this listing');
   }
 
-  if (bid.workStatusDetails.description === 'New') {
+  if (bid.listing.workStatusDetails.description === 'New') {
     // Set workstatus to in progress
     bid.listing.setDataValue('status', 2);
     await bid.listing.save();
@@ -228,8 +228,9 @@ router.patch('/accept/:bidId', loginRequiredApi, async (req, res, next) => {
     bid.setDataValue('accepted', true);
     await bid.save();
 
-    return res.status(204);
+    return res.status(204).send();
   }
+  return res.status(400).send('Bid already accepted');
 });
 
 /* DELETE a bid. */
