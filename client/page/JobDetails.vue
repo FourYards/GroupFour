@@ -98,6 +98,13 @@ export default {
     onSubmit(event) {
       event.preventDefault();
 
+      if (!window.context.user) {
+        window.location.replace(
+          `/login?redirect=${window.location.pathname}${window.location.search}`
+        );
+        return;
+      }
+
       if (isNaN(this.form.amount) || !this.form.amount > 0) {
         alert('Improper Bid Amount');
         return;
