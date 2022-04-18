@@ -122,7 +122,7 @@ export default {
 
     if (
       window.context.profile ||
-      window.context.user.id == window.context.userId
+      window.context?.user?.id == window.context.userId
     ) {
       this.getMyProfile();
       this.isOwner = true;
