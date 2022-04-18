@@ -13,4 +13,7 @@ module.exports = {
     commonjs: false,
     'vue/setup-compiler-macros': true,
   },
+  rules: {
+    'vue/no-deprecated-dollar-scopedslots-api': 'off',
+  },
 };

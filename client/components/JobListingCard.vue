@@ -1,11 +1,13 @@
 <template>
   <fragment>
-    <div @click="openDetails(job)" class="mt-4">
+    <div class="mt-4">
       <b-card
         img-src="https://placekitten.com/300/300"
         img-alt="Card image"
         img-left
         class="mb-3 card"
+        :class="{ 'card-withButtons': hasFooter }"
+        @click.self="openDetails(job)"
       >
         <b-card-text>
           <table class="table">
@@ -26,6 +28,9 @@
             </tr>
           </table>
         </b-card-text>
+        <b-card-footer v-if="$scopedSlots.footer">
+          <slot name="footer" :job="job"></slot>
+        </b-card-footer>
       </b-card>
     </div>
   </fragment>
@@ -42,7 +47,9 @@ export default {
     return {};
   },
   computed: {
-    //Computed variables
+    hasFooter: function () {
+      return !!this.$scopedSlots.footer;
+    },
   },
   methods: {
     //Methods for component
@@ -68,6 +75,10 @@ td {
   margin: 0px auto;
   height: 250px;
   overflow: auto;
+}
+
+.card-withButtons {
+  height: 305px;
 }
 
 .card:hover {

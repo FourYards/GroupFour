@@ -6,7 +6,11 @@
         <tbody>
           <tr :key="job.id" v-for="job in jobs">
             <td>
-              <JobListingCard :job="job" />
+              <JobListingCard :job="job">
+                <template #footer="slotData" v-if="$scopedSlots.listingButtons">
+                  <slot name="listingButtons" v-bind="slotData"></slot>
+                </template>
+              </JobListingCard>
             </td>
           </tr>
         </tbody>
