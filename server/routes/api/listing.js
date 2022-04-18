@@ -192,7 +192,7 @@ router.patch(
   '/complete/:listingId',
   loginRequiredApi,
   async (req, res, next) => {
-    const list = Listing.findOne({
+    const list = await Listing.findOne({
       where: {
         id: req.params.listingId,
       },
@@ -203,20 +203,21 @@ router.patch(
       return res.status(400).send('Not a real listing');
     }
 
+    console.log(list);
     if (list.creator.id != req.user.id) {
       return res.status(401).send('This is not your listing');
     }
 
     if (
       (list.creator.id == req.user.id || req.user.role == 'ADM') &&
-      list.workStatusDetials.description == 'In Progress'
+      list.workStatusDetails.description == 'In Progress'
     ) {
       // Change status
       list.setDataValue('status', 3);
       await list.save();
 
       // Move balance
-      const bid = db.Bid.findOne({
+      const bid = await db.Bid.findOne({
         where: {
           accepted: true,
           listingId: list.id,
@@ -231,12 +232,12 @@ router.patch(
 
       const amount = bid.amount;
       list.creator.setDataValue('balance', list.creator.balance - amount);
+      console.log(bid);
       bid.bidder.balance.setDataValue('balance', bid.bidder.balance + amount);
 
       res.status(204).send('Listing Successfully Completed');
     }
 
-    // TODO update the status of the listing
     res.status(500);
   }
 );

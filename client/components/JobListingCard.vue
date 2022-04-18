@@ -28,6 +28,14 @@
             </tr>
           </table>
         </b-card-text>
+        <b-button
+          variant="success"
+          v-if="completable"
+          @click="completeJob"
+          size="sm"
+          class="m-0"
+          >Job Complete</b-button
+        >
         <b-card-footer v-if="$scopedSlots.footer">
           <slot name="footer" :job="job"></slot>
         </b-card-footer>
@@ -50,11 +58,31 @@ export default {
     hasFooter: function () {
       return !!this.$scopedSlots.footer;
     },
+    completable() {
+      return (
+        this.job.creator.id == window.context.user.id &&
+        this.job.workStatusDetails.description === 'In Progress'
+      );
+    },
   },
   methods: {
     //Methods for component
     openDetails(job) {
       location.href = `/jobdetails?id=${job.id}`;
+    },
+    completeJob() {
+      const url = '/api/listing/complete/' + this.job.id;
+      const csrfToken = document.querySelector('meta[name=csrf-token]').content;
+      fetch(url, {
+        method: 'PATCH',
+        mode: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
+        },
+      }).then(() => {
+        window.location.reload();
+      });
     },
   },
 };
