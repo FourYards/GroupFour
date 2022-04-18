@@ -32,6 +32,7 @@ module.exports = {
           amount: 1350,
           bidder: 3,
           listing: 2,
+          accepted: true,
         },
 
         // on listing 3
