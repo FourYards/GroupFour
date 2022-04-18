@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <h1 class="mt-5">Admin Dashboard</h1>
-    <JobListingsTable :jobs="jobs" />
+    <JobListingsTable :jobs="jobs">
+      <template #listingButtons="{ job: { id } }">
+        <b-button variant="danger" @click="deleteJob(id)">Delete</b-button>
+      </template>
+    </JobListingsTable>
   </div>
 </template>
 
@@ -37,6 +41,10 @@ export default {
       const response = await fetch('/api/listing');
       this.jobs = await response.json();
       this.jobs = this.jobs.data;
+    },
+
+    deleteJob(id) {
+      console.log(id);
     },
   },
 };
