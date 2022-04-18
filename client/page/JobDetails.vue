@@ -43,16 +43,20 @@
           </b-card-text>
         </b-card>
         <b-card class="mb-3 b-card">
-          <form action="">
-            <b-form-input
-              size="lg"
-              placeholder="Enter Bid Amount"
-              class="mb-3"
-            ></b-form-input>
-            <b-button href="/dashboard" block variant="success"
-              >Place Bid</b-button
-            >
-          </form>
+          <b-form @submit="onSubmit">
+            <b-input-group prepend="$" size="lg" class="mb-3">
+              <b-form-input
+                size="lg"
+                type="number"
+                min="0.00"
+                step="any"
+                placeholder="Enter Bid Amount"
+                class=""
+                v-model="form.amount"
+              ></b-form-input>
+            </b-input-group>
+            <b-button block type="submit" variant="success">Place Bid</b-button>
+          </b-form>
         </b-card>
       </div>
     </div>
@@ -69,6 +73,10 @@ export default {
     return {
       job: null,
       userURL: null,
+      form: {
+        amount: 0,
+        order: new URLSearchParams(location.search.substring(1)).get('id'),
+      },
     };
   },
   components: {
@@ -78,6 +86,37 @@ export default {
     this.getListing();
   },
   methods: {
+    onSubmit(event) {
+      event.preventDefault();
+
+      if (isNaN(this.form.amount) || !this.form.amount > 0) {
+        alert('Improper Bid Amount');
+        return;
+      }
+
+      if (!this.form.order) {
+        alert('Unable to Find Listing. Please refresh and try again.');
+        return;
+      }
+
+      // Convert the bid amount to cents
+      this.form.amount *= 100;
+
+      const url = '/api/bid';
+      const body = this.form;
+      const csrfToken = document.querySelector('meta[name=csrf-token]').content;
+      fetch(url, {
+        method: 'POST',
+        mode: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
+        },
+        body: JSON.stringify(body),
+      }).then(() => {
+        window.location.replace('/dashboard');
+      });
+    },
     //Api calls to populate data
     getListing() {
       fetch(

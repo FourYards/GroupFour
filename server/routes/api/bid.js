@@ -154,7 +154,7 @@ router.get('/', async (req, res, next) => {
   Creates and posts a bid from whatever user is signed in
   format: 
   request.body = {
-    amount: *value > 0*,
+    amount: *value > 0*, // AMOUNT SHOULD BE IN CENTS
     order: *id of listing*,
   }
 */
@@ -174,7 +174,7 @@ router.post('/', loginRequiredApi, async (req, res, next) => {
     // Input a new bid into the database
     const bid = await Bid.create({
       bidderId: req.user.id,
-      amount: req.body.amount,
+      amount: Math.trunc(req.body.amount),
       listingId: order.id,
     });
 
